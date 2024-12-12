@@ -6,12 +6,12 @@
     <div class="mt-16" id="content">
         <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
             <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
-                <div class="border-4 border-green-400 lg:min-h-[125vh] lg:absolute lg:right-16 lg:top-56 z-40">
-                    <img
-                            src="{{ url_for('static', filename='images/pc.png') }}"
-                            class="max-w-80 lg:sticky lg:top-60"/>
+                <div class="lg:min-h-[150vh] lg:absolute lg:right-0 lg:top-44 z-40">
+                    <div class="block min-w-[45vw] min-h-[45vw] lg:sticky lg:top-44">
+                        <canvas id="displayContent" class="block w-full h-full"></canvas>
+                    </div>
                 </div>
-                <div class="hidden lg:block lg:min-w-80 lg:min-h-80 bg-orange-500"></div>
+                <div class="hidden lg:block lg:min-w-80 lg:min-h-80"></div>
                 <div class="text-white">
                     <h1 class="text-5xl font-semibold font-mono">Hej! <br>Glad you're here :)</h1>
                     <p class="py-6 font-light">
@@ -23,7 +23,7 @@
         </div>
         <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-yellow-50 to-stone-50">
             <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
-                <div class="hidden lg:block lg:min-w-80 lg:min-h-80 border-4 border-red-400"></div>
+                <div class="hidden lg:block lg:min-w-80 lg:min-h-80"></div>
                 <div class="text-black">
                     <h1 class="text-3xl font-semibold font-mono">A few things about me</h1>
                     <ul class="py-6 ">

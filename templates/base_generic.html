@@ -11,6 +11,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
+          }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://unpkg.com/three@0.126.0/examples/js/controls/OrbitControls.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body class="bg-slate-200 font-sans">
 {% include 'navbar.html' %}

@@ -1,26 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base_generic.html' %}
+{% block title %}
     <title>János Litkei</title>
-    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
-</head>
-<body class="bg-slate-200 font-sans leading-normal tracking-normal">
-<div class="flex flex-col md:flex-row h-screen">
-    <!-- Sidebar -->
-    <div id="sidebar"
-         class="bg-slate-900 w-full md:w-1/4 p-6 md:p-8 flex flex-col justify-between h-full hidden md:flex">
-        <div class="text-slate-200 mb-12 hidden md:block md:text-left">
-            <span class="block text-4xl font-bold tracking-tight mb-4">János Litkei</span>
-            <span class="block text-xl font-semibold tracking-tight mb-6">Software Engineer</span>
+{% endblock %}
+{% block content %}
+    <div>
+        {% include 'navbar.html' %}
+        <div id="content">
+            <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
+                <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
+                    <img
+                            src="{{ url_for('static', filename='images/pc.png') }}"
+                            class="max-w-80 sticky"/>
+                    <div class="text-white">
+                        <h1 class="text-5xl font-semibold font-mono">Hej! <br>Glad you're here :)</h1>
+                        <p class="py-6 font-light">
+                            My name is János, and I'm a third-year Software Engineering student in Sweden.
+                            Welcome to my personal website!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-yellow-50 to-stone-50">
+                <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
+                    <div class="text-black">
+                        <h1 class="text-3xl font-semibold font-mono">A few things about me</h1>
+                        <ul class="py-6 ">
+                            <li>👨🏻‍💻 I'm a Software Engineering student from Hungary</li>
+                            <li>🇸🇪 I currently live in Gothenburg, Sweden</li>
+                            <li>🔧 I've worked on lots of <a class="link">projects</a> as part of my course</li>
+                            <li>🌟 My favourite programming language is <span class="line-through">Python</span> PHP ;)</li>
+                            <li>🚀 I'm always working on a few side projects to increase my skills</li>
+                            <li>🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-</body>
-</html>
+{% endblock %}

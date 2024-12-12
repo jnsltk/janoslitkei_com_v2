@@ -3,36 +3,38 @@
     <title>János Litkei</title>
 {% endblock %}
 {% block content %}
-    <div>
-        {% include 'navbar.html' %}
-        <div id="content">
-            <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
-                <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
+    <div class="mt-16" id="content">
+        <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
+            <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
+                <div class="border-4 border-green-400 lg:min-h-[125vh] lg:absolute lg:right-16 lg:top-56 z-40">
                     <img
                             src="{{ url_for('static', filename='images/pc.png') }}"
-                            class="max-w-80 sticky"/>
-                    <div class="text-white">
-                        <h1 class="text-5xl font-semibold font-mono">Hej! <br>Glad you're here :)</h1>
-                        <p class="py-6 font-light">
-                            My name is János, and I'm a third-year Software Engineering student in Sweden.
-                            Welcome to my personal website!
-                        </p>
-                    </div>
+                            class="max-w-80 lg:sticky lg:top-60"/>
+                </div>
+                <div class="hidden lg:block lg:min-w-80 lg:min-h-80 bg-orange-500"></div>
+                <div class="text-white">
+                    <h1 class="text-5xl font-semibold font-mono">Hej! <br>Glad you're here :)</h1>
+                    <p class="py-6 font-light">
+                        My name is János, and I'm a third-year Software Engineering student in Sweden.
+                        Welcome to my personal website!
+                    </p>
                 </div>
             </div>
-            <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-yellow-50 to-stone-50">
-                <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
-                    <div class="text-black">
-                        <h1 class="text-3xl font-semibold font-mono">A few things about me</h1>
-                        <ul class="py-6 ">
-                            <li>👨🏻‍💻 I'm a Software Engineering student from Hungary</li>
-                            <li>🇸🇪 I currently live in Gothenburg, Sweden</li>
-                            <li>🔧 I've worked on lots of <a class="link">projects</a> as part of my course</li>
-                            <li>🌟 My favourite programming language is <span class="line-through">Python</span> PHP ;)</li>
-                            <li>🚀 I'm always working on a few side projects to increase my skills</li>
-                            <li>🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
-                        </ul>
-                    </div>
+        </div>
+        <div class="hero bg-base-200 min-h-[80vh] bg-gradient-to-bl from-yellow-50 to-stone-50">
+            <div class="hero-content flex-col gap-24 lg:flex-row-reverse lg:px-16 ">
+                <div class="hidden lg:block lg:min-w-80 lg:min-h-80 border-4 border-red-400"></div>
+                <div class="text-black">
+                    <h1 class="text-3xl font-semibold font-mono">A few things about me</h1>
+                    <ul class="py-6 ">
+                        <li>👨🏻‍💻 I'm a Software Engineering student from Hungary</li>
+                        <li>🇸🇪 I currently live in Gothenburg, Sweden</li>
+                        <li>🔧 I've worked on lots of <a class="link">projects</a> as part of my course</li>
+                        <li>🌟 My favourite programming language is <span class="line-through">Python</span> PHP ;)
+                        </li>
+                        <li>🚀 I'm always working on a few side projects to increase my skills</li>
+                        <li>🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
+                    </ul>
                 </div>
             </div>
         </div>

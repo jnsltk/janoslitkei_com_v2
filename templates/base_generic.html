@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-    <title>János Litkei</title>
+        <title>János Litkei</title>
     {% endblock %}
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
 </head>
 <body class="bg-slate-200 font-sans">
+{% include 'navbar.html' %}
 {% block content %}
 {% endblock %}
+{% include 'footer.html' %}
 </body>
 </html>

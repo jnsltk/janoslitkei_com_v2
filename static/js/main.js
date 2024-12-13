@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const controls = new OrbitControls(camera, canvasElement);
     controls.enableDamping = true;
     controls.enableZoom = false;
-    controls.enablePan = true;
+    controls.enablePan = false;
     controls.minDistance = 21;
     controls.maxDistance = 50;
     controls.minPolarAngle = Math.PI / 5;
@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
 
+    // Variable to track the model
+    let model;
+
     // Material setup
     const bakedTexture = textureLoader.load('static/pc/baked_computer.jpg', () => {
         bakedTexture.flipY = false;
@@ -50,12 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const loader = new GLTFLoader();
         loader.load('static/pc/computer_setup.glb',
             (gltf) => {
-                const model = gltf.scene;
+                model = gltf.scene;
 
                 // Apply the baked material across the model
                 model.traverse((child) => {
                     if (child.isMesh) {
                         child.material = new THREE.MeshBasicMaterial({ map: bakedTexture });
+                        // make the model double sided
+                        child.material.side = THREE.DoubleSide;
                     }
                 });
 
@@ -82,6 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderer.setSize(sizes.width, sizes.height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+
+    // Track the scroll position and apply rotation
+    let scrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const deltaY = window.scrollY - scrollY;
+        scrollY = window.scrollY;
+
+        if (model) {
+            model.rotation.y += deltaY * 0.0005; // Adjust rotation speed as needed
+        }
     });
 
     // Animation tick

@@ -2,130 +2,152 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-const loading = document.querySelector('#loader');
+const CAMERA_FOV = 12;
+const CAMERA_NEAR = 0.1;
+const CAMERA_FAR = 1000;
+const CAMERA_POSITION = { x: 8, y: 2, z: 15 };
+const CONTROLS_MIN_DISTANCE = 21;
+const CONTROLS_MAX_DISTANCE = 50;
+const CONTROLS_MIN_POLAR_ANGLE = Math.PI / 5;
+const CONTROLS_MAX_POLAR_ANGLE = Math.PI / 2;
+const MODEL_ROTATION_SPEED = 0.0005;
+const SCREEN_GEOMETRY = { width: 1.35, height: 1.13 };
+const SCREEN_POSITION = { x: 0, y: 1.04, z: 0.38 };
+const SCREEN_ROTATION_X = -3 * THREE.MathUtils.DEG2RAD;
+const MIN_PAN = new THREE.Vector3(-2, -0.5, -2);
+const MAX_PAN = new THREE.Vector3(2, 0.5, 2);
+
+class SceneSetup {
+    constructor(canvasElement, divElement) {
+        this.canvasElement = canvasElement;
+        this.divElement = divElement;
+        this.sizes = {
+            width: divElement.clientWidth,
+            height: divElement.clientHeight
+        };
+        this.scene = new THREE.Scene();
+        this.camera = this.createCamera();
+        this.renderer = this.createRenderer();
+        this.controls = this.createControls();
+        this.model = null;
+        this.textureLoader = new THREE.TextureLoader();
+        this.init();
+    }
+
+    createCamera() {
+        const camera = new THREE.PerspectiveCamera(CAMERA_FOV, this.sizes.width / this.sizes.height, CAMERA_NEAR, CAMERA_FAR);
+        camera.position.set(CAMERA_POSITION.x, CAMERA_POSITION.y, CAMERA_POSITION.z);
+        camera.lookAt(0, 0, 0);
+        this.scene.add(camera);
+        return camera;
+    }
+
+    createRenderer() {
+        const renderer = new THREE.WebGLRenderer({
+            canvas: this.canvasElement,
+            antialias: true,
+            alpha: true
+        });
+        renderer.setSize(this.sizes.width, this.sizes.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        return renderer;
+    }
+
+    createControls() {
+        const controls = new OrbitControls(this.camera, this.canvasElement);
+        controls.enableDamping = true;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.minDistance = CONTROLS_MIN_DISTANCE;
+        controls.maxDistance = CONTROLS_MAX_DISTANCE;
+        controls.minPolarAngle = CONTROLS_MIN_POLAR_ANGLE;
+        controls.maxPolarAngle = CONTROLS_MAX_POLAR_ANGLE;
+        return controls;
+    }
+
+    loadModel() {
+        const bakedTexture = this.textureLoader.load('static/pc/baked_computer.jpg', () => {
+            bakedTexture.flipY = false;
+            bakedTexture.encoding = THREE.sRGBEncoding;
+
+            const loader = new GLTFLoader();
+            loader.load('static/pc/computer_setup.glb',
+                (gltf) => {
+                    this.model = gltf.scene;
+                    this.model.traverse((child) => {
+                        if (child.isMesh) {
+                            child.material = new THREE.MeshBasicMaterial({ map: bakedTexture });
+                            child.material.side = THREE.DoubleSide;
+                        }
+                    });
+                    this.scene.add(this.model);
+                    this.scene.position.set(0, 0.2, 0);
+                    this.loadScreenTexture();
+                },
+                (xhr) => {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                },
+                (error) => {
+                    console.error('An error occurred while loading the model:', error);
+                }
+            );
+        });
+    }
+
+    loadScreenTexture() {
+        const screenTexture = this.textureLoader.load('static/images/cat.png', () => {
+            const screenGeometry = new THREE.PlaneGeometry(SCREEN_GEOMETRY.width, SCREEN_GEOMETRY.height);
+            const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture });
+            const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial);
+            screenMesh.position.set(SCREEN_POSITION.x, SCREEN_POSITION.y, SCREEN_POSITION.z);
+            screenMesh.rotation.set(SCREEN_ROTATION_X, 0, 0);
+            this.model.add(screenMesh);
+        });
+    }
+
+    handleResize() {
+        window.addEventListener('resize', () => {
+            this.sizes.width = this.divElement.clientWidth;
+            this.sizes.height = this.divElement.clientHeight;
+            this.camera.aspect = this.sizes.width / this.sizes.height;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(this.sizes.width, this.sizes.height);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        });
+    }
+
+    handleScroll() {
+        let scrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const deltaY = window.scrollY - scrollY;
+            scrollY = window.scrollY;
+            if (this.model) {
+                this.model.rotation.y += deltaY * MODEL_ROTATION_SPEED;
+            }
+        });
+    }
+
+    animate() {
+        const tick = () => {
+            this.controls.update();
+            this.controls.target.clamp(MIN_PAN, MAX_PAN);
+            this.renderer.render(this.scene, this.camera);
+            window.requestAnimationFrame(tick);
+        };
+        tick();
+    }
+
+    init() {
+        this.loadModel();
+        this.handleResize();
+        this.handleScroll();
+        this.animate();
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvasElement = document.getElementById('displayContent');
     const divElement = document.querySelector('.block');
-    const scene = new THREE.Scene();
-
-    const textureLoader = new THREE.TextureLoader();
-    const sizes = {
-        width: divElement.clientWidth,
-        height: divElement.clientHeight
-    };
-
-    // Base camera setup
-    const camera = new THREE.PerspectiveCamera(12, sizes.width / sizes.height, 0.1, 1000);
-    camera.position.set(8, 2, 15);
-    camera.lookAt(0, 0, 0);
-    scene.add(camera);
-
-    // Controls
-    const controls = new OrbitControls(camera, canvasElement);
-    controls.enableDamping = true;
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.minDistance = 21;
-    controls.maxDistance = 50;
-    controls.minPolarAngle = Math.PI / 5;
-    controls.maxPolarAngle = Math.PI / 2;
-
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvasElement,
-        antialias: true,
-        alpha: true
-    });
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.outputEncoding = THREE.sRGBEncoding;
-
-    // Variable to track the model
-    let model;
-
-    // Material setup
-    const bakedTexture = textureLoader.load('static/pc/baked_computer.jpg', () => {
-        bakedTexture.flipY = false;
-        bakedTexture.encoding = THREE.sRGBEncoding;
-
-        // Loader
-        const loader = new GLTFLoader();
-        loader.load('static/pc/computer_setup.glb',
-            (gltf) => {
-                model = gltf.scene;
-
-                // Apply the baked material across the model
-                model.traverse((child) => {
-                    if (child.isMesh) {
-                        child.material = new THREE.MeshBasicMaterial({ map: bakedTexture });
-                        // make the model double sided
-                        child.material.side = THREE.DoubleSide;
-                    }
-                });
-
-                scene.add(model);
-                scene.position.set(0, 0.2, 0);
-                // loading.style.display = 'none';
-
-                // Load the screen image texture
-                const screenTexture = textureLoader.load('static/images/cat.png', () => {
-                    // Create a plane geometry for the screen
-                    const screenGeometry = new THREE.PlaneGeometry(1.35, 1.13); // Adjust dimensions as needed
-                    const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture });
-                    const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial);
-
-                    // Position the screen mesh
-                    screenMesh.position.set(0, 1.04, 0.38); // Adjust position as needed
-                    screenMesh.rotation.set(-3 * THREE.MathUtils.DEG2RAD, 0, 0); // Adjust rotation as needed
-
-                    // Add the screen mesh to the model
-                    model.add(screenMesh);
-                });
-            },
-            (xhr) => {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-            },
-            (error) => {
-                console.error('An error occurred while loading the model:', error);
-            }
-        );
-    });
-
-    // Handle div resizing
-    window.addEventListener('resize', () => {
-        sizes.width = divElement.clientWidth;
-        sizes.height = divElement.clientHeight;
-
-        camera.aspect = sizes.width / sizes.height;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(sizes.width, sizes.height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    });
-
-    // Track the scroll position and apply rotation
-    let scrollY = window.scrollY;
-
-    window.addEventListener('scroll', () => {
-        const deltaY = window.scrollY - scrollY;
-        scrollY = window.scrollY;
-
-        if (model) {
-            model.rotation.y += deltaY * 0.0005; // Adjust rotation speed as needed
-        }
-    });
-
-    // Animation tick
-    const minPan = new THREE.Vector3(-2, -0.5, -2);
-    const maxPan = new THREE.Vector3(2, 0.5, 2);
-
-    const tick = () => {
-        controls.update();
-        controls.target.clamp(minPan, maxPan);
-        renderer.render(scene, camera);
-        window.requestAnimationFrame(tick);
-    };
-
-    tick();
+    new SceneSetup(canvasElement, divElement);
 });

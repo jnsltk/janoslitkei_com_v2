@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const CAMERA_FOV = 12;
 const CAMERA_NEAR = 0.1;
 const CAMERA_FAR = 1000;
-const CAMERA_POSITION = { x: 8, y: 2, z: 15 };
+const CAMERA_POSITION = { x: 3, y: 4, z: 15 };
 const CONTROLS_MIN_DISTANCE = 21;
 const CONTROLS_MAX_DISTANCE = 50;
 const CONTROLS_MIN_POLAR_ANGLE = Math.PI / 5;
@@ -148,6 +148,14 @@ class SceneSetup {
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvasElement = document.getElementById('displayContent');
-    const divElement = document.querySelector('.block');
+    const divElement = document.getElementById('displayContainer');
     new SceneSetup(canvasElement, divElement);
+});
+
+document.addEventListener('htmx:afterRequest', (e) => {
+    if (e.detail.pathInfo.responsePath === "/") {
+        const canvasElement = document.getElementById('displayContent');
+        const divElement = document.getElementById('displayContainer');
+        new SceneSetup(canvasElement, divElement);
+    }
 });

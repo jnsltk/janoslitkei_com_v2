@@ -1,0 +1,30 @@
+<div class="flex items-center justify-between w-screen bg-slate-900 fixed z-50 h-16 top-0 px-6">
+    <a class="text-xl text-slate-100 font-mono" href="/">Janos_Litkei</a>
+    <div id="menu" class="bg-slate-900 hidden fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static">
+        <ul class="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-2 px-1 text-slate-100">
+            <li class="w-full md:w-fit"><span hx-get="/"
+                                              hx-target="#content"
+                                              hx-push-url="true"
+                                              hx-swap="outerHTML"
+                                              class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Home</span>
+            </li>
+            <li class="w-full md:w-fit"><span hx-get="/skills"
+                                              hx-target="#content"
+                                              hx-push-url="true"
+                                              hx-swap="outerHTML"
+                                              class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">My skills</span>
+            </li>
+            <li class="w-full md:w-fit"><span
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Projects</span>
+            </li>
+            <li class="w-full md:w-fit"><span
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Blog</span>
+            </li>
+        </ul>
+    </div>
+    <button id="menu-toggle" class="text-white focus:outline-none md:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+    </button>
+</div>

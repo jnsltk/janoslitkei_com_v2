@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-        <title>János Litkei</title>
+        <title>{{ title }}</title>
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
@@ -20,17 +20,13 @@
           }
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://unpkg.com/three@0.126.0/examples/js/controls/OrbitControls.js"></script>
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
-    {% block head_script %}
-    {% endblock %}
+    <script type="application/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>
 </head>
 <body class="bg-slate-200 font-sans">
-{% include 'navbar.html' %}
+{% include 'elements/navbar.html' %}
 {% block content %}
 {% endblock %}
-{% include 'footer.html' %}
+{% include 'elements/footer.html' %}
 </body>
 </html>

@@ -66,7 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 scene.add(model);
                 scene.position.set(0, 0.2, 0);
-                loading.style.display = 'none';
+                // loading.style.display = 'none';
+
+                // Load the screen image texture
+                const screenTexture = textureLoader.load('static/images/cat.png', () => {
+                    // Create a plane geometry for the screen
+                    const screenGeometry = new THREE.PlaneGeometry(1.35, 1.18); // Adjust dimensions as needed
+                    const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture });
+                    const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial);
+
+                    // Position the screen mesh
+                    screenMesh.position.set(0, 1.02, 0.36); // Adjust position as needed
+                    screenMesh.rotation.set(-3 * THREE.MathUtils.DEG2RAD, 0, 0); // Adjust rotation as needed
+
+                    // Add the screen mesh to the model
+                    model.add(screenMesh);
+                });
             },
             (xhr) => {
                 console.log((xhr.loaded / xhr.total * 100) + '% loaded');

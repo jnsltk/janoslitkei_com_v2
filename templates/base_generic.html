@@ -24,6 +24,8 @@
     <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://unpkg.com/three@0.126.0/examples/js/controls/OrbitControls.js"></script>
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block head_script %}
+    {% endblock %}
 </head>
 <body class="bg-slate-200 font-sans">
 {% include 'navbar.html' %}

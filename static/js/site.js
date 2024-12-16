@@ -1,9 +1,16 @@
+import { SceneSetup } from './main.js';
+
 // ───────────────────────────────────── Functions ─────────────────────────────────────
 
+// TODO: Fix small bug on htmx request when clicking on skills page again
 function skillMenuToggle(e) {
     const skill_menu = document.getElementById('skill-menu');
 
     let selected = document.querySelector('.selected-skill');
+    if (skill_menu === null) {
+        return;
+    }
+
     skill_menu.addEventListener('click', function (e) {
         // Remove selected class from previous selected skill
         if (selected) {
@@ -38,3 +45,18 @@ document.addEventListener("DOMContentLoaded", function() {
 // Skill menu toggle (htmx request)
 document.addEventListener("htmx:afterRequest", skillMenuToggle);
 
+// Scene setup for full page reload
+document.addEventListener('DOMContentLoaded', () => {
+    const canvasElement = document.getElementById('displayContent');
+    const divElement = document.getElementById('displayContainer');
+    new SceneSetup(canvasElement, divElement);
+});
+
+// Scene setup for htmx request
+document.addEventListener('htmx:afterRequest', (e) => {
+    if (e.detail.pathInfo.responsePath === "/") {
+        const canvasElement = document.getElementById('displayContent');
+        const divElement = document.getElementById('displayContainer');
+        new SceneSetup(canvasElement, divElement);
+    }
+});

@@ -144,18 +144,34 @@ class SceneSetup {
         this.handleScroll();
         this.animate();
     }
+    cleanup() {
+        // Remove the model from the scene
+        if (this.model) {
+            this.scene.remove(this.model);
+            this.model.traverse((child) => {
+                if (child.isMesh) {
+                    child.geometry.dispose();
+                    if (child.material.map) child.material.map.dispose();
+                    child.material.dispose();
+                }
+            });
+            this.model = null;
+        }
+
+        // Dispose of the renderer
+        if (this.renderer) {
+            this.renderer.dispose();
+        }
+
+        // Remove event listeners
+        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('scroll', this.handleScroll);
+
+        // Clear the scene
+        while (this.scene.children.length > 0) {
+            this.scene.remove(this.scene.children[0]);
+        }
+    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const canvasElement = document.getElementById('displayContent');
-    const divElement = document.getElementById('displayContainer');
-    new SceneSetup(canvasElement, divElement);
-});
-
-document.addEventListener('htmx:afterRequest', (e) => {
-    if (e.detail.pathInfo.responsePath === "/") {
-        const canvasElement = document.getElementById('displayContent');
-        const divElement = document.getElementById('displayContainer');
-        new SceneSetup(canvasElement, divElement);
-    }
-});
+export { SceneSetup };

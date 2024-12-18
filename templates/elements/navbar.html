@@ -2,23 +2,20 @@
     <a class="text-xl text-slate-100 font-mono" href="/">Janos_Litkei</a>
     <div id="menu" class="bg-slate-900 hidden fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static">
         <ul class="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-2 px-1 text-slate-100">
-            <li class="w-full md:w-fit"><span hx-get="/"
-                                              hx-target="#content"
-                                              hx-push-url="true"
-                                              hx-swap="outerHTML"
-                                              class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Home</span>
+            <li class="w-full md:w-fit"><a
+                    href="#home"
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Home</a>
             </li>
-            <li class="w-full md:w-fit"><span hx-get="/skills"
-                                              hx-target="#content"
-                                              hx-push-url="true"
-                                              hx-swap="outerHTML"
-                                              class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">My skills</span>
+            <li class="w-full md:w-fit"><a
+                    href="#skills"
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">My
+                skills</a>
             </li>
-            <li class="w-full md:w-fit"><span
-                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Projects</span>
+            <li class="w-full md:w-fit"><a
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Projects</a>
             </li>
-            <li class="w-full md:w-fit"><span
-                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Blog</span>
+            <li class="w-full md:w-fit"><a
+                    class="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Blog</a>
             </li>
         </ul>
     </div>

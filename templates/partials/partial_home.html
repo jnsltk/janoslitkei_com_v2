@@ -1,7 +1,7 @@
 <div class="mt-16" id="content">
-    <div class="bg-base-200 h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
+    <div id="home" class="bg-base-200 h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
         <div class="h-full flex flex-col justify-center">
-            <div class="pt-6 md:pt-0 min-w-full md:min-w-[40vw] md:min-h-[150vh] md:absolute md:right-0 md:top-44 z-40">
+            <div class="pt-6 md:pt-0 min-w-full md:min-w-[40vw] md:min-h-[260vh] md:absolute md:right-0 md:top-44 z-40">
                 <div id="displayContainer"
                      class=" md:pt-0 w-screen h-96 block md:w-[45vw] md:min-h-[45vw] md:sticky md:top-44">
                     <canvas id="displayContent" class="block w-full h-full"></canvas>
@@ -16,20 +16,51 @@
             </div>
         </div>
     </div>
-    <div class="bg-base-200 h-[80vh] bg-gradient-to-bl from-yellow-50 to-stone-50">
-        <div class="h-full flex flex-col justify-center">
-            <div class="text-slate-900 mx-6 md:mx-36">
-                <h1 class="text-3xl font-semibold font-mono max-w-64 md:max-w-full">A few things about me</h1>
-                <ul class="py-6 ">
-                    <li class="mb-2">👨🏻‍💻 I'm a Software Engineering student from Hungary</li>
-                    <li class="mb-2">🇸🇪 I currently live in Gothenburg, Sweden</li>
-                    <li class="mb-2">🔧 I've worked on lots of <a class="link">projects</a> as part of my course</li>
-                    <li class="mb-2">🌟 My favourite programming language is <span class="line-through">Python</span> PHP
-                        ;)
-                    </li>
-                    <li class="mb-2">🚀 I'm always working on a few side projects to increase my skills</li>
-                    <li class="mb-2">🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
+    <div class="bg-gradient-to-bl from-yellow-50 to-stone-50">
+        <div class="h-[80vh]">
+            <div class="h-full flex flex-col justify-center">
+                <div class="text-slate-900 mx-6 md:mx-36">
+                    <h1 class="text-3xl font-semibold font-mono max-w-64 md:max-w-full">A few things about me</h1>
+                    <ul class="py-6 ">
+                        <li class="mb-2">👨🏻‍💻 I'm a Software Engineering student from Hungary</li>
+                        <li class="mb-2">🇸🇪 I currently live in Gothenburg, Sweden</li>
+                        <li class="mb-2">🔧 I've worked on lots of <a class="link">projects</a> as part of my course</li>
+                        <li class="mb-2">🌟 My favourite programming language is <span class="line-through">Python</span>
+                            PHP
+                            ;)
+                        </li>
+                        <li class="mb-2">🚀 I'm always working on a few side projects to increase my skills</li>
+                        <li class="mb-2">🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="skills" class="pt-12">
+            <div class="flex flex-col items-center justify-center pt-14 px-32 mb-24">
+                <h1 class="text-4xl font-mono font-bold">Skills</h1>
+            </div>
+            <div id="skills-menu-container" class="-mt-16 absolute w-fit bg-indigo-50 border border-gray-700 left-1/2 transform -translate-x-1/2 mb-12">
+                <ul id="skill-menu" class="flex p-[1px]">
+                    <li id="languages" class="cursor-pointer px-4 py-2 whitespace-nowrap selected-skill">Languages</li>
+                    <li id="fws-tools" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Frameworks/Tools</li>
+                    <li id="web" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Web</li>
+                    <li id="dbs-platforms" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">DBs and Platforms</li>
+                    <li id="spec" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Specialty Areas</li>
+                    <li id="other" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Other Skills</li>
                 </ul>
+            </div>
+            <div class="max-w-full border-4 border-red-500 flex mx-24 gap-10 justify-between">
+                <div id="skill-list" class="border-4 border-orange-500 w-full">
+                    <div class="bg-indigo-50 w-full border border-gray-700 p">
+                        <h3 class="bold">Java</h3>
+                        <p>Some description about the Java Language I've not clue what just some filler bullshit for now.</p>
+
+                    </div>
+                </div>
+                <div class="border-4 border-yellow-500 w-full">
+                    <div class="h-[40vw]">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

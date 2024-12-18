@@ -12,12 +12,5 @@ def home():
         return render_template('partials/partial_home.html')
     return render_template('index.html')
 
-@app.route('/skills')
-def skills():
-    if htmx:
-        return render_template('partials/partial_skills.html')
-    return render_template('skills.html')
-
-
 if __name__ == '__main__':
     app.run()

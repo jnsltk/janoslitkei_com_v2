@@ -21,7 +21,7 @@ function skillMenuOpacityChange() {
     document.addEventListener('scroll', function () {
         const skillsMenuContainer = document.getElementById('skills-menu-container');
         const scrollPosition = window.scrollY;
-        const triggerPosition = document.getElementById('skills').offsetTop - 120;
+        const triggerPosition = document.getElementById('skills').offsetTop - 100;
         const maxOpacity = 1;
         const minOpacity = 0;
         const fadeDistance = 100; // Distance over which the opacity changes

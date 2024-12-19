@@ -6,21 +6,12 @@
         <title>{{ title }}</title>
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
-    <script type="importmap">
-        {
-          "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
-          }
-        }
-    </script>
-    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/bundle.js') }}"></script>
 </head>
 <body class="bg-slate-200 font-sans">
 {% include 'elements/navbar.html' %}

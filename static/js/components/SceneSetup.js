@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const CAMERA_FOV = 12;
 const CAMERA_NEAR = 0.1;
@@ -82,7 +82,6 @@ class SceneSetup {
                         }
                     });
                     this.scene.add(this.model);
-                    this.scene.position.set(0, 0.2, 0);
                     this.loadScreenTexture();
                 },
                 (xhr) => {

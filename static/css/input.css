@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 @layer utilities {
-    .selected-skill {
+    .selected-project-cat {
         @apply bg-blue-900 text-indigo-50 transition duration-150;
     }
 
-    .unselected-skill {
+    .unselected-project-cat {
         @apply bg-indigo-50 text-neutral-800 transition duration-150;
     }
 
-    .selected-skill:hover {
+    .selected-project-cat:hover {
         @apply bg-blue-800 text-indigo-50 transition duration-150;
     }
 
-    .unselected-skill:hover {
+    .unselected-project-cat:hover {
         @apply bg-indigo-100 text-neutral-800 transition duration-150;
     }
 

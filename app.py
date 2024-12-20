@@ -10,16 +10,16 @@ htmx = HTMX(app)
 def home():
     return render_template('index.html')
 
-@app.route('/skills/languages')
+@app.route('/projects/university')
 def languages():
     if htmx:
-        return render_template('partials/skills/languages.html')
+        return render_template('partials/projects/university.html')
     return render_template('404.html')
 
-@app.route('/skills/frameworks_tools')
+@app.route('/projects/personal')
 def frameworks_tools():
     if htmx:
-        return render_template('partials/skills/frameworks_tools.html')
+        return render_template('partials/projects/personal.html')
     return render_template('404.html')
 
 

@@ -34,45 +34,34 @@
             </div>
         </div>
     </section>
-    <section id="skills" class="h-[90vh] mb-12 snap-start snap-always scroll-mt-16">
+    <section id="projects" class="h-[90vh] mb-12 snap-start snap-always scroll-mt-16">
         <div class="flex flex-col items-center justify-center pt-14 mb-6">
-            <h1 class="text-4xl font-mono font-bold">Skills</h1>
+            <h1 class="text-4xl font-mono font-bold">Projects</h1>
         </div>
-        <div id="skills-menu-container"
+        <div id="projects-menu-container"
              class="w-fit bg-indigo-50 border border-gray-700 mx-auto mb-6">
-            <ul id="skill-menu" class="flex p-[1px]">
-                <li id="languages"
-                    hx-get="/skills/languages"
-                    hx-target="#skill-list"
+            <ul id="projects-menu" class="flex p-[1px]">
+                <li id="university"
+                    hx-get="/projects/university"
+                    hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
-                    class="cursor-pointer px-4 py-2 whitespace-nowrap selected-skill">Languages</li>
-                <li id="fws-tools"
-                    hx-get="/skills/frameworks_tools"
-                    hx-target="#skill-list"
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap selected-project-cat">University Projects</li>
+                <li id="personal"
+                    hx-get="/projects/personal"
+                    hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
-                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">
-                    Frameworks/Tools
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">
+                    Personal projects
                 </li>
-                <li id="web" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Web</li>
-                <li id="dbs-platforms" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">DBs and
-                    Platforms
-                </li>
-                <li id="spec" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Specialty Areas
-                </li>
-                <li id="other" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Other Skills</li>
+                <li id="Tools" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">Others</li>
             </ul>
         </div>
         <div class="max-w-full flex mx-44 gap-10 justify-between">
-            {% include 'partials/skills/languages.html' %}
+            {% include 'partials/projects/university.html' %}
             <div class="w-full">
                 <div class="h-[30vw]">
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="projects" class="h-screen snap-start snap-always">
-        <div class="flex flex-col items-center justify-center pt-24 mb-24">
-            <h1 class="text-4xl font-mono font-bold">Projects</h1>
         </div>
     </section>
     {% include 'elements/footer.html' %}

@@ -1,3 +1,4 @@
+import 'htmx.org'
 import { SceneSetup } from './components/SceneSetup.js';
 import { skillMenuToggle, skillMenuOpacityChange } from './components/SkillMenu.js';
 import { toggleSidebar } from './utils/domUtils.js';

@@ -1,10 +1,10 @@
 <div id="content" class="bg-gradient-to-bl from-yellow-50 to-stone-50 snap-y snap-mandatory overflow-auto h-screen">
     <section id="home" class="snap-start snap-always mt-16 scroll-mt-16 bg-base-200 h-[80vh] bg-gradient-to-bl from-blue-900 to-violet-950">
         <div class="h-full flex flex-col justify-center">
-            <div class="border-4 border-yellow-500 pt-6 md:pt-0 min-w-full md:min-w-[50vw] md:min-h-[260vh] md:absolute md:right-0 md:top-44 pointer-events-none">
+            <div class="pt-6 md:pt-0 min-w-full md:min-w-[50vw] md:min-h-[260vh] md:absolute md:right-0 md:top-44 pointer-events-none">
                 <div id="displayContainer"
-                     class=" md:pt-0 w-screen h-96 block md:w-[50vw] md:min-h-[45vw] md:sticky md:top-44 border-4">
-                    <canvas id="displayContent" class="block w-full h-full border border-red-500"></canvas>
+                     class=" md:pt-0 w-screen h-96 block md:w-[50vw] md:min-h-[45vw] md:sticky md:top-44">
+                    <canvas id="displayContent" class="block w-full h-full"></canvas>
                 </div>
             </div>
             <div class="text-slate-100 mx-6 -mt-12 md:mt-0 md:mx-36">
@@ -41,8 +41,16 @@
         <div id="skills-menu-container"
              class="w-fit bg-indigo-50 border border-gray-700 mx-auto mb-6">
             <ul id="skill-menu" class="flex p-[1px]">
-                <li id="languages" class="cursor-pointer px-4 py-2 whitespace-nowrap selected-skill">Languages</li>
-                <li id="fws-tools" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">
+                <li id="languages"
+                    hx-get="/skills/languages"
+                    hx-target="#skill-list"
+                    hx-swap="outerHTML transition:true"
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap selected-skill">Languages</li>
+                <li id="fws-tools"
+                    hx-get="/skills/frameworks_tools"
+                    hx-target="#skill-list"
+                    hx-swap="outerHTML transition:true"
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">
                     Frameworks/Tools
                 </li>
                 <li id="web" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-skill">Web</li>
@@ -55,13 +63,7 @@
             </ul>
         </div>
         <div class="max-w-full flex mx-44 gap-10 justify-between">
-            <div id="skill-list" class="border-4 border-orange-500 w-full p-2">
-                <div class="bg-indigo-50 w-full border border-gray-700 py-4 px-6">
-                    <h3 class="font-bold mb-2 text-lg">Java</h3>
-                    <p class="pr-6">Some description about the Java Language I've no clue what just some filler
-                        bullshit for now.</p>
-                </div>
-            </div>
+            {% include 'partials/skills/languages.html' %}
             <div class="border-4 border-yellow-500 w-full">
                 <div class="h-[30vw]">
                 </div>

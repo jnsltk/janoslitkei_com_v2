@@ -7,6 +7,7 @@
 - [ ] Finish skills page
   - [ ] Add skills to the page
   - [ ] Create the accordion for the skills
+  - [ ] Add skills programmatically with templating (store skills in a json file)
 
 ## New features
 - [ ] Add a new page for the projects

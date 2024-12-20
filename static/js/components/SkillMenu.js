@@ -17,21 +17,22 @@ function skillMenuToggle() {
     });
 }
 function skillMenuOpacityChange() {
-// Skill menu opacity change on scroll
-    document.addEventListener('scroll', function () {
+    const scrollContainer = document.getElementById('content');
+    scrollContainer.addEventListener('scroll', function () {
         const skillsMenuContainer = document.getElementById('skills-menu-container');
-        const scrollPosition = window.scrollY;
-        const triggerPosition = document.getElementById('skills').offsetTop - 100;
+        const scrollPosition = this.scrollTop;
+        const triggerPosition = document.getElementById('skills').offsetTop - 120;
         const maxOpacity = 1;
         const minOpacity = 0;
-        const fadeDistance = 100; // Distance over which the opacity changes
+        const fadeDistance = 50; // Distance over which the opacity changes
 
         if (scrollPosition >= triggerPosition) {
             let opacity = (scrollPosition - triggerPosition) / fadeDistance;
             opacity = Math.min(maxOpacity, Math.max(minOpacity, opacity));
-            skillsMenuContainer.style.opacity = opacity;
+            skillsMenuContainer.style.opacity = opacity.toString();
+            console.log(opacity)
         } else {
-            skillsMenuContainer.style.opacity = minOpacity;
+            skillsMenuContainer.style.opacity = minOpacity.toString();
         }
     });
 }

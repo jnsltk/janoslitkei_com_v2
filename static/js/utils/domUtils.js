@@ -4,4 +4,4 @@ function toggleSidebar(menuToggle, sidebar) {
     });
 }
 
-export { toggleSidebar };
+export {toggleSidebar};

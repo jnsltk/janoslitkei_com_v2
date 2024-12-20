@@ -1,18 +1,18 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
-const CAMERA_FOV = 12;
+const CAMERA_FOV = 13;
 const CAMERA_NEAR = 0.1;
 const CAMERA_FAR = 1000;
-const CAMERA_POSITION = { x: 11, y: 4, z: 15 };
+const CAMERA_POSITION = {x: 11, y: 4, z: 15};
 const CONTROLS_MIN_DISTANCE = 21;
 const CONTROLS_MAX_DISTANCE = 50;
 const CONTROLS_MIN_POLAR_ANGLE = Math.PI / 5;
 const CONTROLS_MAX_POLAR_ANGLE = Math.PI / 2;
 const MODEL_ROTATION_SPEED = 0.0004;
-const SCREEN_GEOMETRY = { width: 1.35, height: 1.13 };
-const SCREEN_POSITION = { x: 0, y: 1.04, z: 0.38 };
+const SCREEN_GEOMETRY = {width: 1.35, height: 1.13};
+const SCREEN_POSITION = {x: 0, y: 1.04, z: 0.38};
 const SCREEN_ROTATION_X = -3 * THREE.MathUtils.DEG2RAD;
 const MIN_PAN = new THREE.Vector3(-2, -0.5, -2);
 const MAX_PAN = new THREE.Vector3(2, 0.5, 2);
@@ -59,6 +59,7 @@ class SceneSetup {
         controls.enableDamping = true;
         controls.enableZoom = false;
         controls.enablePan = false;
+        controls.enableRotate = false;
         controls.minDistance = CONTROLS_MIN_DISTANCE;
         controls.maxDistance = CONTROLS_MAX_DISTANCE;
         controls.minPolarAngle = CONTROLS_MIN_POLAR_ANGLE;
@@ -77,7 +78,7 @@ class SceneSetup {
                     this.model = gltf.scene;
                     this.model.traverse((child) => {
                         if (child.isMesh) {
-                            child.material = new THREE.MeshBasicMaterial({ map: bakedTexture });
+                            child.material = new THREE.MeshBasicMaterial({map: bakedTexture});
                             child.material.side = THREE.DoubleSide;
                         }
                     });
@@ -97,7 +98,7 @@ class SceneSetup {
     loadScreenTexture() {
         const screenTexture = this.textureLoader.load('static/images/cat.png', () => {
             const screenGeometry = new THREE.PlaneGeometry(SCREEN_GEOMETRY.width, SCREEN_GEOMETRY.height);
-            const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture });
+            const screenMaterial = new THREE.MeshBasicMaterial({map: screenTexture});
             const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial);
             screenMesh.position.set(SCREEN_POSITION.x, SCREEN_POSITION.y, SCREEN_POSITION.z);
             screenMesh.rotation.set(SCREEN_ROTATION_X, 0, 0);
@@ -117,10 +118,11 @@ class SceneSetup {
     }
 
     handleScroll() {
-        let scrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
-            const deltaY = window.scrollY - scrollY;
-            scrollY = window.scrollY;
+        const scrollContainer = document.getElementById('content');
+        let scrollY = scrollContainer.scrollTop;
+        scrollContainer.addEventListener('scroll', () => {
+            const deltaY = scrollContainer.scrollTop - scrollY;
+            scrollY = scrollContainer.scrollTop;
             if (this.model) {
                 this.model.rotation.y += deltaY * MODEL_ROTATION_SPEED;
             }
@@ -143,34 +145,6 @@ class SceneSetup {
         this.handleScroll();
         this.animate();
     }
-    cleanup() {
-        // Remove the model from the scene
-        if (this.model) {
-            this.scene.remove(this.model);
-            this.model.traverse((child) => {
-                if (child.isMesh) {
-                    child.geometry.dispose();
-                    if (child.material.map) child.material.map.dispose();
-                    child.material.dispose();
-                }
-            });
-            this.model = null;
-        }
-
-        // Dispose of the renderer
-        if (this.renderer) {
-            this.renderer.dispose();
-        }
-
-        // Remove event listeners
-        window.removeEventListener('resize', this.handleResize);
-        window.removeEventListener('scroll', this.handleScroll);
-
-        // Clear the scene
-        while (this.scene.children.length > 0) {
-            this.scene.remove(this.scene.children[0]);
-        }
-    }
 }
 
-export { SceneSetup };
+export {SceneSetup};

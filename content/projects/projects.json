@@ -1,0 +1,109 @@
+{
+  "university": [
+    {
+      "name": "fraud_detection",
+      "description": "Advanced AI solution to detect financial fraud in monetary transactions.",
+      "tech": [
+        "Python",
+        "Machine Learning",
+        "Keras",
+        "SKLearn",
+        "Django",
+        "Tailwind CSS",
+        "HTMX",
+        "Docker",
+        "Kubernetes"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk"
+        },
+        {
+          "name": "Website",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Self Driving Car",
+      "description": "Software for a self driving car model using computer vision.",
+      "tech": [
+        "C++",
+        "OpenCV",
+        "Docker",
+        "Multipass development environment"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Dentigo",
+      "description": "A distributed system for managing appointments for dental clinics in Gothenburg.",
+      "tech": [
+        "TypeScript",
+        "VueJS",
+        "BankID integration",
+        "Docker",
+        "Custom asymmetric encryption"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": ""
+        },
+        {
+          "name": "Website",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "personal": [
+    {
+      "name": "Personal Website",
+      "description": "This website, where I experiment with different technologies and designs, version 2. This time with a focus on learning ThreeJS.",
+      "tech": [
+        "HTMX",
+        "Tailwind CSS",
+        "ThreeJS",
+        "GSAP",
+        "Flask"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": ""
+        },
+        {
+          "name": "Website",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Naše Konyha",
+      "description": "A personal recipe aggregator website for my girlfriend and I. Used as a learning project for PHP.",
+      "tech": [
+        "PHP",
+        "Tailwind CSS",
+        "MySQL",
+        "Docker"
+      ],
+        "links": [
+            {
+            "name": "GitHub",
+            "url": ""
+            },
+            {
+            "name": "Website",
+            "url": ""
+            }
+        ]
+    }
+  ]
+}

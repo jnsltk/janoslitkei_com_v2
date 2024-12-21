@@ -2,12 +2,11 @@
 
 ## High Priority
 - [ ] Add GSAP to the project
-  - [ ] ~~Change model rotation on scroll to GSAP~~
-  - [ ] Add special animation for the skills section (Zoom in on the screen and change position)
-- [ ] Finish skills page
-  - [ ] Add skills to the page
-  - [ ] Create the accordion for the skills
-  - [ ] Add skills programmatically with templating (store skills in a json file)
+  - [ ] Add special animation for the projects section (Zoom in on the screen and change position)
+- [ ] Finish projects page
+  - [ ] Add projects to the page
+  - [ ] Create the accordion for the projects
+  - [ ] Add projects programmatically with templating (store projects in a json file)
 
 ## New features
 - [ ] Add a new page for the projects
@@ -18,3 +17,10 @@
 ## Low Priority
 - [ ] Add loading animation when the 3d model is loading
 - [ ] Add video textures to the monitor screen
+
+## Dismissed features
+- [ ] ~~Change model rotation on scroll to GSAP~~
+- [ ] ~~Finish skills page~~
+  - [ ] ~~Add skills to the page~~
+  - [ ] ~~Create the accordion for the skills~~
+  - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~

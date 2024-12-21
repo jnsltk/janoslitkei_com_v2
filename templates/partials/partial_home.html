@@ -39,15 +39,15 @@
             <h1 class="text-4xl font-mono font-bold">Projects</h1>
         </div>
         <div id="projects-menu-container"
-             class="w-fit bg-indigo-50 border border-gray-700 mx-auto mb-6">
+             class="w-fit bg-indigo-50 border border-gray-700 mx-auto mb-12">
             <ul id="projects-menu" class="flex p-[1px]">
                 <li id="university"
-                    hx-get="/projects/university"
+                    hx-get="/projects?type=university"
                     hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
                     class="cursor-pointer px-4 py-2 whitespace-nowrap selected-project-cat">University Projects</li>
                 <li id="personal"
-                    hx-get="/projects/personal"
+                    hx-get="/projects?type=personal"
                     hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
                     class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">
@@ -57,7 +57,7 @@
             </ul>
         </div>
         <div class="max-w-full flex mx-44 gap-10 justify-between">
-            {% include 'partials/projects/university.html' %}
+            {% include 'partials/projects.html' %}
             <div class="w-full">
                 <div class="h-[30vw]">
                 </div>

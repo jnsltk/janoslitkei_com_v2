@@ -1,27 +1,26 @@
 <div id="project-list" class="w-full flex flex-col gap-2">
     {% for project in projects %}
-        <div class="bg-indigo-50 w-full border border-gray-700 py-3 px-2 shadow-xl">
-            <div class="flex justify-between items-center">
-                <h3 class="font-bold mb-2">{{ project.name }}</h3>
-                <svg class="w-4 -mt-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <div class="accordion bg-indigo-50 w-full border border-gray-700 shadow-xl">
+            <div class="py-3 px-2 flex justify-between items-center cursor-pointer">
+                <h3 class="font-bold">{{ project.name }}</h3>
+                <svg class="w-4 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+                </svg>
+                <svg class="icon w-4 transition-all duration-300 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
                 </svg>
             </div>
-            <p class="pr-6 mb-6">{{ project.description }}</p>
-            {% for link in project.links %}
-                <a class="font-semibold text-indigo-600 underline-offset-1 hover:text-indigo-800 mr-3"
-                   href="{{ link.url }}">{{ link.name }}</a>
-            {% endfor %}
+            <div class="flex-col project px-2">
+                <p class="pr-6 mb-4">{{ project.description }}</p>
+                <div class="mb-3">
+                    {% for link in project.links %}
+                        <a class="font-semibold text-indigo-600 underline-offset-1 hover:text-indigo-800 mr-3"
+                           href="{{ link.url }}">{{ link.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     {% endfor %}
-    {#    <div class="bg-indigo-50 w-full border border-gray-700 py-3 px-2">#}
-    {#        <div class="flex justify-between items-center">#}
-    {#            <h3 class="font-bold">Self-driving car</h3>#}
-    {#            <svg class="w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">#}
-    {#                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->#}
-    {#                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>#}
-    {#            </svg>#}
-    {#        </div>#}
-    {#    </div>#}
 </div>

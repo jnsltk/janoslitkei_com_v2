@@ -66,7 +66,7 @@
   "personal": [
     {
       "name": "Personal Website",
-      "description": "This website, where I experiment with different technologies and designs, version 2. This time with a focus on learning ThreeJS.",
+      "description": "This website, where I experiment with different technologies and designs, version 2. This time with a focus on learning ThreeJS and GSAP.",
       "tech": [
         "HTMX",
         "Tailwind CSS",
@@ -104,6 +104,46 @@
             "url": ""
             }
         ]
+    }
+  ],
+  "other": [
+    {
+      "name": "Project 1",
+      "description": "Description of project 1.",
+      "tech": [
+        "Tech 1",
+        "Tech 2",
+        "Tech 3"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": ""
+        },
+        {
+          "name": "Website",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Project 2",
+      "description": "Description of project 2.",
+      "tech": [
+        "Tech 1",
+        "Tech 2",
+        "Tech 3"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": ""
+        },
+        {
+          "name": "Website",
+          "url": ""
+        }
+      ]
     }
   ]
 }

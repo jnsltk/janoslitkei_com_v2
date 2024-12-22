@@ -53,7 +53,11 @@
                     class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">
                     Personal projects
                 </li>
-                <li id="Tools" class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">Others</li>
+                <li id="Tools"
+                    hx-get="/projects?type=other"
+                    hx-target="#project-list"
+                    hx-swap="outerHTML transition:true"
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">Others</li>
             </ul>
         </div>
         <div class="max-w-full flex mx-44 gap-10 justify-between">

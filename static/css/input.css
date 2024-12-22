@@ -19,4 +19,9 @@
         @apply bg-indigo-100 text-neutral-800 transition duration-150;
     }
 
+    .project {
+        @apply max-h-0 overflow-hidden transition-all duration-300;
+        /*max-height: 0;*/
+        /*transition: height 0.3s ease-out;*/
+    }
 }

@@ -2,6 +2,7 @@ import 'htmx.org'
 import {SceneSetup} from './components/SceneSetup.js';
 import {projectsMenuToggle, projectsMenuOpacityChange} from './components/ProjectsMenu.js';
 import {toggleSidebar} from './utils/domUtils.js';
+import {accordionToggle} from "./components/Accordion";
 
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById('menu-toggle');
@@ -14,4 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvasElement = document.getElementById('displayContent');
     const divElement = document.getElementById('displayContainer');
     new SceneSetup(canvasElement, divElement);
+});
+
+document.addEventListener('htmx:load', function () {
+    accordionToggle();
 });

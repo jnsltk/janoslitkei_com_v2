@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CAMERA_FOV = 13;
 const CAMERA_NEAR = 0.1;
@@ -32,13 +36,14 @@ class SceneSetup {
         this.model = null;
         this.textureLoader = new THREE.TextureLoader();
         this.init();
+        this.setupScrollAnimation();
     }
 
     createCamera() {
         const camera = new THREE.PerspectiveCamera(CAMERA_FOV, this.sizes.width / this.sizes.height, CAMERA_NEAR, CAMERA_FAR);
         camera.position.set(CAMERA_POSITION.x, CAMERA_POSITION.y, CAMERA_POSITION.z);
         camera.lookAt(0, 0, 0);
-        this.scene.add(camera);
+        console.log(this.scene)
         return camera;
     }
 
@@ -103,6 +108,60 @@ class SceneSetup {
             screenMesh.position.set(SCREEN_POSITION.x, SCREEN_POSITION.y, SCREEN_POSITION.z);
             screenMesh.rotation.set(SCREEN_ROTATION_X, 0, 0);
             this.model.add(screenMesh);
+        });
+    }
+
+    setupScrollAnimation() {
+        ScrollTrigger.create({
+            trigger: '#projects',
+            start: 'top center',
+            end: 'bottom center',
+            scroller: '#content',
+            onEnter: () => {
+                gsap.to(this.camera.position, {
+                    duration: 0.8,
+                    x: CAMERA_POSITION.x,
+                    y: CAMERA_POSITION.y - 18,
+                    z: CAMERA_POSITION.z
+                });
+                gsap.to(this.camera, {
+                    duration: 0.8,
+                    delay: 0.2,
+                    fov: 8,
+                    onUpdate: () => {
+                        this.camera.updateProjectionMatrix(); // Update the projection matrix after each frame
+                    },
+                });
+                if (this.model) {
+                    gsap.to(this.model.position, {
+                        duration: 0.8,
+                        x: this.model.position.x - 0.2,
+                        y: this.model.position.y - 0.85
+                    });
+                }
+            },
+            onLeaveBack: () => {
+                gsap.to(this.camera.position, {
+                    duration: 0.8,
+                    x: CAMERA_POSITION.x,
+                    y: CAMERA_POSITION.y,
+                    z: CAMERA_POSITION.z
+                });
+                gsap.to(this.camera, {
+                    duration: 0.8,
+                    fov: CAMERA_FOV,
+                    onUpdate: () => {
+                        this.camera.updateProjectionMatrix(); // Update the projection matrix after each frame
+                    },
+                });
+                if (this.model) {
+                    gsap.to(this.model.position, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 0
+                    });
+                }
+            }
         });
     }
 

@@ -1,8 +1,8 @@
 import 'htmx.org'
 import {SceneSetup} from './components/SceneSetup.js';
-import {projectsMenuToggle, projectsMenuOpacityChange} from './components/ProjectsMenu.js';
+import {projectsMenuToggle, projectsMenuOpacityChange} from './components/projectsMenu.js';
 import {toggleSidebar} from './utils/domUtils.js';
-import {accordionToggle} from "./components/Accordion";
+import {accordionToggle} from "./components/accordion";
 
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById('menu-toggle');

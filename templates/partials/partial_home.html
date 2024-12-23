@@ -1,11 +1,10 @@
 <div id="content" class=" snap-y snap-mandatory overflow-auto h-screen">
-    <section id="home" class="snap-start snap-always mt-16 scroll-mt-16 bg-base-200 h-[80vh] bg-gradient-to-bl from-ultramarine-900 to-indigo-950">
+    <section id="home"
+             class="snap-start snap-always mt-16 scroll-mt-16 bg-base-200 h-[80vh] bg-gradient-to-bl from-ultramarine-900 to-indigo-950">
         <div class="h-full flex flex-col justify-center">
-            <div class="pt-6 md:pt-0 min-w-full md:min-w-[50vw] md:min-h-[260vh] md:absolute md:right-0 md:top-44 pointer-events-none">
-                <div id="displayContainer"
-                     class=" md:pt-0 w-screen h-96 block md:w-[50vw] md:min-h-[45vw] md:sticky md:top-44">
-                    <canvas id="displayContent" class="block w-full h-full"></canvas>
-                </div>
+            <div id="displayContainer"
+                 class="pt-6 md:pt-0 min-w-full md:min-w-[55vw] md:min-h-[84vh] md:absolute md:right-0 md:top-32 pointer-events-none">
+                <canvas id="displayContent" class="block w-full h-full"></canvas>
             </div>
             <div class="text-slate-50/75 mx-6 -mt-12 md:mt-0 md:mx-36">
                 <h1 class="text-3xl md:text-5xl font-semibold font-mono">Hej! <br>Glad you're here :)</h1>
@@ -16,7 +15,8 @@
             </div>
         </div>
     </section>
-    <section id="about" class="h-[80vh] snap-start snap-always scroll-mt-16 bg-gradient-to-bl from-wild-blue-yonder-100 to-wild-blue-yonder-300">
+    <section id="about"
+             class="h-[80vh] snap-start snap-always scroll-mt-16 bg-gradient-to-bl from-wild-blue-yonder-100 to-wild-blue-yonder-300">
         <div class="h-full flex flex-col justify-center">
             <div class="text-slate-900/90 mx-6 md:mx-36">
                 <h1 class="text-3xl font-semibold font-mono max-w-64 md:max-w-full">A few things about me</h1>
@@ -30,12 +30,15 @@
                     </li>
                     <li class="mb-2">🚀 I'm always working on a few side projects to increase my skills</li>
                     <li class="mb-2">🧗🏻‍♂️ In my free time, I enjoy climbing, hiking, and being in nature</li>
-                    <li>📄 <a class="cursor-pointer font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800">Take a look at my CV</a></li>
+                    <li>📄 <a
+                            class="cursor-pointer font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800">Take
+                        a look at my CV</a></li>
                 </ul>
             </div>
         </div>
     </section>
-    <section id="projects" class="bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16">
+    <section id="projects"
+             class="bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16">
         <div class="flex flex-col items-center justify-center pt-14 mb-6">
             <h1 id="projects-title" class="text-4xl font-mono font-bold">Projects</h1>
         </div>
@@ -46,7 +49,8 @@
                     hx-get="/projects?type=university"
                     hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
-                    class="cursor-pointer px-4 py-2 whitespace-nowrap selected-project-cat">University Projects</li>
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap selected-project-cat">University Projects
+                </li>
                 <li id="personal"
                     hx-get="/projects?type=personal"
                     hx-target="#project-list"
@@ -58,7 +62,8 @@
                     hx-get="/projects?type=other"
                     hx-target="#project-list"
                     hx-swap="outerHTML transition:true"
-                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">Others</li>
+                    class="cursor-pointer px-4 py-2 whitespace-nowrap unselected-project-cat">Others
+                </li>
             </ul>
         </div>
         <div class="max-w-full flex mx-44 gap-10 justify-between">

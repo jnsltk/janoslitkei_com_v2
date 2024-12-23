@@ -4,19 +4,19 @@
 
 @layer utilities {
     .selected-project-cat {
-        @apply bg-blue-900 text-indigo-50 transition duration-150;
+        @apply bg-slate-900 text-slate-50/90 transition duration-150;
     }
 
     .unselected-project-cat {
-        @apply bg-indigo-50 text-neutral-800 transition duration-150;
+        @apply bg-slate-50 text-slate-800 transition duration-150;
     }
 
     .selected-project-cat:hover {
-        @apply bg-blue-800 text-indigo-50 transition duration-150;
+        @apply bg-slate-800 text-slate-50/90 transition duration-150;
     }
 
     .unselected-project-cat:hover {
-        @apply bg-indigo-100 text-neutral-800 transition duration-150;
+        @apply bg-slate-100/90 text-slate-800 transition duration-150;
     }
 
     .project {

@@ -21,6 +21,7 @@ function projectsMenuOpacityChange() {
     const scrollContainer = document.getElementById('content');
     scrollContainer.addEventListener('scroll', function () {
         const projectsMenuContainer = document.getElementById('projects-menu-container');
+        const projectsTitle = document.getElementById('projects-title');
         const scrollPosition = this.scrollTop;
         const triggerPosition = document.getElementById('projects').offsetTop - 120;
         const maxOpacity = 1;
@@ -31,8 +32,10 @@ function projectsMenuOpacityChange() {
             let opacity = (scrollPosition - triggerPosition) / fadeDistance;
             opacity = Math.min(maxOpacity, Math.max(minOpacity, opacity));
             projectsMenuContainer.style.opacity = opacity.toString();
+            projectsTitle.style.opacity = opacity.toString();
         } else {
             projectsMenuContainer.style.opacity = minOpacity.toString();
+            projectsTitle.style.opacity = minOpacity.toString();
         }
     });
 }

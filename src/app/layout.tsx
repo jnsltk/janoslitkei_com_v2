@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import { Inter } from 'next/font/google'
 import { JetBrains_Mono } from 'next/font/google'
+import App from '@/three-app/App'
 
 const inter = Inter({
     subsets: ['latin'],
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
     title: 'János_Litkei',
     description: 'János Litkei\'s personal website',
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const app: App = App.instance
 
 export default function RootLayout({
                                        children,

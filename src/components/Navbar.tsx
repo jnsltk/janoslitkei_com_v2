@@ -12,20 +12,21 @@ export default function Navbar() {
             <div id="menu"
                  className="bg-slate-900 hidden fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static">
                 <ul className="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-2 px-1 text-slate-50/75">
-                    <li className="w-full md:w-fit"><a
+                    <li className="w-full md:w-fit"><Link
                         href="#home"
-                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Home</a>
+                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Home</Link>
                     </li>
-                    <li className="w-full md:w-fit"><a
+                    <li className="w-full md:w-fit"><Link
                         href="#about"
-                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">About</a>
+                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">About</Link>
                     </li>
-                    <li className="w-full md:w-fit"><a
+                    <li className="w-full md:w-fit"><Link
                         href="#projects"
-                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Projects</a>
+                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Projects</Link>
                     </li>
-                    <li className="w-full md:w-fit"><a
-                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Blog</a>
+                    <li className="w-full md:w-fit"><Link
+                        href="/blog"
+                        className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">Blog</Link>
                     </li>
                 </ul>
             </div>

@@ -1,8 +1,8 @@
-import type {Metadata} from "next";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import type { Metadata } from 'next'
+import './globals.css'
+import Navbar from '@/components/Navbar'
 import { Inter } from 'next/font/google'
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from 'next/font/google'
 
 const inter = Inter({
     subsets: ['latin'],
@@ -15,9 +15,9 @@ const jetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-    title: "János_Litkei",
-    description: "János Litkei's personal website",
-};
+    title: 'János_Litkei',
+    description: 'János Litkei\'s personal website',
+}
 
 export default function RootLayout({
                                        children,
@@ -27,9 +27,9 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={`${inter.variable} ${jetBrainsMono.variable} bg-slate-200 font-sans overflow-hidden`}>
-        <Navbar/>
+        <Navbar />
         {children}
         </body>
         </html>
-    );
+    )
 }

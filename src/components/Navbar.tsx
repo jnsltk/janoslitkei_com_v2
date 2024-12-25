@@ -5,15 +5,15 @@ import Image from 'next/image'
 const menuItems = [
     {
         name: 'Home',
-        href: '#home',
+        href: '/#home',
     },
     {
         name: 'About',
-        href: '#about',
+        href: '/#about',
     },
     {
         name: 'Projects',
-        href: '#projects',
+        href: '/#projects',
     },
     {
         name: 'Blog',
@@ -35,7 +35,7 @@ export default function Navbar() {
                         return (
                             <li key={item.name} className="w-full md:w-fit"><Link
                                 href={item.href}
-                                className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 transition duration-150 cursor-pointer">{item.name}</Link>
+                                className="block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 rounded-sm transition duration-150 cursor-pointer">{item.name}</Link>
                             </li>
                         )
                     })}

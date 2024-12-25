@@ -1,4 +1,4 @@
-export default function About() {
+export default function AboutSection() {
     return (
         <section id="about"
                  className="h-[80vh] snap-start snap-always scroll-mt-16 bg-gradient-to-bl from-wild-blue-yonder-100 to-wild-blue-yonder-300">

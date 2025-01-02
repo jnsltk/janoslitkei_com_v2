@@ -1,16 +1,17 @@
 export default class Sizes {
-    width: number
-    height: number
-    pixelRatio: number
+    width: number | undefined
+    height: number | undefined
+    pixelRatio: number | undefined
 
-    constructor() {
-        this.width = window.innerWidth
-        this.height = window.innerHeight
+    constructor(divElement: HTMLDivElement | undefined) {
+        if (!divElement) return
+        this.width = divElement.clientWidth
+        this.height = divElement.clientHeight
         this.pixelRatio = Math.min(window.devicePixelRatio, 2)
 
         window.addEventListener('resize', () => {
-            this.width = window.innerWidth
-            this.height = window.innerHeight
+            this.width = divElement.clientWidth
+            this.height = divElement.clientHeight
             this.pixelRatio = Math.min(window.devicePixelRatio, 2)
         })
     }

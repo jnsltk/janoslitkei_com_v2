@@ -1,5 +1,5 @@
-{
-  "university": [
+[
+  [
     {
       "name": "fraud_detection",
       "description": "Advanced AI solution to detect financial fraud in monetary transactions.",
@@ -63,7 +63,7 @@
       ]
     }
   ],
-  "personal": [
+  [
     {
       "name": "Personal Website",
       "description": "This website, where I experiment with different technologies and designs, version 2. This time with a focus on learning ThreeJS and GSAP.",
@@ -106,7 +106,7 @@
         ]
     }
   ],
-  "other": [
+  [
     {
       "name": "Project 1",
       "description": "Description of project 1.",
@@ -146,4 +146,4 @@
       ]
     }
   ]
-}
+]

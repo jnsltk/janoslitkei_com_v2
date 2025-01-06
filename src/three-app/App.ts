@@ -10,7 +10,6 @@ export default class App {
     static instance: App
     sceneBuilder: SceneBuilder | undefined
     scene: THREE.Scene | undefined
-    model: THREE.Object3D | undefined
     divElement: HTMLDivElement | undefined
     sizes: Sizes | undefined
     camera: Camera | undefined
@@ -25,7 +24,6 @@ export default class App {
         this.divElement = divElement
         this.sceneBuilder = new SceneBuilder()
         this.scene = this.sceneBuilder.build()
-        this.model = this.sceneBuilder.model
         this.sizes = new Sizes(this.divElement)
         this.camera = new Camera()
         this.renderer = new Renderer()
@@ -38,12 +36,24 @@ export default class App {
         if (!scrollContainer) return;
         let scrollY = scrollContainer.scrollTop;
         scrollContainer.addEventListener('scroll', () => {
-            console.log('scrolling')
             const deltaY = scrollContainer.scrollTop - scrollY;
             scrollY = scrollContainer.scrollTop;
-            if (this.model) {
-                console.log('rotating')
-                this.model.rotation.y += deltaY * MODEL_ROTATION_SPEED;
+            if (SceneBuilder.model) {
+                SceneBuilder.model.rotation.y += deltaY * MODEL_ROTATION_SPEED;
+            }
+        });
+    }
+
+    // TODO: fix resize
+    private handleResize() {
+        window.addEventListener('resize', () => {
+            if(this.sizes && this.divElement && this.camera && this.camera.instance && this.renderer && this.renderer.instance) {
+                this.sizes.width = this.divElement.clientWidth;
+                this.sizes.height = this.divElement.clientHeight;
+                this.camera.instance.aspect = this.sizes.width / this.sizes.height;
+                this.camera.instance.updateProjectionMatrix();
+                this.renderer.instance.setSize(this.sizes.width, this.sizes.height);
+                this.renderer.instance.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             }
         });
     }
@@ -61,5 +71,6 @@ export default class App {
     private init(): void {
         this.animate()
         this.handleScroll()
+        this.handleResize()
     }
 }

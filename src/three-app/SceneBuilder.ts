@@ -9,9 +9,10 @@ const TEXTURE_PATH = 'pc/baked_computer.jpg'
 const SCREEN_TEXTURE_PATH = 'pc/cat.png'
 
 export default class SceneBuilder {
+    public static model: THREE.Object3D | undefined
+
     private scene: THREE.Scene
     private textureLoader: THREE.TextureLoader
-    public model: THREE.Object3D | undefined
 
     constructor() {
         this.textureLoader = new THREE.TextureLoader()
@@ -32,13 +33,13 @@ export default class SceneBuilder {
             const loader = new GLTFLoader()
             loader.load(MODEL_PATH,
                 (gltf) => {
-                    this.model = gltf.scene
-                    this.model.traverse((child) => {
-                        if ((<THREE.Mesh> child).isMesh) {
-                            (<THREE.Mesh> child).material = new THREE.MeshBasicMaterial({ map: bakedTexture })
+                    SceneBuilder.model = gltf.scene
+                    SceneBuilder.model.traverse((child) => {
+                        if ((<THREE.Mesh>child).isMesh) {
+                            (<THREE.Mesh>child).material = new THREE.MeshBasicMaterial({ map: bakedTexture })
                         }
                     })
-                    this.scene.add(this.model)
+                    this.scene.add(SceneBuilder.model)
                     this.loadScreenTexture()
                 },
                 (xhr) => {
@@ -58,7 +59,7 @@ export default class SceneBuilder {
             const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial)
             screenMesh.position.set(SCREEN_POSITION.x, SCREEN_POSITION.y, SCREEN_POSITION.z)
             screenMesh.rotation.set(SCREEN_ROTATION_X, 0, 0)
-            if (this.model) this.model.add(screenMesh)
+            if (SceneBuilder.model) SceneBuilder.model.add(screenMesh)
         })
     }
 }

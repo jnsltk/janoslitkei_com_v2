@@ -7,10 +7,10 @@ import SceneBuilder from '@/three-app/SceneBuilder'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const CAMERA_FOV: number = 15
+const CAMERA_FOV: number = 20
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000
-const CAMERA_POSITION = { x: 7.7, y: 4, z: 15 }
+const CAMERA_POSITION = { x: 125, y: 60, z: 215 }
 
 export default class Camera {
     app: App
@@ -43,22 +43,31 @@ export default class Camera {
                 if(this.instance) gsap.to(this.instance.position, {
                     duration: 0.8,
                     x: CAMERA_POSITION.x,
-                    y: CAMERA_POSITION.y + 1.8,
+                    y: CAMERA_POSITION.y - 20,
                     z: CAMERA_POSITION.z
                 });
                 if(this.instance) gsap.to(this.instance, {
                     duration: 0.8,
-                    delay: 0.2,
-                    fov: 10,
+                    fov: 8,
                     onUpdate: () => {
                         if(this.instance) this.instance.updateProjectionMatrix(); // Update the projection matrix after each frame
                     },
                 });
+                const lookAtTarget = new THREE.Vector3(0, 0, 0);
+                if(this.instance) gsap.to(lookAtTarget, {
+                    duration: 0.8,
+                    x: 0,
+                    y: 10,
+                    z: 0,
+                    onUpdate: () => {
+                        if(this.instance) this.instance.lookAt(lookAtTarget);
+                    }
+                });
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
-                        x: SceneBuilder.model.position.x - 0.15,
-                        y: SceneBuilder.model.position.y + 1
+                        x: SceneBuilder.model.position.x - 1,
+                        y: SceneBuilder.model.position.y - 10.2
                     });
                 }
             },
@@ -75,6 +84,16 @@ export default class Camera {
                     onUpdate: () => {
                         if(this.instance) this.instance.updateProjectionMatrix(); // Update the projection matrix after each frame
                     },
+                });
+                const lookAtTarget = new THREE.Vector3(0, 10, 0);
+                if(this.instance) gsap.to(lookAtTarget, {
+                    duration: 0.8,
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    onUpdate: () => {
+                        if(this.instance) this.instance.lookAt(lookAtTarget);
+                    }
                 });
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {

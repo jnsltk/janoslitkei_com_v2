@@ -7,7 +7,7 @@ const projectsMenuItems = ['University Projects', 'Personal projects', 'Others']
 
 export default function ProjectsMenu({ activeProject, handleActiveProjectChange }: ProjectsMenuProps) {
     return (
-        <div className="w-fit bg-slate-50 border border-slate-700/75 rounded-sm mx-auto mb-12">
+        <div className="w-fit bg-slate-50 border border-slate-700/75 rounded-sm mx-auto mb-8">
             <ul id="projects-menu" className="flex p-[1px]">
                 {projectsMenuItems.map((item, index) => {
                     return (

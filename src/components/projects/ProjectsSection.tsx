@@ -10,27 +10,35 @@ export default function ProjectsSection() {
 
     function handleActiveProjectChange(index: number) {
         setActiveProject(index)
-        setResetState((prevState) => (!prevState))
+        setResetState(prevState => !prevState)
     }
 
     return (
-        <section id="projects"
-                 className="text-slate-900/85 bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16">
+        <section
+            id="projects"
+            className="text-slate-900/85 bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16"
+        >
             <div className="flex flex-col items-center justify-center pt-14 mb-6">
-                <h1 id="projects-title" className="text-3xl font-mono font-bold">Projects</h1>
+                <h1
+                    id="projects-title"
+                    className="text-3xl font-mono font-bold"
+                >
+                    Projects
+                </h1>
             </div>
-            <ProjectsMenu
-                activeProject={activeProject}
-                handleActiveProjectChange={handleActiveProjectChange}
-            ></ProjectsMenu>
-            <div className="max-w-full flex mx-44 gap-10 justify-between">
-                <ProjectList
-                    projectsCategory={activeProject}
-                    resetState={resetState}
-                ></ProjectList>
+            <div className=" w-1/2 flex ml-56 gap-10 justify-between mt-12">
+                <div>
+                    <ProjectsMenu
+                        activeProject={activeProject}
+                        handleActiveProjectChange={handleActiveProjectChange}
+                    ></ProjectsMenu>
+                    <ProjectList
+                        projectsCategory={activeProject}
+                        resetState={resetState}
+                    ></ProjectList>
+                </div>
                 <div className="w-full">
-                    <div className="h-[30vw]">
-                    </div>
+                    <div className="h-[30vw]"></div>
                 </div>
             </div>
         </section>

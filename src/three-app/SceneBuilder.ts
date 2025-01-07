@@ -1,11 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-const SCREEN_GEOMETRY = { width: 1.35, height: 1.13 }
-const SCREEN_POSITION = { x: 0, y: 1.04, z: 0.38 }
-const SCREEN_ROTATION_X = -3 * THREE.MathUtils.DEG2RAD
-const MODEL_PATH = 'pc/computer_setup.glb'
-const TEXTURE_PATH = 'pc/baked_computer.jpg'
+const MODEL_PATH = 'pc/macintosh.glb'
 const SCREEN_TEXTURE_PATH = 'pc/cat.png'
 
 export default class SceneBuilder {
@@ -21,45 +17,52 @@ export default class SceneBuilder {
 
     public build() {
         this.loadModel()
+        this.setupLights()
+
         console.log(this.scene)
         return this.scene
     }
 
     private loadModel() {
-        const bakedTexture = this.textureLoader.load(TEXTURE_PATH, () => {
-            bakedTexture.flipY = false
-            // bakedTexture.encoding = THREE.sRGBEncoding;
-
-            const loader = new GLTFLoader()
-            loader.load(MODEL_PATH,
-                (gltf) => {
-                    SceneBuilder.model = gltf.scene
-                    SceneBuilder.model.traverse((child) => {
-                        if ((<THREE.Mesh>child).isMesh) {
-                            (<THREE.Mesh>child).material = new THREE.MeshBasicMaterial({ map: bakedTexture })
-                        }
-                    })
-                    this.scene.add(SceneBuilder.model)
-                    this.loadScreenTexture()
-                },
-                (xhr) => {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded')
-                },
-                (error) => {
-                    console.error('An error occurred while loading the model:', error)
-                },
-            )
+        const loader = new GLTFLoader()
+        loader.load(MODEL_PATH, gltf => {
+            SceneBuilder.model = gltf.scene
+            SceneBuilder.model.traverse(child => {
+                if ((<THREE.Mesh>child).isMesh) {
+                    if (child.name === 'Computer_Screen_0') {
+                        this.loadScreenTexture(child)
+                    }
+                    child.position.x += 20
+                    child.position.z += 45
+                }
+            })
+            this.scene.add(SceneBuilder.model)
         })
     }
 
-    loadScreenTexture() {
-        const screenTexture = this.textureLoader.load(SCREEN_TEXTURE_PATH, () => {
-            const screenGeometry = new THREE.PlaneGeometry(SCREEN_GEOMETRY.width, SCREEN_GEOMETRY.height)
-            const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture })
-            const screenMesh = new THREE.Mesh(screenGeometry, screenMaterial)
-            screenMesh.position.set(SCREEN_POSITION.x, SCREEN_POSITION.y, SCREEN_POSITION.z)
-            screenMesh.rotation.set(SCREEN_ROTATION_X, 0, 0)
-            if (SceneBuilder.model) SceneBuilder.model.add(screenMesh)
-        })
+    setupLights() {
+        // Ambient light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
+        this.scene.add(ambientLight)
+
+        // Directional light
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5)
+        directionalLight.position.set(0, 15, 15)
+        this.scene.add(directionalLight)
+    }
+
+    private loadScreenTexture(child: THREE.Object3D) {
+        const screenTexture = this.textureLoader.load(
+            SCREEN_TEXTURE_PATH,
+            () => {
+                if ((<THREE.Mesh>child).isMesh) {
+                    const mesh = <THREE.Mesh>child
+                    const screenMaterial = new THREE.MeshBasicMaterial({
+                        map: screenTexture,
+                    })
+                    mesh.material = screenMaterial
+                }
+            },
+        )
     }
 }

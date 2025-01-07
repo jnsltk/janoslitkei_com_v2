@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, isOpen, onClick} : ProjectCardProps) {
     return (
-        <div className="bg-slate-50 w-full border border-slate-700/75 rounded-sm shadow-xl">
+        <div className="bg-slate-50 max-w-full border border-slate-700/75 rounded-sm shadow-xl">
             <div className="px-5 py-4 flex justify-between items-center cursor-pointer"
             onClick={onClick}>
                 <h3 className="font-bold">{project.name}</h3>

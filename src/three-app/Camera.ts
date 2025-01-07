@@ -26,8 +26,17 @@ export default class Camera {
 
     createCamera() {
         if (this.sizes && this.sizes.width && this.sizes.height) {
-            const camera = new THREE.PerspectiveCamera(CAMERA_FOV, this.sizes.width / this.sizes.height, CAMERA_NEAR, CAMERA_FAR)
-            camera.position.set(CAMERA_POSITION.x, CAMERA_POSITION.y, CAMERA_POSITION.z)
+            const camera = new THREE.PerspectiveCamera(
+                CAMERA_FOV,
+                this.sizes.width / this.sizes.height,
+                CAMERA_NEAR,
+                CAMERA_FAR,
+            )
+            camera.position.set(
+                CAMERA_POSITION.x,
+                CAMERA_POSITION.y,
+                CAMERA_POSITION.z,
+            )
             camera.lookAt(0, 0, 0)
             return camera
         }
@@ -40,69 +49,159 @@ export default class Camera {
             end: 'bottom center',
             scroller: '#content',
             onEnter: () => {
-                if(this.instance) gsap.to(this.instance.position, {
-                    duration: 0.8,
-                    x: CAMERA_POSITION.x,
-                    y: CAMERA_POSITION.y - 20,
-                    z: CAMERA_POSITION.z
-                });
-                if(this.instance) gsap.to(this.instance, {
-                    duration: 0.8,
-                    fov: 8,
-                    onUpdate: () => {
-                        if(this.instance) this.instance.updateProjectionMatrix(); // Update the projection matrix after each frame
-                    },
-                });
-                const lookAtTarget = new THREE.Vector3(0, 0, 0);
-                if(this.instance) gsap.to(lookAtTarget, {
-                    duration: 0.8,
-                    x: 0,
-                    y: 10,
-                    z: 0,
-                    onUpdate: () => {
-                        if(this.instance) this.instance.lookAt(lookAtTarget);
-                    }
-                });
+                if (this.instance)
+                    gsap.to(this.instance.position, {
+                        duration: 0.8,
+                        x: CAMERA_POSITION.x,
+                        y: CAMERA_POSITION.y - 20,
+                        z: CAMERA_POSITION.z,
+                    })
+                if (this.instance)
+                    gsap.to(this.instance, {
+                        duration: 0.8,
+                        fov: 8,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
+                        },
+                    })
+                const lookAtTarget = new THREE.Vector3(0, 0, 0)
+                if (this.instance)
+                    gsap.to(lookAtTarget, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 10,
+                        z: 0,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.lookAt(lookAtTarget)
+                        },
+                    })
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
                         x: SceneBuilder.model.position.x - 1,
-                        y: SceneBuilder.model.position.y - 10.2
-                    });
+                        y: SceneBuilder.model.position.y - 10.2,
+                    })
                 }
             },
             onLeaveBack: () => {
-                if(this.instance) gsap.to(this.instance.position, {
-                    duration: 0.8,
-                    x: CAMERA_POSITION.x,
-                    y: CAMERA_POSITION.y,
-                    z: CAMERA_POSITION.z
-                });
-                if(this.instance) gsap.to(this.instance, {
-                    duration: 0.8,
-                    fov: CAMERA_FOV,
-                    onUpdate: () => {
-                        if(this.instance) this.instance.updateProjectionMatrix(); // Update the projection matrix after each frame
-                    },
-                });
-                const lookAtTarget = new THREE.Vector3(0, 10, 0);
-                if(this.instance) gsap.to(lookAtTarget, {
-                    duration: 0.8,
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    onUpdate: () => {
-                        if(this.instance) this.instance.lookAt(lookAtTarget);
-                    }
-                });
+                if (this.instance)
+                    gsap.to(this.instance.position, {
+                        duration: 0.8,
+                        x: CAMERA_POSITION.x,
+                        y: CAMERA_POSITION.y,
+                        z: CAMERA_POSITION.z,
+                    })
+                if (this.instance)
+                    gsap.to(this.instance, {
+                        duration: 0.8,
+                        fov: CAMERA_FOV,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
+                        },
+                    })
+                const lookAtTarget = new THREE.Vector3(0, 10, 0)
+                if (this.instance)
+                    gsap.to(lookAtTarget, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 0,
+                        z: 0,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.lookAt(lookAtTarget)
+                        },
+                    })
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
                         x: 0,
-                        y: 0
-                    });
+                        y: 0,
+                    })
                 }
-            }
-        });
+            },
+        })
+        ScrollTrigger.create({
+            trigger: '#footer',
+            start: 'top+=100 bottom',
+            end: 'bottom top',
+            scroller: '#content',
+            onEnter: () => {
+                if (this.instance)
+                    gsap.to(this.instance.position, {
+                        duration: 0.8,
+                        x: CAMERA_POSITION.x,
+                        y: CAMERA_POSITION.y,
+                        z: CAMERA_POSITION.z,
+                    })
+                if (this.instance)
+                    gsap.to(this.instance, {
+                        duration: 0.8,
+                        fov: CAMERA_FOV - 3,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
+                        },
+                    })
+                const lookAtTarget = new THREE.Vector3(0, 10, 0)
+                if (this.instance)
+                    gsap.to(lookAtTarget, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 0,
+                        z: 0,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.lookAt(lookAtTarget)
+                        },
+                    })
+                if (SceneBuilder.model) {
+                    gsap.to(SceneBuilder.model.position, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 0,
+                    })
+                }
+            },
+            onLeaveBack: () => {
+                if (this.instance)
+                    gsap.to(this.instance.position, {
+                        duration: 0.8,
+                        x: CAMERA_POSITION.x,
+                        y: CAMERA_POSITION.y - 20,
+                        z: CAMERA_POSITION.z,
+                    })
+                if (this.instance)
+                    gsap.to(this.instance, {
+                        duration: 0.8,
+                        fov: 8,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
+                        },
+                    })
+                const lookAtTarget = new THREE.Vector3(0, 0, 0)
+                if (this.instance)
+                    gsap.to(lookAtTarget, {
+                        duration: 0.8,
+                        x: 0,
+                        y: 10,
+                        z: 0,
+                        onUpdate: () => {
+                            if (this.instance)
+                                this.instance.lookAt(lookAtTarget)
+                        },
+                    })
+                if (SceneBuilder.model) {
+                    gsap.to(SceneBuilder.model.position, {
+                        duration: 0.8,
+                        x: SceneBuilder.model.position.x - 1,
+                        y: SceneBuilder.model.position.y - 10.2,
+                    })
+                }
+            },
+        })
     }
 }

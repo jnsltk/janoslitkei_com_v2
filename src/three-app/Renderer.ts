@@ -11,7 +11,6 @@ export default class Renderer {
 
     constructor() {
         this.app = new App(undefined)
-        console.log(this.app)
         this.sizes = this.app.sizes
         this.divElement = this.app.divElement
         if (this.sizes) {
@@ -25,9 +24,14 @@ export default class Renderer {
             antialias: true,
             alpha: true,
         })
-        if (this.sizes && this.sizes.width && this.sizes.height) renderer.setSize(this.sizes.width, this.sizes.height)
+        if (this.sizes && this.sizes.width && this.sizes.height)
+            renderer.setSize(this.sizes.width, this.sizes.height)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-        // renderer.outputEncoding = THREE.sRGBEncoding
+
+        renderer.outputColorSpace = THREE.SRGBColorSpace
+        renderer.toneMapping = THREE.ACESFilmicToneMapping
+        renderer.toneMappingExposure = 1.0
+
         if (this.divElement) {
             this.divElement.appendChild(renderer.domElement)
             console.log('Renderer created')
@@ -36,6 +40,6 @@ export default class Renderer {
     }
 
     public render(scene: THREE.Scene, camera: THREE.PerspectiveCamera): void {
-        if(this.instance) this.instance.render(scene, camera)
+        if (this.instance) this.instance.render(scene, camera)
     }
 }

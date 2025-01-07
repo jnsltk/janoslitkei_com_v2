@@ -15,9 +15,9 @@ export default function ProjectsSection() {
 
     return (
         <section id="projects"
-                 className="bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16">
+                 className="text-slate-900/85 bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16">
             <div className="flex flex-col items-center justify-center pt-14 mb-6">
-                <h1 id="projects-title" className="text-4xl font-mono font-bold">Projects</h1>
+                <h1 id="projects-title" className="text-3xl font-mono font-bold">Projects</h1>
             </div>
             <ProjectsMenu
                 activeProject={activeProject}

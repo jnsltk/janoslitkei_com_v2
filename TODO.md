@@ -5,22 +5,20 @@
   - [ ] Figure out and add initial content
   - [ ] Add images for the projects and make them switch per project
   - [ ] Maybe add videos or iframes for the projects so they're interactive
-- [ ] Fix animations for the project accordion menu
-- [ ] Figure out model behaviour when user scrolls to footer
+- [ ] Add video textures to the monitor screen
 - [ ] Fix resize screen for the model
 - [ ] Make page responsive
 
 ## New features
-- [ ] Add smooth scrolling when clicking on anchor links
 - [ ] Section reveal animations
 - [ ] Typing animation for the main title
 
 
 ## Low Priority
 - [ ] Add loading animation when the 3d model is loading
-- [ ] Add video textures to the monitor screen
 - [ ] Add project contents
 - [ ] Add option for manual rotation mode, that resets when the user exits it
+- [ ] Fix animations for the project accordion menu
 
 ## Dismissed features
 - [ ] ~~Change model rotation on scroll to GSAP~~
@@ -30,6 +28,8 @@
   - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
 
 ## DONE
+- [x] Add smooth scrolling when clicking on anchor links
+- [x] Figure out model behaviour when user scrolls to footer
 - [x] Change the model
 - [x] Add GSAP to the project
   - [x] Add special animation for the projects section (Zoom in on the screen and change position)

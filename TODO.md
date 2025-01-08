@@ -7,6 +7,7 @@
   - [ ] Maybe add videos or iframes for the projects so they're interactive
 - [-] Add video textures to the monitor screen
 - [ ] Make page responsive
+- [ ] Use GSAP for scroll snapping
 
 ## New features
 

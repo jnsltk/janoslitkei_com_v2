@@ -63,16 +63,16 @@ export default function Navbar() {
             </Link>
             <div
                 id="menu"
-                className={`bg-slate-900 fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static ${menuOpen ? 'block' : 'hidden'}`}
+                className={`bg-slate-900 fixed top-16 left-0 right-0 pb-12 pt-8 lg:py-0 lg:block lg:static ${menuOpen ? 'block' : 'hidden'}`}
             >
-                <ul className="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-2 px-1 text-slate-50/75">
+                <ul className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-2 px-1 text-slate-50/75">
                     {menuItems.map(item => {
                         return (
-                            <li key={item.name} className="w-full md:w-fit">
+                            <li key={item.name} className="w-full lg:w-fit">
                                 <Link
                                     href={item.href}
                                     onClick={e => handleClick(e, item.href)}
-                                    className={`block w-full md:w-fit hover:bg-slate-700/50 px-4 py-2 rounded-sm transition duration-150 
+                                    className={`block w-full lg:w-fit hover:bg-slate-700/50 px-4 py-2 rounded-sm transition duration-150 
                                         ${item.href === '/blog' ? 'pointer-events-none' : 'cursor-pointer'}`}
                                 >
                                     {item.name}
@@ -84,7 +84,7 @@ export default function Navbar() {
             </div>
             <button
                 id="menu-toggle"
-                className="text-white focus:outline-none md:hidden"
+                className="text-white focus:outline-none lg:hidden"
                 onClick={() => setMenuOpen(prevState => !prevState)}
             >
                 <svg

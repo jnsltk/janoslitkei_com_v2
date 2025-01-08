@@ -1,28 +1,79 @@
+'use client'
+
+import { useState } from 'react'
+import { GoTriangleLeft } from "react-icons/go"
+
 interface ProjectsMenuProps {
-    activeProject: number,
+    activeProject: number
     handleActiveProjectChange: (project: number) => void
 }
 
 const projectsMenuItems = ['University Projects', 'Personal projects', 'Others']
 
-export default function ProjectsMenu({ activeProject, handleActiveProjectChange }: ProjectsMenuProps) {
+export default function ProjectsMenu({
+    activeProject,
+    handleActiveProjectChange,
+}: ProjectsMenuProps) {
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+
     return (
-        <div className="w-fit bg-slate-50 border border-slate-700/75 rounded-sm mx-auto mb-8 shadow-xl">
-            <ul id="projects-menu" className="flex p-[1px]">
-                {projectsMenuItems.map((item, index) => {
-                    return (
-                        <li key={index}
-                            className={`cursor-pointer px-4 py-2 whitespace-nowrap rounded-sm transition duration-150 ${
+        <div>
+            <div className="mx-auto mb-8 hidden w-fit rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:block">
+                <ul id="projects-menu" className="flex p-[1px]">
+                    {projectsMenuItems.map((item, index) => {
+                        return (
+                            <li
+                                key={index}
+                                className={`cursor-pointer whitespace-nowrap rounded-sm px-4 py-2 transition duration-150 ${
+                                    activeProject === index
+                                        ? 'bg-slate-900 text-slate-50/90 hover:bg-slate-800'
+                                        : 'bg-slate-50 text-slate-800 hover:bg-slate-100/90'
+                                }`}
+                                onClick={() => handleActiveProjectChange(index)}
+                            >
+                                {item}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <div className="mb-6 w-full rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:hidden">
+                <div
+                    className="cursor-pointer px-5 py-4 font-bold flex justify-between items-center"
+                    onClick={() => setIsOpen(prev => !prev)}
+                >
+                    <span>
+
+                    {projectsMenuItems[activeProject]}
+                    </span>
+                    <GoTriangleLeft className={`transform ${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform duration-300 ease-in-out`} />
+                </div>
+
+                <ul
+                    className={`overflow-hidden transition-all duration-300 ease-in-out border-t border-slate-700/75 p-[1px] ${
+                        isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                >
+                    {projectsMenuItems.map((item, index) => (
+                        <li
+                            key={index}
+                            className={`cursor-pointer px-5 py-4 ${
                                 activeProject === index
-                                    ? 'bg-slate-900 hover:bg-slate-800 text-slate-50/90'
-                                    : 'bg-slate-50 hover:bg-slate-100/90 text-slate-800'
+                                    ? 'bg-slate-900 text-slate-50/90'
+                                    : 'bg-slate-50 text-slate-800'
                             }`}
-                            onClick={() => handleActiveProjectChange(index)}>
+                            onClick={() => {
+                                handleActiveProjectChange(index)
+                                setTimeout(() => {
+                                    setIsOpen(false)
+                                }, 50)
+                            }}
+                        >
                             {item}
                         </li>
-                    )
-                })}
-            </ul>
+                    ))}
+                </ul>
+            </div>
         </div>
     )
 }

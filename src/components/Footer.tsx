@@ -2,10 +2,10 @@ export default function Footer() {
     return (
         <footer
             id="footer"
-            className="footer bg-slate-900 text-base-content px-6 py-16 gap-10 md:p-24 text-slate-50/75 flex md:gap-32 snap-end snap-always"
+            className="footer text-base-content flex snap-end snap-always gap-10 bg-slate-900 px-6 pt-16 pb-40 text-slate-50/75 lg:gap-32 lg:p-24 lg:py-16"
         >
             <div className="max-w-lg">
-                <h2 className="text-lg font-bold mb-4">
+                <h2 className="mb-4 text-lg font-bold">
                     János Litkei 2024 | MIT License
                 </h2>
                 <p className="text-sm">

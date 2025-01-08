@@ -10,11 +10,12 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="bg-base-200 h-screen snap-start snap-always bg-gradient-to-bl from-ultramarine-900 to-indigo-950 pt-32 md:pt-0 md:mt-16 md:h-[80vh] md:scroll-mt-16"
+            className="bg-base-200 h-screen snap-start snap-always bg-gradient-to-bl from-ultramarine-900 to-indigo-950 pt-16 lg:mt-16 lg:h-[80vh] lg:scroll-mt-16 lg:pt-0"
         >
-            <div className="flex h-full flex-col md:justify-center">
-                <div className="mx-6 mt-20 text-slate-50/75 md:mx-32 md:mt-0">
-                    <div className="font-mono text-3xl font-semibold md:text-5xl">
+            <div className="flex h-full flex-col lg:justify-center">
+                <ThreeAppWrapper />
+                <div className="mx-6 mt-14 text-slate-50/75 lg:mx-32 lg:mt-0">
+                    <div className="font-mono text-3xl font-semibold lg:text-5xl">
                         <ReactTyped
                             strings={["Hej!<br> Glad you're here :)"]}
                             typeSpeed={80}
@@ -28,14 +29,13 @@ export default function Hero() {
                         />
                     </div>
                     <p
-                        className={`py-6 font-light transition-all duration-700 ease-out md:max-w-[40vw] ${showDescription ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
+                        className={`py-6 font-light transition-all duration-700 ease-out lg:max-w-[40vw] ${showDescription ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
                     >
                         My name is János, and I&apos;m a third-year Software
                         Engineering student in Sweden. Welcome to my personal
                         website!
                     </p>
                 </div>
-                <ThreeAppWrapper />
             </div>
         </section>
     )

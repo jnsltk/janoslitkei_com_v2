@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 export default function Hero() {
     const [showDescription, setShowDescription] = useState<boolean>(false)
+    const isSmall = true;
 
     return (
         <section
@@ -14,7 +15,7 @@ export default function Hero() {
         >
             <div className="flex h-full flex-col lg:justify-center">
                 <ThreeAppWrapper />
-                <div className="mx-6 mt-14 text-slate-50/75 lg:mx-32 lg:mt-0">
+                <div className="mx-6 -mt-8 text-slate-50/75 lg:mx-32 lg:mt-0">
                     <div className="font-mono text-3xl font-semibold lg:text-5xl">
                         <ReactTyped
                             strings={["Hej!<br> Glad you're here :)"]}
@@ -28,13 +29,18 @@ export default function Hero() {
                             }
                         />
                     </div>
-                    <p
-                        className={`py-6 font-light transition-all duration-700 ease-out lg:max-w-[40vw] ${showDescription ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
+                    <div
+                        className={`pt-3 font-light transition-all duration-700 ease-out lg:max-w-[40vw] ${showDescription ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
                     >
+                        <p>
                         My name is János, and I&apos;m a third-year Software
                         Engineering student in Sweden. Welcome to my personal
                         website!
-                    </p>
+                        </p>
+                        {isSmall && (
+                            <p className='italic pt-3'>Make sure to check back on desktop, this website looks a lot better on larger screens.</p>
+                            )}
+                    </div>
                 </div>
             </div>
         </section>

@@ -16,7 +16,7 @@ export default function ThreeAppWrapper() {
         <div
             ref={containerRef}
             className={
-                'pointer-events-none bottom-0 h-2/5 w-full border-2 border-yellow-400 lg:absolute lg:right-0 lg:top-32 lg:-mx-[10%] lg:h-[84vh] lg:w-[70%] lg:pt-0'
+                'pointer-events-none bottom-0 h-1/2 w-full border-2 border-yellow-400 lg:absolute lg:right-0 lg:top-32 lg:-mx-[10%] lg:h-[84vh] lg:w-[70%] lg:pt-0'
             }
         />
     )

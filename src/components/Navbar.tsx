@@ -6,6 +6,7 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useState } from 'react'
+import { HiMenuAlt3 } from "react-icons/hi"
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -87,20 +88,7 @@ export default function Navbar() {
                 className="text-white focus:outline-none lg:hidden"
                 onClick={() => setMenuOpen(prevState => !prevState)}
             >
-                <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 6h16M4 12h16m-7 6h7"
-                    ></path>
-                </svg>
+                <HiMenuAlt3 className="w-6 h-6" />
             </button>
         </div>
     )

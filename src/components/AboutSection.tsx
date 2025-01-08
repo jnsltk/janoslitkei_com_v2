@@ -4,15 +4,15 @@ export default function AboutSection() {
     return (
         <section
             id="about"
-            className="h-[80vh] snap-start snap-always scroll-mt-16 bg-gradient-to-bl from-wild-blue-yonder-100 to-wild-blue-yonder-300"
+            className="h-screen snap-start snap-always bg-gradient-to-bl from-wild-blue-yonder-100 to-wild-blue-yonder-300 md:h-[80vh] md:scroll-mt-16"
         >
-            <div className="h-full flex flex-col justify-center">
-                <div className="text-slate-900/85 mx-6 md:mx-36">
+            <div className="flex h-full flex-col md:justify-center">
+                <div className="mx-6 mt-24 text-slate-900/85 md:mx-36">
                     <FadeInSection>
-                        <h1 className="text-3xl font-semibold font-mono max-w-64 md:max-w-full">
+                        <h1 className="max-w-64 font-mono text-3xl font-semibold md:max-w-full">
                             A few things about me
                         </h1>
-                        <ul className="py-6 ">
+                        <ul className="py-6">
                             <li className="mb-2">
                                 👨🏻‍💻 I&apos;m a Software Engineering student from
                                 Hungary

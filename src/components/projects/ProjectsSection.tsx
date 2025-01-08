@@ -17,18 +17,18 @@ export default function ProjectsSection() {
     return (
         <section
             id="projects"
-            className="text-slate-900/85 bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 h-screen snap-start -mb-16 snap-always scroll-mt-16"
+            className="h-screen snap-start snap-always bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 text-slate-900/85 md:scroll-mt-16"
         >
             <FadeInSection>
-                <div className="flex flex-col items-center justify-center pt-14 mb-6">
+                <div className="flex flex-col items-center justify-center pt-24 md:mb-6 md:pt-14">
                     <h1
                         id="projects-title"
-                        className="text-3xl font-mono font-bold"
+                        className="font-mono text-3xl font-bold"
                     >
                         Projects
                     </h1>
                 </div>
-                <div className=" w-1/2 flex ml-8 md:ml-40 gap-10 justify-between mt-12">
+                <div className="ml-40 mt-12 hidden w-1/2 justify-between gap-10 md:flex">
                     <div>
                         <ProjectsMenu
                             activeProject={activeProject}

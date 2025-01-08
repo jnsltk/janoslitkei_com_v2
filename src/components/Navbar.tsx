@@ -5,6 +5,7 @@ import logo from '../../public/images/logo.svg'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { useState } from 'react'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -33,6 +34,7 @@ const menuItems: MenuItem[] = [
 ]
 
 export default function Navbar() {
+    const [menuOpen, setMenuOpen] = useState<boolean>(false)
     const handleClick = (
         e: React.MouseEvent<HTMLAnchorElement>,
         href: string,
@@ -41,6 +43,7 @@ export default function Navbar() {
             return
         }
         e.preventDefault()
+        setMenuOpen(false)
         const target = document.querySelector(href)
         if (target) {
             gsap.to('#content', {
@@ -60,7 +63,7 @@ export default function Navbar() {
             </Link>
             <div
                 id="menu"
-                className="bg-slate-900 hidden fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static"
+                className={`bg-slate-900 fixed top-16 left-0 right-0 pb-12 pt-8 md:py-0 md:block md:static ${menuOpen ? 'block' : 'hidden'}`}
             >
                 <ul className="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-2 px-1 text-slate-50/75">
                     {menuItems.map(item => {
@@ -82,6 +85,7 @@ export default function Navbar() {
             <button
                 id="menu-toggle"
                 className="text-white focus:outline-none md:hidden"
+                onClick={() => setMenuOpen(prevState => !prevState)}
             >
                 <svg
                     className="w-6 h-6"

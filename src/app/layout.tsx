@@ -16,20 +16,22 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
     title: 'János_Litkei',
-    description: 'János Litkei\'s personal website',
+    description: "János Litkei's personal website",
 }
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+    children,
+}: Readonly<{
+    children: React.ReactNode
 }>) {
     return (
-        <html lang="en">
-        <body className={`${inter.variable} ${jetBrainsMono.variable} bg-slate-200 font-sans overflow-hidden`}>
-        <Navbar />
-        {children}
-        </body>
+        <html lang="en" className="h-full overflow-hidden">
+            <body
+                className={`${inter.variable} ${jetBrainsMono.variable} h-full overflow-hidden bg-slate-200 font-sans `}
+            >
+                <Navbar />
+                {children}
+            </body>
         </html>
     )
 }

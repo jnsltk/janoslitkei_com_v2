@@ -4,6 +4,7 @@ import AboutSection from '@/components/AboutSection'
 import ProjectsSection from '@/components/projects/ProjectsSection'
 import Footer from '@/components/Footer'
 
+
 export default function Home() {
     return (
         <Content>

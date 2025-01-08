@@ -8,6 +8,9 @@ export default {
     ],
     theme: {
         extend: {
+            screens: {
+                'full': '800px',
+            },
             fontFamily: {
                 sans: ['var(--font-inter)'],
                 mono: ['var(--font-jetbrains-mono)'],

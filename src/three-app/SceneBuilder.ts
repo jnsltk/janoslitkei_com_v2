@@ -8,11 +8,9 @@ export default class SceneBuilder {
     public static model: THREE.Object3D | undefined
 
     private scene: THREE.Scene
-    private textureLoader: THREE.TextureLoader
     private videoTexture: THREE.VideoTexture | undefined
 
     constructor() {
-        this.textureLoader = new THREE.TextureLoader()
         this.scene = new THREE.Scene()
         this.createVideoTexture()
     }

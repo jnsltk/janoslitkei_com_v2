@@ -28,7 +28,7 @@ export default function ProjectsSection() {
                         Projects
                     </h1>
                 </div>
-                <div className=" w-1/2 flex ml-56 gap-10 justify-between mt-12">
+                <div className=" w-1/2 flex ml-8 md:ml-40 gap-10 justify-between mt-12">
                     <div>
                         <ProjectsMenu
                             activeProject={activeProject}

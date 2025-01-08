@@ -7,12 +7,19 @@ import SceneBuilder from '@/three-app/SceneBuilder'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const CAMERA_FOV: number = 20
+const BASE_CAMERA_FOV: number = 20
+const BASE_CAMERA_ZOOM_FOV: number = 8
+const MD_CAMERA_FOV: number = 25
+const MD_CAMERA_ZOOM_FOV: number = 9.5
+// const SM_CAMERA_FOV: number = 30
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000
 const CAMERA_POSITION = { x: 125, y: 60, z: 215 }
 
+
 export default class Camera {
+    public static cameraFov: number = BASE_CAMERA_FOV
+    public static cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
     app: App
     instance: THREE.PerspectiveCamera | undefined
     sizes: Sizes | undefined
@@ -22,12 +29,13 @@ export default class Camera {
         this.sizes = this.app.sizes
         this.instance = this.createCamera()
         this.handleCameraAnimation()
+        this.handleResize()
     }
 
     createCamera() {
         if (this.sizes && this.sizes.width && this.sizes.height) {
             const camera = new THREE.PerspectiveCamera(
-                CAMERA_FOV,
+                Camera.cameraFov,
                 this.sizes.width / this.sizes.height,
                 CAMERA_NEAR,
                 CAMERA_FAR,
@@ -59,7 +67,7 @@ export default class Camera {
                 if (this.instance)
                     gsap.to(this.instance, {
                         duration: 0.8,
-                        fov: 8,
+                        fov: Camera.cameraZoomFov,
                         onUpdate: () => {
                             if (this.instance)
                                 this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
@@ -80,7 +88,7 @@ export default class Camera {
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
-                        x: SceneBuilder.model.position.x - 1,
+                        x: SceneBuilder.model.position.x - 3.8,
                         y: SceneBuilder.model.position.y - 10.2,
                     })
                 }
@@ -96,7 +104,7 @@ export default class Camera {
                 if (this.instance)
                     gsap.to(this.instance, {
                         duration: 0.8,
-                        fov: CAMERA_FOV,
+                        fov: Camera.cameraFov,
                         onUpdate: () => {
                             if (this.instance)
                                 this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
@@ -139,7 +147,7 @@ export default class Camera {
                 if (this.instance)
                     gsap.to(this.instance, {
                         duration: 0.8,
-                        fov: CAMERA_FOV - 3,
+                        fov: Camera.cameraFov - 3,
                         onUpdate: () => {
                             if (this.instance)
                                 this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
@@ -176,7 +184,7 @@ export default class Camera {
                 if (this.instance)
                     gsap.to(this.instance, {
                         duration: 0.8,
-                        fov: 8,
+                        fov: Camera.cameraZoomFov,
                         onUpdate: () => {
                             if (this.instance)
                                 this.instance.updateProjectionMatrix() // Update the projection matrix after each frame
@@ -203,5 +211,40 @@ export default class Camera {
                 }
             },
         })
+    }
+
+    handleResize() {
+        window.addEventListener('resize', () => {
+            console.log(this.sizes?.width, this.sizes?.height)
+            if (
+                this.sizes &&
+                this.sizes.width &&
+                this.sizes.height &&
+                this.instance &&
+                this.instance.aspect &&
+                this.instance.updateProjectionMatrix
+            ) {
+                this.instance.aspect = this.sizes.width / this.sizes.height
+                this.instance.updateProjectionMatrix()
+                this.app.renderer?.instance?.setSize(
+                    this.sizes.width,
+                    this.sizes.height,
+                )
+                if (this.sizes.width < 850) {
+                    Camera.cameraFov = MD_CAMERA_FOV
+                    Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
+                    this.instance.fov = Camera.cameraFov
+                    this.instance.lookAt(0, -3, 0)
+                    this.instance.updateProjectionMatrix()
+                } else {
+                    Camera.cameraFov = BASE_CAMERA_FOV
+                    Camera.cameraZoomFov = BASE_CAMERA_ZOOM_FOV
+                    this.instance.fov = Camera.cameraFov
+                    this.instance.lookAt(0, 0, 0)
+                    this.instance.updateProjectionMatrix()
+                }
+            }
+        })
+        window.dispatchEvent(new Event('resize'))
     }
 }

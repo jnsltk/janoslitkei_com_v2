@@ -5,13 +5,10 @@
   - [ ] Figure out and add initial content
   - [ ] Add images for the projects and make them switch per project
   - [ ] Maybe add videos or iframes for the projects so they're interactive
-- [ ] Add video textures to the monitor screen
-- [ ] Fix resize screen for the model
+- [-] Add video textures to the monitor screen
 - [ ] Make page responsive
 
 ## New features
-- [ ] Section reveal animations
-- [ ] Typing animation for the main title
 
 
 ## Low Priority
@@ -28,6 +25,9 @@
   - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
 
 ## DONE
+- [x] Fix resize screen for the model
+- [x] Section reveal animations
+- [x] Typing animation for the main title
 - [x] Add smooth scrolling when clicking on anchor links
 - [x] Figure out model behaviour when user scrolls to footer
 - [x] Change the model

@@ -3,6 +3,7 @@ import Camera from '@/three-app/Camera'
 import Renderer from '@/three-app/Renderer'
 import Sizes from '@/three-app/Sizes'
 import SceneBuilder from '@/three-app/SceneBuilder'
+import Controls from '@/three-app/Controls'
 
 const MODEL_ROTATION_SPEED = 0.0004
 
@@ -14,6 +15,7 @@ export default class App {
     sizes: Sizes | undefined
     camera: Camera | undefined
     renderer: Renderer | undefined
+    controls: Controls | undefined
 
     constructor(divElement: HTMLDivElement | undefined) {
         if (App.instance) {
@@ -27,6 +29,7 @@ export default class App {
         this.sizes = new Sizes(this.divElement)
         this.camera = new Camera()
         this.renderer = new Renderer()
+        this.controls = new Controls()
 
         this.init()
     }
@@ -46,7 +49,7 @@ export default class App {
 
     private animate(): void {
         const tick = (): void => {
-            // this.controls.update();
+            if(this.controls && Camera.isMobileScreen) this.controls.instance.update();
             // this.controls.target.clamp(MIN_PAN, MAX_PAN);
             if (
                 this.renderer &&

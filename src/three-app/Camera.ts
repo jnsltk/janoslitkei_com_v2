@@ -11,7 +11,7 @@ const BASE_CAMERA_FOV: number = 20
 const BASE_CAMERA_ZOOM_FOV: number = 8
 const MD_CAMERA_FOV: number = 25
 const MD_CAMERA_ZOOM_FOV: number = 9.5
-// const SM_CAMERA_FOV: number = 30
+const SM_CAMERA_FOV: number = 20
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000
 const CAMERA_POSITION = { x: 125, y: 60, z: 215 }
@@ -20,6 +20,8 @@ const CAMERA_POSITION = { x: 125, y: 60, z: 215 }
 export default class Camera {
     public static cameraFov: number = BASE_CAMERA_FOV
     public static cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
+    public static isMobileScreen: boolean = false
+
     app: App
     instance: THREE.PerspectiveCamera | undefined
     sizes: Sizes | undefined
@@ -230,13 +232,20 @@ export default class Camera {
                     this.sizes.width,
                     this.sizes.height,
                 )
-                if (this.sizes.width < 850) {
+                if (this.sizes.width < 500) {
+                    Camera.isMobileScreen = true
+                    Camera.cameraFov = SM_CAMERA_FOV
+                    this.instance.fov = Camera.cameraFov
+                    this.instance.updateProjectionMatrix()
+                } else if (this.sizes.width < 850) {
+                    Camera.isMobileScreen = false
                     Camera.cameraFov = MD_CAMERA_FOV
                     Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
                     this.instance.fov = Camera.cameraFov
                     this.instance.lookAt(0, -3, 0)
                     this.instance.updateProjectionMatrix()
                 } else {
+                    Camera.isMobileScreen = false
                     Camera.cameraFov = BASE_CAMERA_FOV
                     Camera.cameraZoomFov = BASE_CAMERA_ZOOM_FOV
                     this.instance.fov = Camera.cameraFov

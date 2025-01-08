@@ -3,10 +3,10 @@
 import ThreeAppWrapper from '@/components/ThreeAppWrapper'
 import { ReactTyped } from 'react-typed'
 import { useState } from 'react'
+import Camera from '@/three-app/Camera'
 
 export default function Hero() {
     const [showDescription, setShowDescription] = useState<boolean>(false)
-    const isSmall = true;
 
     return (
         <section
@@ -37,7 +37,7 @@ export default function Hero() {
                         Engineering student in Sweden. Welcome to my personal
                         website!
                         </p>
-                        {isSmall && (
+                        {Camera.isMobileScreen && (
                             <p className='italic pt-3'>Make sure to check back on desktop, this website looks a lot better on larger screens.</p>
                             )}
                     </div>

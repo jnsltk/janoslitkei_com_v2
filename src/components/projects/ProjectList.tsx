@@ -20,7 +20,7 @@ export default function ProjectList({ projectsCategory, resetState }: ProjectLis
 
     const [openIndex, setOpenIndex] = useState<number | null>(0)
     return (
-        <div id="project-list" className="w-full flex flex-col gap-2">
+        <div id="project-list" className="flex flex-col gap-2">
             {projects[projectsCategory].map((project: Project, index) => {
                 return <ProjectCard
                     key={index}

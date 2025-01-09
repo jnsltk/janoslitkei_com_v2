@@ -7,10 +7,10 @@ import SceneBuilder from '@/three-app/SceneBuilder'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const BASE_CAMERA_FOV: number = 20
-const BASE_CAMERA_ZOOM_FOV: number = 8
-const MD_CAMERA_FOV: number = 25
-const MD_CAMERA_ZOOM_FOV: number = 9.5
+const BASE_CAMERA_FOV: number = 25
+const BASE_CAMERA_ZOOM_FOV: number = 9.5
+const MD_CAMERA_FOV: number = 29
+const MD_CAMERA_ZOOM_FOV: number = 11
 const SM_CAMERA_FOV: number = 20
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000
@@ -80,7 +80,7 @@ export default class Camera {
                     gsap.to(lookAtTarget, {
                         duration: 0.8,
                         x: 0,
-                        y: 10,
+                        y: 10.5,
                         z: 0,
                         onUpdate: () => {
                             if (this.instance)
@@ -93,6 +93,10 @@ export default class Camera {
                         x: SceneBuilder.model.position.x - 3.8,
                         y: SceneBuilder.model.position.y - 10.2,
                     })
+                    gsap.to(SceneBuilder.model.rotation, {
+                        duration: 0.8,
+                        y: 0.5369,
+                    }) 
                 }
             },
             onLeaveBack: () => {
@@ -197,7 +201,7 @@ export default class Camera {
                     gsap.to(lookAtTarget, {
                         duration: 0.8,
                         x: 0,
-                        y: 10,
+                        y: 10.5,
                         z: 0,
                         onUpdate: () => {
                             if (this.instance)

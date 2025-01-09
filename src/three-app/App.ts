@@ -43,6 +43,7 @@ export default class App {
             scrollY = scrollContainer.scrollTop
             if (SceneBuilder.model) {
                 SceneBuilder.model.rotation.y += deltaY * MODEL_ROTATION_SPEED
+                console.log(SceneBuilder.model.rotation.y)
             }
         })
     }

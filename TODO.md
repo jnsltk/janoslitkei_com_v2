@@ -6,8 +6,7 @@
   - [ ] Add images for the projects and make them switch per project
   - [ ] Maybe add videos or iframes for the projects so they're interactive
 - [-] Add video textures to the monitor screen
-- [ ] Make page responsive
-- [ ] Use GSAP for scroll snapping
+- [ ] Fix layout and model for tablet screens
 
 ## New features
 
@@ -17,6 +16,7 @@
 - [ ] Add project contents
 - [ ] Add option for manual rotation mode, that resets when the user exits it
 - [ ] Fix animations for the project accordion menu
+- [ ] Use GSAP for scroll snapping ??
 
 ## Dismissed features
 - [ ] ~~Change model rotation on scroll to GSAP~~
@@ -26,6 +26,8 @@
   - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
 
 ## DONE
+- [x] Fix layout and model for large screens
+- [x] Make page responsive
 - [x] Fix resize screen for the model
 - [x] Section reveal animations
 - [x] Typing animation for the main title

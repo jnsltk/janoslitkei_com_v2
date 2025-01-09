@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { GoTriangleLeft } from "react-icons/go"
+import { GoTriangleLeft } from 'react-icons/go'
 
 interface ProjectsMenuProps {
     activeProject: number
@@ -18,8 +18,8 @@ export default function ProjectsMenu({
 
     return (
         <div>
-            <div className="mx-auto mb-8 hidden w-fit rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:block">
-                <ul id="projects-menu" className="flex p-[1px]">
+            <div className="mx-auto mb-8 hidden rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:block lg:w-[27rem]">
+                <ul id="projects-menu" className="flex justify-between p-[1px]">
                     {projectsMenuItems.map((item, index) => {
                         return (
                             <li
@@ -39,18 +39,17 @@ export default function ProjectsMenu({
             </div>
             <div className="mb-6 w-full rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:hidden">
                 <div
-                    className="cursor-pointer px-5 py-4 font-bold flex justify-between items-center"
+                    className="flex cursor-pointer items-center justify-between px-5 py-4 font-bold"
                     onClick={() => setIsOpen(prev => !prev)}
                 >
-                    <span>
-
-                    {projectsMenuItems[activeProject]}
-                    </span>
-                    <GoTriangleLeft className={`transform ${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform duration-300 ease-in-out`} />
+                    <span>{projectsMenuItems[activeProject]}</span>
+                    <GoTriangleLeft
+                        className={`transform ${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform duration-300 ease-in-out`}
+                    />
                 </div>
 
                 <ul
-                    className={`overflow-hidden transition-all duration-300 ease-in-out border-t border-slate-700/75 p-[1px] ${
+                    className={`overflow-hidden border-t border-slate-700/75 p-[1px] transition-all duration-300 ease-in-out ${
                         isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                 >

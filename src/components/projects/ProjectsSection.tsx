@@ -28,21 +28,23 @@ export default function ProjectsSection() {
                         Projects
                     </h1>
                 </div>
-                <div className="mt-10 mx-6 justify-between gap-10 lg:ml-40 lg:mt-12 lg:flex lg:w-1/2">
-                    <div>
-                        <ProjectsMenu
-                            activeProject={activeProject}
-                            handleActiveProjectChange={
-                                handleActiveProjectChange
-                            }
-                        ></ProjectsMenu>
-                        <ProjectList
-                            projectsCategory={activeProject}
-                            resetState={resetState}
-                        ></ProjectList>
+                <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-12 lg:flex">
+                    <div className="lg:w-1/2">
+                        <div>
+                            <ProjectsMenu
+                                activeProject={activeProject}
+                                handleActiveProjectChange={
+                                    handleActiveProjectChange
+                                }
+                            ></ProjectsMenu>
+                            <ProjectList
+                                projectsCategory={activeProject}
+                                resetState={resetState}
+                            ></ProjectList>
+                        </div>
                     </div>
-                    <div className="w-full">
-                        <div className="h-[30vw]"></div>
+                    <div className="w-1/2">
+                        <div className="h-full"></div>
                     </div>
                 </div>
             </FadeInSection>

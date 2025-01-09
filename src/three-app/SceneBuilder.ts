@@ -4,24 +4,38 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 const MODEL_PATH = 'pc/macintosh.glb'
 const VIDEO_PATH = 'pc/screen/static.mp4'
 
+/**
+ * Represents the scene builder class.
+ * Manages the creation of the scene, loading of the model, and setting up the lights.
+ */
 export default class SceneBuilder {
     public static model: THREE.Object3D | undefined
 
     private scene: THREE.Scene
     private videoTexture: THREE.VideoTexture | undefined
 
-    constructor() {
+    /**
+     * Creates an instance of the SceneBuilder class.
+     */
+    public constructor() {
         this.scene = new THREE.Scene()
         this.createVideoTexture()
     }
 
-    public build() {
+    /**
+     * Builds the scene.
+     * @returns The scene.
+     */
+    public build(): THREE.Scene {
         this.loadModel()
         this.setupLights()
         return this.scene
     }
 
-    private createVideoTexture() {
+    /**
+     * Creates the video texture for the model's screen.
+     */
+    private createVideoTexture(): void {
         const video = document.createElement('video')
         video.src = VIDEO_PATH
         video.loop = true
@@ -34,7 +48,12 @@ export default class SceneBuilder {
         this.videoTexture.wrapT = THREE.ClampToEdgeWrapping
     }
 
-    private loadModel() {
+    /**
+     * Loads the model and applies the video texture to the screen.
+     * 
+     * @remarks Since the model is not centered, the position is adjusted when traversing the model's children.
+     */
+    private loadModel(): void {
         const loader = new GLTFLoader()
         loader.load(MODEL_PATH, gltf => {
             SceneBuilder.model = gltf.scene
@@ -51,7 +70,10 @@ export default class SceneBuilder {
         })
     }
 
-    setupLights() {
+    /**
+     * Sets up the lights in the scene.
+     */
+    private setupLights(): void {
         // Ambient light
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
         this.scene.add(ambientLight)
@@ -62,7 +84,11 @@ export default class SceneBuilder {
         this.scene.add(directionalLight)
     }
 
-    private applyVideoTexture(child: THREE.Object3D) {
+    /**
+     * Applies the video texture to the model's screen.
+     * @param child - The child object to which the video texture is applied.
+     */
+    private applyVideoTexture(child: THREE.Object3D): void {
         if ((<THREE.Mesh>child).isMesh) {
             const mesh = <THREE.Mesh>child
             const videoMaterial = new THREE.MeshBasicMaterial({

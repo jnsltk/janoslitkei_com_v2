@@ -7,17 +7,32 @@ import Controls from '@/three-app/Controls'
 
 const MODEL_ROTATION_SPEED = 0.0004
 
+/**
+ * Represents the main application class.
+ * Manages the initialization of the scene, camera, renderer, and controls, 
+ * and handles the animation loop as well as the scroll event.
+ *
+ * @remarks
+ * This is the entry point of the Three.js application.
+ */
 export default class App {
-    static instance: App
-    sceneBuilder: SceneBuilder | undefined
-    scene: THREE.Scene | undefined
-    divElement: HTMLDivElement | undefined
-    sizes: Sizes | undefined
-    camera: Camera | undefined
-    renderer: Renderer | undefined
-    controls: Controls | undefined
+    private static instance: App
+    private sceneBuilder: SceneBuilder | undefined
+    private scene: THREE.Scene | undefined
+    public divElement: HTMLDivElement | undefined
+    public sizes: Sizes | undefined
+    public camera: Camera | undefined
+    public renderer: Renderer | undefined
+    private controls: Controls | undefined
 
-    constructor(divElement: HTMLDivElement | undefined) {
+    /**
+     * Creates an instance of the App class.
+     * @param divElement - The HTMLDivElement to which the renderer's domElement is appended.
+     * 
+     * @remarks
+     * If an instance of the App class already exists, returns the existing instance.
+     */
+    public constructor(divElement: HTMLDivElement | undefined) {
         if (App.instance) {
             return App.instance
         }
@@ -34,7 +49,10 @@ export default class App {
         this.init()
     }
 
-    private handleScroll() {
+    /**
+     * Handles the scroll event, rotating the model based on the scroll delta.
+     */
+    private handleScroll(): void {
         const scrollContainer = document.getElementById('content')
         if (!scrollContainer) return
         let scrollY = scrollContainer.scrollTop
@@ -43,11 +61,13 @@ export default class App {
             scrollY = scrollContainer.scrollTop
             if (SceneBuilder.model) {
                 SceneBuilder.model.rotation.y += deltaY * MODEL_ROTATION_SPEED
-                console.log(SceneBuilder.model.rotation.y)
             }
         })
     }
 
+    /**
+     * Animates the scene.
+     */
     private animate(): void {
         const tick = (): void => {
             if (this.controls && Camera.isMobileScreen) {
@@ -57,7 +77,6 @@ export default class App {
                     this.controls.instance.disconnect()
                 }
             }
-            // this.controls.target.clamp(MIN_PAN, MAX_PAN);
             if (
                 this.renderer &&
                 this.scene &&
@@ -70,6 +89,9 @@ export default class App {
         tick()
     }
 
+    /**
+     * Initializes the application.
+     */
     private init(): void {
         this.animate()
         this.handleScroll()

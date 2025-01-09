@@ -90,7 +90,7 @@ export default class Camera {
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
-                        x: SceneBuilder.model.position.x - 3.8,
+                        x: SceneBuilder.model.position.x - 1.5,
                         y: SceneBuilder.model.position.y - 10.2,
                     })
                     gsap.to(SceneBuilder.model.rotation, {
@@ -211,7 +211,7 @@ export default class Camera {
                 if (SceneBuilder.model) {
                     gsap.to(SceneBuilder.model.position, {
                         duration: 0.8,
-                        x: SceneBuilder.model.position.x - 1,
+                        x: SceneBuilder.model.position.x - 1.5,
                         y: SceneBuilder.model.position.y - 10.2,
                     })
                 }

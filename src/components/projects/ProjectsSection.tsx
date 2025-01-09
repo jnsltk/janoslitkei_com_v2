@@ -29,7 +29,7 @@ export default function ProjectsSection() {
                     </h1>
                 </div>
                 <div className='h-4/5'>
-                    <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-8 2xl:mt-40 lg:flex">
+                    <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-16 2xl:mt-40 lg:flex">
                         <div className="lg:w-1/2">
                             <div>
                                 <ProjectsMenu

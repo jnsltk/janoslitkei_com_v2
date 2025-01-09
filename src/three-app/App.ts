@@ -50,7 +50,13 @@ export default class App {
 
     private animate(): void {
         const tick = (): void => {
-            if(this.controls && Camera.isMobileScreen) this.controls.instance.update();
+            if (this.controls && Camera.isMobileScreen) {
+                this.controls.instance.update()
+            } else {
+                if (this.controls) {
+                    this.controls.instance.disconnect()
+                }
+            }
             // this.controls.target.clamp(MIN_PAN, MAX_PAN);
             if (
                 this.renderer &&

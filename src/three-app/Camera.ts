@@ -246,14 +246,18 @@ export default class Camera {
                     Camera.cameraFov = MD_CAMERA_FOV
                     Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
                     this.instance.fov = Camera.cameraFov
-                    this.instance.lookAt(0, -3, 0)
                     this.instance.updateProjectionMatrix()
-                } else {
+                } else if (this.sizes.width < 1200) {
                     Camera.isMobileScreen = false
                     Camera.cameraFov = BASE_CAMERA_FOV
                     Camera.cameraZoomFov = BASE_CAMERA_ZOOM_FOV
                     this.instance.fov = Camera.cameraFov
-                    this.instance.lookAt(0, 0, 0)
+                    this.instance.updateProjectionMatrix()
+                } else {
+                    Camera.isMobileScreen = false
+                    Camera.cameraFov = MD_CAMERA_FOV
+                    Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
+                    this.instance.fov = Camera.cameraFov
                     this.instance.updateProjectionMatrix()
                 }
             }

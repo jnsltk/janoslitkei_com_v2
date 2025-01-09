@@ -20,7 +20,7 @@ export default function ProjectsSection() {
             className="h-screen snap-start snap-always bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 text-slate-900/85 lg:scroll-mt-16"
         >
             <FadeInSection>
-                <div className="flex flex-col items-center justify-center pt-24 lg:mb-6 lg:pt-14">
+                <div className="flex flex-col items-center justify-center pt-24 lg:pt-14">
                     <h1
                         id="projects-title"
                         className="font-mono text-3xl font-bold"
@@ -28,23 +28,25 @@ export default function ProjectsSection() {
                         Projects
                     </h1>
                 </div>
-                <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-12 lg:flex">
-                    <div className="lg:w-1/2">
-                        <div>
-                            <ProjectsMenu
-                                activeProject={activeProject}
-                                handleActiveProjectChange={
-                                    handleActiveProjectChange
-                                }
-                            ></ProjectsMenu>
-                            <ProjectList
-                                projectsCategory={activeProject}
-                                resetState={resetState}
-                            ></ProjectList>
+                <div className='h-4/5'>
+                    <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-8 2xl:mt-40 lg:flex">
+                        <div className="lg:w-1/2">
+                            <div>
+                                <ProjectsMenu
+                                    activeProject={activeProject}
+                                    handleActiveProjectChange={
+                                        handleActiveProjectChange
+                                    }
+                                ></ProjectsMenu>
+                                <ProjectList
+                                    projectsCategory={activeProject}
+                                    resetState={resetState}
+                                ></ProjectList>
+                            </div>
                         </div>
-                    </div>
-                    <div className="w-1/2">
-                        <div className="h-full"></div>
+                        <div className="w-1/2">
+                            <div className="h-full"></div>
+                        </div>
                     </div>
                 </div>
             </FadeInSection>

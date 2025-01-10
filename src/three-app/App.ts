@@ -81,9 +81,14 @@ export default class App {
                 this.renderer &&
                 this.scene &&
                 this.camera &&
-                this.camera.instance
-            )
+                this.camera.instance &&
+                this.sceneBuilder
+            ) {
+                if (this.sceneBuilder?.screenMaterial?.material?.uniforms?.time) {
+                    this.sceneBuilder.screenMaterial.material.uniforms.time.value += 0.05
+                }
                 this.renderer.render(this.scene, this.camera.instance)
+            }
             window.requestAnimationFrame(tick)
         }
         tick()

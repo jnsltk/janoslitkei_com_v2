@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import ScreenMaterial from '@/three-app/ScreenMaterial'
 
 const MODEL_PATH = 'pc/macintosh.glb'
-const VIDEO_PATH = 'pc/screen/static.mp4'
 
 /**
  * Represents the scene builder class.
@@ -13,13 +13,14 @@ export default class SceneBuilder {
 
     private scene: THREE.Scene
     private videoTexture: THREE.VideoTexture | undefined
+    public screenMaterial: ScreenMaterial
 
     /**
      * Creates an instance of the SceneBuilder class.
      */
     public constructor() {
         this.scene = new THREE.Scene()
-        this.createVideoTexture()
+        this.screenMaterial = new ScreenMaterial()
     }
 
     /**
@@ -33,24 +34,8 @@ export default class SceneBuilder {
     }
 
     /**
-     * Creates the video texture for the model's screen.
-     */
-    private createVideoTexture(): void {
-        const video = document.createElement('video')
-        video.src = VIDEO_PATH
-        video.loop = true
-        video.muted = true
-        video.play()
-        this.videoTexture = new THREE.VideoTexture(video)
-        this.videoTexture.rotation = Math.PI / 2 // Rotate 90 degrees anti-clockwise
-        this.videoTexture.center.set(0.5, 0.5) // Set rotation center
-        this.videoTexture.wrapS = THREE.ClampToEdgeWrapping
-        this.videoTexture.wrapT = THREE.ClampToEdgeWrapping
-    }
-
-    /**
      * Loads the model and applies the video texture to the screen.
-     * 
+     *
      * @remarks Since the model is not centered, the position is adjusted when traversing the model's children.
      */
     private loadModel(): void {
@@ -59,13 +44,18 @@ export default class SceneBuilder {
             SceneBuilder.model = gltf.scene
             SceneBuilder.model.traverse(child => {
                 if ((<THREE.Mesh>child).isMesh) {
-                    if (child.name === 'Computer_Screen_0') {
-                        this.applyVideoTexture(child)
-                    }
                     child.position.x += 20
                     child.position.z += 45
                 }
             })
+            const screenMesh = SceneBuilder.model.getObjectByName(
+                'Computer_Screen_0',
+            ) as THREE.Mesh
+            if (this.screenMaterial.material) {
+                screenMesh.material = this.screenMaterial.material
+            } else {
+                console.error('Screen material is undefined')
+            }
             this.scene.add(SceneBuilder.model)
         })
     }
@@ -97,5 +87,4 @@ export default class SceneBuilder {
             mesh.material = videoMaterial
         }
     }
-
 }

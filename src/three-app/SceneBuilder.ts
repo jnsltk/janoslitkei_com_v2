@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import ScreenMaterial from '@/three-app/ScreenMaterial'
 
-const MODEL_PATH = 'pc/macintosh.glb'
+const MODEL_PATH = 'pc/macintosh_new.glb'
 
 /**
  * Represents the scene builder class.
@@ -43,20 +43,27 @@ export default class SceneBuilder {
         loader.load(MODEL_PATH, gltf => {
             SceneBuilder.model = gltf.scene
             SceneBuilder.model.traverse(child => {
-                if ((<THREE.Mesh>child).isMesh) {
-                    child.position.x += 20
-                    child.position.z += 45
-                }
+                // if ((<THREE.Mesh>child).isMesh) {
+                //     child.position.x += 20
+                //     child.position.z += 45
+                // }
             })
             const screenMesh = SceneBuilder.model.getObjectByName(
                 'Computer_Screen_0',
             ) as THREE.Mesh
             if (this.screenMaterial.material) {
-                screenMesh.material = this.screenMaterial.material
+                // screenMesh.material = this.screenMaterial.material
             } else {
                 console.error('Screen material is undefined')
             }
             this.scene.add(SceneBuilder.model)
+
+            const screenGeometry = new THREE.PlaneGeometry(17.5, 12.5)
+            const screen = new THREE.Mesh(screenGeometry, this.screenMaterial.material)
+            screen.position.set(0, 23.25, 13)
+            // tilt the screen slightly backwards
+            screen.rotation.x = -0.11
+            SceneBuilder.model.add(screen)
         })
     }
 

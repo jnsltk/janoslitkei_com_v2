@@ -10,16 +10,7 @@ export default class ScreenMaterial {
 
     private async initialize() {
         const loader = new THREE.TextureLoader()
-        this.screenTexture = loader.load('pc/screen/jan.png')
-
-        const smudgesTexture = loader.load('pc/screen/smudges.jpg')
-
-        const video = document.createElement('video')
-        video.src = 'pc/screen/static.mp4'
-        video.muted = true
-        video.loop = true
-        video.play()
-        const staticTexture = new THREE.VideoTexture(video)
+        this.screenTexture = loader.load('pc/screen/screen_1.png')
 
         // Shaders inspired by ChatGPT
         const vertexShader = await this.loadShader('/shaders/screenVertex.glsl')
@@ -27,8 +18,6 @@ export default class ScreenMaterial {
         this.material = new THREE.ShaderMaterial({
             uniforms: {
                 screenTexture: { value: this.screenTexture },
-                smudgesTexture: { value: smudgesTexture },
-                staticTexture: { value: staticTexture },
                 time: { value: 0.0 }, // For dynamic effects like flicker
             },
             vertexShader,
@@ -37,7 +26,7 @@ export default class ScreenMaterial {
         })
 
         setTimeout(() => {
-            this.updateScreenTexture('pc/screen/cat.png')
+            this.updateScreenTexture('pc/screen/screen_2.png')
         }, 5000)
     }
 

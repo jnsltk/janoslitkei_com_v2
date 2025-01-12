@@ -12,7 +12,6 @@ vec2 rotateUV(vec2 uv, float angle) {
 }
 
 void main() {
-    // vUv = rotateUV(uv, 1.5708);
     vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }

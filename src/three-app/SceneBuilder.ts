@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import ScreenMaterial from '@/three-app/ScreenMaterial'
 
-const MODEL_PATH = 'pc/macintosh_new.glb'
+const MODEL_PATH = 'pc/macintosh.glb'
 
 /**
  * Represents the scene builder class.
@@ -42,29 +42,108 @@ export default class SceneBuilder {
         const loader = new GLTFLoader()
         loader.load(MODEL_PATH, gltf => {
             SceneBuilder.model = gltf.scene
-            SceneBuilder.model.traverse(child => {
-                // if ((<THREE.Mesh>child).isMesh) {
-                //     child.position.x += 20
-                //     child.position.z += 45
-                // }
-            })
-            const screenMesh = SceneBuilder.model.getObjectByName(
-                'Computer_Screen_0',
-            ) as THREE.Mesh
-            if (this.screenMaterial.material) {
-                // screenMesh.material = this.screenMaterial.material
-            } else {
-                console.error('Screen material is undefined')
-            }
+            this.applySmudgeTexture()
+            this.disableDoubleSideRendering()
             this.scene.add(SceneBuilder.model)
 
-            const screenGeometry = new THREE.PlaneGeometry(17.5, 12.5)
-            const screen = new THREE.Mesh(screenGeometry, this.screenMaterial.material)
-            screen.position.set(0, 23.25, 13)
-            // tilt the screen slightly backwards
-            screen.rotation.x = -0.11
-            SceneBuilder.model.add(screen)
+            this.addScreen()
+            this.addShadow()
+            this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.5)
+            this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.1)
         })
+    }
+
+    /**
+     * Applies the smudge texture to the screen object of the model.
+     */
+    private applySmudgeTexture(): void {
+        const screenMesh = SceneBuilder.model?.getObjectByName('Computer_Screen_0') as THREE.Mesh
+        if (this.screenMaterial.material) {
+            const smudgeMaterial = new THREE.MeshBasicMaterial({
+                map: new THREE.TextureLoader().load('pc/screen/layers/img/smudges.jpg'),
+                blending: THREE.AdditiveBlending,
+                opacity: 0.15,
+                transparent: true,
+            })
+            screenMesh.material = smudgeMaterial
+        } else {
+            console.error('Screen material is undefined')
+        }
+    }
+
+    /**
+     * Disables double-sided rendering for the model's children.
+     */
+    private disableDoubleSideRendering(): void {
+        SceneBuilder.model?.traverse(child => {
+            if ((<THREE.Mesh>child).isMesh) {
+                const mesh = <THREE.Mesh>child
+                if (Array.isArray(mesh.material)) {
+                    mesh.material.forEach(material => {
+                        material.side = THREE.FrontSide
+                    })
+                } else {
+                    mesh.material.side = THREE.FrontSide
+                }
+            }
+        })
+    }
+
+    /**
+     * Adds the display screen to the model.
+     */
+    private addScreen(): void {
+        const screenGeometry = new THREE.PlaneGeometry(19, 14.3)
+        const screen = new THREE.Mesh(screenGeometry, this.screenMaterial.material)
+        screen.position.set(0, 23.42, 12.85)
+        screen.rotation.x = -0.099
+        SceneBuilder.model?.add(screen)
+    }
+
+    /**
+     * Adds inner shadow to the screen.
+     */
+    private addShadow(): void {
+        const shadowGeometry = new THREE.PlaneGeometry(19, 14.3)
+        const shadowMaterial = new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load('pc/screen/layers/img/shadow.png'),
+            blending: THREE.NormalBlending,
+            opacity: 1,
+            transparent: true,
+        })
+
+        const shadowMesh = new THREE.Mesh(shadowGeometry, shadowMaterial)
+        shadowMesh.position.set(0, 23.42, 13.25)
+        shadowMesh.rotation.x = -0.099
+        SceneBuilder.model?.add(shadowMesh)
+    }
+
+    /**
+     * Adds a video texture to the model.
+     * @param src Video source
+     * @param zPosition Layer z position
+     * @param opacity Opacity of the video texture
+     */
+    private addVideo(src: string, zPosition: number, opacity: number): void {
+        const video = document.createElement('video')
+        video.src = src
+        video.muted = true
+        video.loop = true
+        video.play()
+        const videoTexture = new THREE.VideoTexture(video)
+
+        const videoMaterial = new THREE.MeshBasicMaterial({
+            map: videoTexture,
+            blending: THREE.AdditiveBlending,
+            opacity,
+            transparent: true,
+        })
+
+        const videoGeometry = new THREE.PlaneGeometry(19, 14.3)
+        const videoMesh = new THREE.Mesh(videoGeometry, videoMaterial)
+        videoMesh.position.set(0, 23.42, zPosition)
+        videoMesh.rotation.x = -0.099
+        SceneBuilder.model?.add(videoMesh)
     }
 
     /**
@@ -79,19 +158,5 @@ export default class SceneBuilder {
         const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5)
         directionalLight.position.set(0, 5, 5)
         this.scene.add(directionalLight)
-    }
-
-    /**
-     * Applies the video texture to the model's screen.
-     * @param child - The child object to which the video texture is applied.
-     */
-    private applyVideoTexture(child: THREE.Object3D): void {
-        if ((<THREE.Mesh>child).isMesh) {
-            const mesh = <THREE.Mesh>child
-            const videoMaterial = new THREE.MeshBasicMaterial({
-                map: this.videoTexture,
-            })
-            mesh.material = videoMaterial
-        }
     }
 }

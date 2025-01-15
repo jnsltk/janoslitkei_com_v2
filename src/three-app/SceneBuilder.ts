@@ -29,9 +29,10 @@ export default class SceneBuilder {
      * Builds the scene.
      * @returns The scene.
      */
-    public build(): { scene: THREE.Scene, cssScene: THREE.Scene } {
+    public build(): { scene: THREE.Scene; cssScene: THREE.Scene } {
         this.loadModel()
         this.setupLights()
+        this.setRenderOrder()
         return { scene: this.scene, cssScene: this.cssScene }
     }
 
@@ -44,15 +45,16 @@ export default class SceneBuilder {
         const loader = new GLTFLoader()
         loader.load(MODEL_PATH, gltf => {
             SceneBuilder.model = gltf.scene
-            this.applySmudgeTexture()
-            this.disableDoubleSideRendering()
+            // this.disableDoubleSideRendering()
             this.scene.add(SceneBuilder.model)
 
-            this.addScreen()
+            //this.addScreen()
+            this.addCSS3DObject()
+
             this.addShadow()
             this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.5)
             this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.1)
-            this.addCSS3DObject()
+            this.applySmudgeTexture()
         })
     }
 
@@ -73,9 +75,23 @@ export default class SceneBuilder {
                 transparent: true,
             })
             screenMesh.material = smudgeMaterial
+            screenMesh.visible = true
         } else {
             console.error('Screen material is undefined')
         }
+    }
+
+    private setRenderOrder(): void {
+        this.scene.traverse(object => {
+            if (object instanceof THREE.Mesh) {
+                object.renderOrder = 1
+            }
+        })
+        this.cssScene.traverse(object => {
+            if (object instanceof CSS3DObject) {
+                object.renderOrder = 2
+            }
+        })
     }
 
     /**
@@ -120,6 +136,7 @@ export default class SceneBuilder {
                 'pc/screen/layers/img/shadow.png',
             ),
             blending: THREE.NormalBlending,
+            side: THREE.DoubleSide,
             opacity: 1,
             transparent: true,
         })
@@ -127,7 +144,7 @@ export default class SceneBuilder {
         const shadowMesh = new THREE.Mesh(shadowGeometry, shadowMaterial)
         shadowMesh.position.set(0, 23.42, 13.25)
         shadowMesh.rotation.x = -0.099
-        SceneBuilder.model?.add(shadowMesh)
+        this.scene.add(shadowMesh)
     }
 
     /**
@@ -147,6 +164,7 @@ export default class SceneBuilder {
         const videoMaterial = new THREE.MeshBasicMaterial({
             map: videoTexture,
             blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
             opacity,
             transparent: true,
         })
@@ -155,7 +173,7 @@ export default class SceneBuilder {
         const videoMesh = new THREE.Mesh(videoGeometry, videoMaterial)
         videoMesh.position.set(0, 23.42, zPosition)
         videoMesh.rotation.x = -0.099
-        SceneBuilder.model?.add(videoMesh)
+        this.scene.add(videoMesh)
     }
 
     /**
@@ -171,6 +189,7 @@ export default class SceneBuilder {
         directionalLight.position.set(0, 5, 5)
         this.scene.add(directionalLight)
     }
+
     private addCSS3DObject(): void {
         const container = document.createElement('div')
         container.style.width = 512 + 'px'
@@ -183,10 +202,12 @@ export default class SceneBuilder {
         iframe.style.border = '0px'
         iframe.style.width = '512px'
         iframe.style.height = '342px'
-        iframe.style.padding = 32 + 'px'
+        iframe.style.paddingTop = 32 + 'px'
+        iframe.style.paddingBottom = 32 + 'px'
+        iframe.style.paddingRight = 18 + 'px'
+        iframe.style.paddingLeft = 18 + 'px'
         iframe.style.boxSizing = 'border-box'
         iframe.style.opacity = '1'
-        iframe.className = 'jitter'
         iframe.id = 'computer-screen'
         iframe.frameBorder = '0'
         iframe.title = 'Macintosh System'
@@ -194,11 +215,34 @@ export default class SceneBuilder {
         container.appendChild(iframe)
 
         const cssObject = new CSS3DObject(container)
-        cssObject.position.set(0, 23.42, 50) // Adjust the position as needed
+        cssObject.position.set(0, 23.42, 12.85) // Adjust the position as needed
         cssObject.rotation.x = -0.099 // Adjust the rotation as needed
-        cssObject.scale.set(0.05, 0.05, 0.05) // Adjust the scale as needed
+        cssObject.scale.set(0.035, 0.035, 0.035) // Adjust the scale as needed
 
         // SceneBuilder.model?.add(cssObject)
         this.cssScene.add(cssObject)
+
+        // Create GL plane
+        const material = new THREE.MeshLambertMaterial()
+        material.side = THREE.DoubleSide
+        material.opacity = 0
+        material.color = new THREE.Color(0x000000)
+        material.transparent = true
+        // NoBlending allows the GL plane to occlude the CSS plane
+        material.blending = THREE.NoBlending
+
+        // Create plane geometry
+        const geometry = new THREE.PlaneGeometry(512, 342)
+
+        // Create the GL plane mesh
+        const mesh = new THREE.Mesh(geometry, material)
+
+        // Copy the position, rotation and scale of the CSS plane to the GL plane
+        mesh.position.copy(cssObject.position)
+        mesh.rotation.copy(cssObject.rotation)
+        mesh.scale.copy(cssObject.scale)
+
+        // Add to gl scene
+        this.scene.add(mesh)
     }
 }

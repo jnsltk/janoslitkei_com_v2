@@ -9,6 +9,7 @@
   - [x] Add custom shader effects to the monitor screen
   - ~~[ ] Add bloom effect to screen~~
 - [ ] Fix layout and model for tablet screens
+- [ ] Replace document.getElementById call in Camera with useRef
 
 ## New features
 

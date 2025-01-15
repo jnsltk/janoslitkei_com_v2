@@ -5,8 +5,6 @@ import Sizes from '@/three-app/Sizes'
 import SceneBuilder from '@/three-app/SceneBuilder'
 import Controls from '@/three-app/Controls'
 
-const MODEL_ROTATION_SPEED = 0.0004
-
 /**
  * Represents the main application class.
  * Manages the initialization of the scene, camera, renderer, and controls,
@@ -33,7 +31,7 @@ export default class App {
      * @remarks
      * If an instance of the App class already exists, returns the existing instance.
      */
-    public constructor(divElement: HTMLDivElement | undefined) {
+    public constructor(divElement: HTMLDivElement | undefined, webgl: HTMLDivElement | undefined, css3d: HTMLDivElement | undefined) {
         if (App.instance !== null) {
             return App.instance
         }
@@ -48,26 +46,10 @@ export default class App {
 
         this.sizes = new Sizes(this.divElement)
         this.camera = new Camera()
-        this.renderer = new Renderer()
+        this.renderer = new Renderer(webgl, css3d)
         this.controls = new Controls()
 
         this.init()
-    }
-
-    /**
-     * Handles the scroll event, rotating the model based on the scroll delta.
-     */
-    private handleScroll(): void {
-        const scrollContainer = document.getElementById('content')
-        if (!scrollContainer) return
-        let scrollY = scrollContainer.scrollTop
-        scrollContainer.addEventListener('scroll', () => {
-            const deltaY = scrollContainer.scrollTop - scrollY
-            scrollY = scrollContainer.scrollTop
-            if (SceneBuilder.model) {
-                SceneBuilder.model.rotation.y += deltaY * MODEL_ROTATION_SPEED
-            }
-        })
     }
 
     /**

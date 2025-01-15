@@ -13,15 +13,20 @@ export default class Renderer {
     public instance: WebGLRenderer | undefined
     public cssInstance: CSS3DRenderer | undefined
     private sizes: Sizes | undefined
-    private divElement: HTMLDivElement | undefined
+    private webgl: HTMLDivElement | undefined
+    private css3d: HTMLDivElement | undefined
 
     /**
      * Creates an instance of the Renderer class.
      */
-    public constructor() {
-        this.app = new App(undefined)
+    public constructor(
+        webgl: HTMLDivElement | undefined,
+        css3d: HTMLDivElement | undefined,
+    ) {
+        this.app = new App(undefined, undefined, undefined)
         this.sizes = this.app.sizes
-        this.divElement = this.app.divElement
+        this.webgl = webgl
+        this.css3d = css3d
         if (this.sizes) {
             this.instance = this.createRenderer()
             this.cssInstance = this.createCSSRenderer()
@@ -33,10 +38,12 @@ export default class Renderer {
      * @returns The WebGLRenderer instance.
      */
     private createRenderer(): WebGLRenderer | undefined {
-        if (this.instance) return
+        if (this.instance) return this.instance
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true,
+            powerPreference: 'high-performance',
+            //premultipliedAlpha: false,
         })
         if (this.sizes && this.sizes.width && this.sizes.height)
             renderer.setSize(this.sizes.width, this.sizes.height)
@@ -45,9 +52,14 @@ export default class Renderer {
         renderer.outputColorSpace = THREE.SRGBColorSpace
         renderer.toneMapping = THREE.ACESFilmicToneMapping
         renderer.toneMappingExposure = 1.0
+        renderer.setClearColor(0x000000, 0.0)
 
-        if (this.divElement) {
-            this.divElement.appendChild(renderer.domElement)
+        renderer.domElement.style.position = 'absolute'
+        renderer.domElement.style.top = '0'
+        renderer.domElement.style.zIndex = '1px'
+
+        if (this.webgl) {
+            this.webgl.appendChild(renderer.domElement)
             console.log('Renderer created')
         }
         return renderer
@@ -65,8 +77,8 @@ export default class Renderer {
         }
         renderer.domElement.style.position = 'absolute'
         renderer.domElement.style.top = '0'
-        if (this.divElement) {
-            this.divElement.appendChild(renderer.domElement)
+        if (this.css3d) {
+            this.css3d.appendChild(renderer.domElement)
         }
         return renderer
     }
@@ -76,7 +88,11 @@ export default class Renderer {
      * @param scene - The scene to render.
      * @param camera - The camera from which the scene is rendered.
      */
-    public render(scene: THREE.Scene, camera: THREE.PerspectiveCamera, cssScene: THREE.Scene): void {
+    public render(
+        scene: THREE.Scene,
+        camera: THREE.PerspectiveCamera,
+        cssScene: THREE.Scene,
+    ): void {
         if (this.instance) this.instance.render(scene, camera)
         if (this.cssInstance) this.cssInstance.render(cssScene, camera)
     }

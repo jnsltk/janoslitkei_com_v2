@@ -27,13 +27,13 @@ const CAMERA_ANIMATION_DURATION = 0.8
  * Manages the creation of the camera and the camera animation.
  */
 export default class Camera {
-    private static cameraFov: number = BASE_CAMERA_FOV
-    private static cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
     public static isMobileScreen: boolean = false
 
     private app: App
     private sizes: Sizes | undefined
     private controls: Controls | undefined
+    private cameraFov: number = BASE_CAMERA_FOV
+    private cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
     public instance: THREE.PerspectiveCamera | undefined
 
     /**
@@ -41,7 +41,7 @@ export default class Camera {
      */
     public constructor() {
         // Get the singleton instance of the App class
-        this.app = new App(undefined)
+        this.app = new App(undefined, undefined, undefined)
         this.sizes = this.app.sizes
         this.instance = this.createCamera()
 
@@ -65,7 +65,7 @@ export default class Camera {
     private createCamera(): THREE.PerspectiveCamera | undefined {
         if (this.sizes && this.sizes.width && this.sizes.height) {
             const camera = new THREE.PerspectiveCamera(
-                Camera.cameraFov,
+                this.cameraFov,
                 this.sizes.width / this.sizes.height,
                 CAMERA_NEAR,
                 CAMERA_FAR,
@@ -163,14 +163,14 @@ export default class Camera {
             onEnter: () =>
                 animateCamera(
                     CAMERA_POSITION.y - 20,
-                    Camera.cameraZoomFov,
+                    this.cameraZoomFov,
                     new THREE.Vector3(0, 0, 0),
                     new THREE.Vector3(2, 21.5, 0),
                 ),
             onLeaveBack: () =>
                 animateCamera(
                     CAMERA_POSITION.y,
-                    Camera.cameraFov,
+                    this.cameraFov,
                     new THREE.Vector3(2, 21.5, 0),
                     new THREE.Vector3(0, 0, 0),
                 ),
@@ -184,14 +184,14 @@ export default class Camera {
             onEnter: () =>
                 animateCamera(
                     CAMERA_POSITION.y,
-                    Camera.cameraFov,
+                    this.cameraFov,
                     new THREE.Vector3(2, 21.5, 0),
                     new THREE.Vector3(5, -10, 0),
                 ),
             onLeaveBack: () =>
                 animateCamera(
                     CAMERA_POSITION.y - 20,
-                    Camera.cameraZoomFov,
+                    this.cameraZoomFov,
                     new THREE.Vector3(5, -10, 0),
                     new THREE.Vector3(2, 21.5, 0),
                 ),
@@ -242,21 +242,21 @@ export default class Camera {
     private updateCameraFov(): void {
         if ((this.sizes?.width ?? 0) < 500) {
             Camera.isMobileScreen = true
-            Camera.cameraFov = SM_CAMERA_FOV
+            this.cameraFov = SM_CAMERA_FOV
         } else if ((this.sizes?.width ?? 0) < 850) {
             Camera.isMobileScreen = false
-            Camera.cameraFov = MD_CAMERA_FOV
-            Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
+            this.cameraFov = MD_CAMERA_FOV
+            this.cameraZoomFov = MD_CAMERA_ZOOM_FOV
         } else if ((this.sizes?.width ?? 0) < 1200) {
             Camera.isMobileScreen = false
-            Camera.cameraFov = BASE_CAMERA_FOV
-            Camera.cameraZoomFov = BASE_CAMERA_ZOOM_FOV
+            this.cameraFov = BASE_CAMERA_FOV
+            this.cameraZoomFov = BASE_CAMERA_ZOOM_FOV
         } else {
             Camera.isMobileScreen = false
-            Camera.cameraFov = MD_CAMERA_FOV
-            Camera.cameraZoomFov = MD_CAMERA_ZOOM_FOV
+            this.cameraFov = MD_CAMERA_FOV
+            this.cameraZoomFov = MD_CAMERA_ZOOM_FOV
         }
-        this.instance!.fov = Camera.cameraFov
+        this.instance!.fov = this.cameraFov
         this.instance!.updateProjectionMatrix()
     }
 }

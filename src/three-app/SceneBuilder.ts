@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import ScreenMaterial from '@/three-app/ScreenMaterial'
+import { CSS3DObject } from 'three/examples/jsm/Addons.js'
 
 const MODEL_PATH = 'pc/macintosh.glb'
 
@@ -12,7 +13,7 @@ export default class SceneBuilder {
     public static model: THREE.Object3D | undefined
 
     private scene: THREE.Scene
-    private videoTexture: THREE.VideoTexture | undefined
+    private cssScene: THREE.Scene
     public screenMaterial: ScreenMaterial
 
     /**
@@ -20,6 +21,7 @@ export default class SceneBuilder {
      */
     public constructor() {
         this.scene = new THREE.Scene()
+        this.cssScene = new THREE.Scene()
         this.screenMaterial = new ScreenMaterial()
     }
 
@@ -27,10 +29,10 @@ export default class SceneBuilder {
      * Builds the scene.
      * @returns The scene.
      */
-    public build(): THREE.Scene {
+    public build(): { scene: THREE.Scene, cssScene: THREE.Scene } {
         this.loadModel()
         this.setupLights()
-        return this.scene
+        return { scene: this.scene, cssScene: this.cssScene }
     }
 
     /**
@@ -50,6 +52,7 @@ export default class SceneBuilder {
             this.addShadow()
             this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.5)
             this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.1)
+            this.addCSS3DObject()
         })
     }
 
@@ -57,12 +60,16 @@ export default class SceneBuilder {
      * Applies the smudge texture to the screen object of the model.
      */
     private applySmudgeTexture(): void {
-        const screenMesh = SceneBuilder.model?.getObjectByName('Computer_Screen_0') as THREE.Mesh
+        const screenMesh = SceneBuilder.model?.getObjectByName(
+            'Computer_Screen_0',
+        ) as THREE.Mesh
         if (this.screenMaterial.material) {
             const smudgeMaterial = new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('pc/screen/layers/img/smudges.jpg'),
+                map: new THREE.TextureLoader().load(
+                    'pc/screen/layers/img/smudges.jpg',
+                ),
                 blending: THREE.AdditiveBlending,
-                opacity: 0.15,
+                opacity: 0.1,
                 transparent: true,
             })
             screenMesh.material = smudgeMaterial
@@ -94,7 +101,10 @@ export default class SceneBuilder {
      */
     private addScreen(): void {
         const screenGeometry = new THREE.PlaneGeometry(19, 14.3)
-        const screen = new THREE.Mesh(screenGeometry, this.screenMaterial.material)
+        const screen = new THREE.Mesh(
+            screenGeometry,
+            this.screenMaterial.material,
+        )
         screen.position.set(0, 23.42, 12.85)
         screen.rotation.x = -0.099
         SceneBuilder.model?.add(screen)
@@ -106,7 +116,9 @@ export default class SceneBuilder {
     private addShadow(): void {
         const shadowGeometry = new THREE.PlaneGeometry(19, 14.3)
         const shadowMaterial = new THREE.MeshBasicMaterial({
-            map: new THREE.TextureLoader().load('pc/screen/layers/img/shadow.png'),
+            map: new THREE.TextureLoader().load(
+                'pc/screen/layers/img/shadow.png',
+            ),
             blending: THREE.NormalBlending,
             opacity: 1,
             transparent: true,
@@ -158,5 +170,35 @@ export default class SceneBuilder {
         const directionalLight = new THREE.DirectionalLight(0xffffff, 2.5)
         directionalLight.position.set(0, 5, 5)
         this.scene.add(directionalLight)
+    }
+    private addCSS3DObject(): void {
+        const container = document.createElement('div')
+        container.style.width = 512 + 'px'
+        container.style.height = 342 + 'px'
+        container.style.opacity = '1'
+        container.style.background = '#1d2e2f'
+
+        const iframe = document.createElement('iframe')
+        iframe.src = 'http://localhost:3000'
+        iframe.style.border = '0px'
+        iframe.style.width = '512px'
+        iframe.style.height = '342px'
+        iframe.style.padding = 32 + 'px'
+        iframe.style.boxSizing = 'border-box'
+        iframe.style.opacity = '1'
+        iframe.className = 'jitter'
+        iframe.id = 'computer-screen'
+        iframe.frameBorder = '0'
+        iframe.title = 'Macintosh System'
+
+        container.appendChild(iframe)
+
+        const cssObject = new CSS3DObject(container)
+        cssObject.position.set(0, 23.42, 50) // Adjust the position as needed
+        cssObject.rotation.x = -0.099 // Adjust the rotation as needed
+        cssObject.scale.set(0.05, 0.05, 0.05) // Adjust the scale as needed
+
+        // SceneBuilder.model?.add(cssObject)
+        this.cssScene.add(cssObject)
     }
 }

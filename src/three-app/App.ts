@@ -9,38 +9,43 @@ const MODEL_ROTATION_SPEED = 0.0004
 
 /**
  * Represents the main application class.
- * Manages the initialization of the scene, camera, renderer, and controls, 
+ * Manages the initialization of the scene, camera, renderer, and controls,
  * and handles the animation loop as well as the scroll event.
  *
  * @remarks
  * This is the entry point of the Three.js application.
  */
 export default class App {
-    private static instance: App
+    private static instance: App | null = null
     private sceneBuilder: SceneBuilder | undefined
     private scene: THREE.Scene | undefined
+    private cssScene: THREE.Scene | undefined
     public divElement: HTMLDivElement | undefined
     public sizes: Sizes | undefined
     public camera: Camera | undefined
     public renderer: Renderer | undefined
-    private controls: Controls | undefined
+    public controls: Controls | undefined
 
     /**
      * Creates an instance of the App class.
      * @param divElement - The HTMLDivElement to which the renderer's domElement is appended.
-     * 
+     *
      * @remarks
      * If an instance of the App class already exists, returns the existing instance.
      */
     public constructor(divElement: HTMLDivElement | undefined) {
-        if (App.instance) {
+        if (App.instance !== null) {
             return App.instance
         }
         App.instance = this
 
         this.divElement = divElement
         this.sceneBuilder = new SceneBuilder()
-        this.scene = this.sceneBuilder.build()
+
+        const { scene, cssScene } = this.sceneBuilder.build()
+        this.scene = scene
+        this.cssScene = cssScene
+
         this.sizes = new Sizes(this.divElement)
         this.camera = new Camera()
         this.renderer = new Renderer()
@@ -70,12 +75,8 @@ export default class App {
      */
     private animate(): void {
         const tick = (): void => {
-            if (this.controls && Camera.isMobileScreen) {
+            if (this.controls) {
                 this.controls.instance.update()
-            } else {
-                if (this.controls) {
-                    this.controls.instance.disconnect()
-                }
             }
             if (
                 this.renderer &&
@@ -84,10 +85,18 @@ export default class App {
                 this.camera.instance &&
                 this.sceneBuilder
             ) {
-                if (this.sceneBuilder?.screenMaterial?.material?.uniforms?.time) {
+                if (
+                    this.sceneBuilder?.screenMaterial?.material?.uniforms?.time
+                ) {
                     this.sceneBuilder.screenMaterial.material.uniforms.time.value += 0.05
                 }
-                this.renderer.render(this.scene, this.camera.instance)
+                if (this.scene && this.cssScene) {
+                    this.renderer.render(
+                        this.scene,
+                        this.camera.instance,
+                        this.cssScene,
+                    )
+                }
             }
             window.requestAnimationFrame(tick)
         }
@@ -98,7 +107,8 @@ export default class App {
      * Initializes the application.
      */
     private init(): void {
+        // Set the camera controls instance since the camera is created before the controls
+        if (this.controls) this.camera?.setControls(this.controls)
         this.animate()
-        this.handleScroll()
     }
 }

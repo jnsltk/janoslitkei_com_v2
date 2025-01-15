@@ -1,8 +1,9 @@
+// Shader inspired by ChatGPT
 uniform sampler2D screenTexture;
 uniform float time;
 varying vec2 vUv;
 
-const float PHI = 1.61803398874989484820459; // Golden Ratio
+const float PHI = 1.61803398874989484820459;
 
 vec4 chromaticAberration(vec2 uv, float offset) {
     float r = texture2D(screenTexture, uv + vec2(offset, 0.0)).r;
@@ -11,7 +12,7 @@ vec4 chromaticAberration(vec2 uv, float offset) {
     return vec4(r, g, b, 1.0);
 }
 
-// Generate noise for the static effect
+// Generate noise for the static effect -- inspired by Henry Heffernan
 float noise(vec2 uv, float seed) {
     return fract(tan(distance(uv * PHI, uv) * seed) * uv.x);
 }

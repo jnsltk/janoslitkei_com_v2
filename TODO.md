@@ -1,18 +1,20 @@
 # TODO List
 
 ## High Priority
+
 - [ ] Add content to the monitor screen
   - [ ] Figure out and add initial content
   - [ ] Add images for the projects and make them switch per project
   - [ ] Maybe add videos or iframes for the projects so they're interactive
   - [x] Add custom shader effects to the monitor screen
-  - [ ] Add bloom effect to screen
+  - ~~[ ] Add bloom effect to screen~~
 - [ ] Fix layout and model for tablet screens
 
 ## New features
 
 
 ## Low Priority
+
 - [ ] Add loading animation when the 3d model is loading
 - [ ] Add project contents
 - [-] Add option for manual rotation mode, that resets when the user exits it
@@ -20,6 +22,7 @@
 - [ ] Use GSAP for scroll snapping ??
 
 ## Dismissed features
+
 - [ ] ~~Change model rotation on scroll to GSAP~~
 - [ ] ~~Finish skills page~~
   - [ ] ~~Add skills to the page~~
@@ -27,6 +30,7 @@
   - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
 
 ## DONE
+
 - [x] Add video textures to the monitor screen
 - [x] Fix layout and model for large screens
 - [x] Make page responsive

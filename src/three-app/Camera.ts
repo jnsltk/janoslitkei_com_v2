@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import App from '@/three-app/App'
 import Sizes from '@/three-app/Sizes'
+import Controls from '@/three-app/Controls'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import SceneBuilder from '@/three-app/SceneBuilder'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,9 +14,13 @@ const MD_CAMERA_ZOOM_FOV: number = 11
 const SM_CAMERA_FOV: number = 20
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000
-const CAMERA_POSITION = { x: 125, y: 60, z: 215 }
+const INITIAL_ANGLE = 0.8122617534942821 * Math.PI * 0.25
+const CAMERA_POSITION = {
+    x: Math.sin(INITIAL_ANGLE) * 250,
+    y: 60,
+    z: Math.cos(INITIAL_ANGLE) * 250,
+}
 const CAMERA_ANIMATION_DURATION = 0.8
-const MODEL_ROTATION = 0.5369
 
 /**
  * Represents the camera class.
@@ -28,18 +32,30 @@ export default class Camera {
     public static isMobileScreen: boolean = false
 
     private app: App
-    public instance: THREE.PerspectiveCamera | undefined
     private sizes: Sizes | undefined
+    private controls: Controls | undefined
+    public instance: THREE.PerspectiveCamera | undefined
 
     /**
      * Creates an instance of the Camera class.
      */
     public constructor() {
+        // Get the singleton instance of the App class
         this.app = new App(undefined)
         this.sizes = this.app.sizes
         this.instance = this.createCamera()
-        this.handleCameraAnimation()
+
+        this.handleScroll()
+        this.handleCameraZoomAnimation()
         this.handleResize()
+    }
+
+    /**
+     * Sets the Controls instance.
+     * @param controls - The Controls instance.
+     */
+    public setControls(controls: Controls): void {
+        this.controls = controls
     }
 
     /**
@@ -65,25 +81,44 @@ export default class Camera {
     }
 
     /**
-     * Handles the camera animation.
+     * Handles the scroll event, orbiting the camera around the model based on the scroll progress.
      */
-    private handleCameraAnimation(): void {
+    private handleScroll(): void {
+        const content = document.getElementById('content') as HTMLElement
+        let scrollProgress = 0
+
+        content.addEventListener('scroll', () => {
+            const maxScroll = content.scrollHeight - content.clientHeight
+            scrollProgress = content.scrollTop / maxScroll
+            let angle = scrollProgress * Math.PI * -0.25 + INITIAL_ANGLE
+
+            if (angle < 0) angle = 0
+
+            // Adjust the camera's spherical position based on scroll
+            if (this.instance) {
+                this.instance.position.x = Math.sin(angle) * 250
+                this.instance.position.z = Math.cos(angle) * 250
+            }
+            this.controls?.instance.update()
+        })
+    }
+
+    /**
+     * Handles the camera zoom in animation when entering or leaving the projects section.
+     */
+    private handleCameraZoomAnimation(): void {
         /**
          * Animates the camera.
          * @param cameraPositionY The desired y position of the camera.
          * @param cameraFov The desired field of view of the camera.
          * @param currentLookAtPosition The current lookAt position of the camera.
          * @param lookAtTarget The desired lookAt target of the camera.
-         * @param modelPosition The desired position of the model.
-         * @param modelRotation The desired rotation of the model. Optional.
          */
         const animateCamera = (
             cameraPositionY: number,
             cameraFov: number,
             currentLookAtPosition: THREE.Vector3,
             lookAtTarget: THREE.Vector3,
-            modelPosition: THREE.Vector3,
-            modelRotation?: number,
         ): void => {
             if (this.instance) {
                 gsap.to(this.instance.position, {
@@ -104,26 +139,19 @@ export default class Camera {
             }
 
             const lookAtPosition = currentLookAtPosition
-            if (this.instance)
+            if (this.instance && this.controls) {
                 gsap.to(lookAtPosition, {
                     duration: CAMERA_ANIMATION_DURATION,
                     ...lookAtTarget,
                     onUpdate: () => {
-                        if (this.instance) this.instance.lookAt(lookAtPosition)
+                        this.controls?.instance.target.set(
+                            lookAtPosition.x,
+                            lookAtPosition.y,
+                            lookAtPosition.z,
+                        )
+                        this.controls?.instance.update()
                     },
                 })
-
-            if (SceneBuilder.model) {
-                gsap.to(SceneBuilder.model.position, {
-                    duration: CAMERA_ANIMATION_DURATION,
-                    ...modelPosition,
-                })
-                if (typeof modelRotation !== 'undefined') {
-                    gsap.to(SceneBuilder.model.rotation, {
-                        duration: CAMERA_ANIMATION_DURATION,
-                        y: modelRotation,
-                    })
-                }
             }
         }
 
@@ -137,20 +165,13 @@ export default class Camera {
                     CAMERA_POSITION.y - 20,
                     Camera.cameraZoomFov,
                     new THREE.Vector3(0, 0, 0),
-                    new THREE.Vector3(0, 10.5, 0),
-                    new THREE.Vector3(
-                        (SceneBuilder.model?.position.x ?? 0) - 1.5,
-                        (SceneBuilder.model?.position.y ?? 0) - 10.2,
-                        SceneBuilder.model?.position.z ?? 0,
-                    ),
-                    MODEL_ROTATION,
+                    new THREE.Vector3(2, 21.5, 0),
                 ),
             onLeaveBack: () =>
                 animateCamera(
                     CAMERA_POSITION.y,
                     Camera.cameraFov,
-                    new THREE.Vector3(0, 10.5, 0),
-                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(2, 21.5, 0),
                     new THREE.Vector3(0, 0, 0),
                 ),
         })
@@ -163,22 +184,16 @@ export default class Camera {
             onEnter: () =>
                 animateCamera(
                     CAMERA_POSITION.y,
-                    Camera.cameraFov - 3,
-                    new THREE.Vector3(0, 10.5, 0),
-                    new THREE.Vector3(0, 0, 0),
-                    new THREE.Vector3(0, 0, 0),
+                    Camera.cameraFov,
+                    new THREE.Vector3(2, 21.5, 0),
+                    new THREE.Vector3(5, -10, 0),
                 ),
             onLeaveBack: () =>
                 animateCamera(
                     CAMERA_POSITION.y - 20,
                     Camera.cameraZoomFov,
-                    new THREE.Vector3(0, 0, 0),
-                    new THREE.Vector3(0, 10.5, 0),
-                    new THREE.Vector3(
-                        (SceneBuilder.model?.position.x ?? 0) - 1.5,
-                        (SceneBuilder.model?.position.y ?? 0) - 10.2,
-                        SceneBuilder.model?.position.z ?? 0,
-                    ),
+                    new THREE.Vector3(5, -10, 0),
+                    new THREE.Vector3(2, 21.5, 0),
                 ),
         })
     }
@@ -203,10 +218,19 @@ export default class Camera {
         ) {
             this.instance.aspect = this.sizes.width / this.sizes.height
             this.instance.updateProjectionMatrix()
+
+            // Update webgl renderer size
             this.app.renderer?.instance?.setSize(
                 this.sizes.width,
                 this.sizes.height,
             )
+
+            // Update css renderer size
+            this.app.renderer?.cssInstance?.setSize(
+                this.sizes.width,
+                this.sizes.height,
+            )
+
             this.updateCameraFov()
         }
     }
@@ -215,7 +239,7 @@ export default class Camera {
      * Helper function to update the camera field of view based on the Sizes instance,
      * which itself is based on the screen size.
      */
-    private updateCameraFov():void {
+    private updateCameraFov(): void {
         if ((this.sizes?.width ?? 0) < 500) {
             Camera.isMobileScreen = true
             Camera.cameraFov = SM_CAMERA_FOV

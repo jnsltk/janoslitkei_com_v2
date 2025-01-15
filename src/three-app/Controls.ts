@@ -1,4 +1,5 @@
 import App from '@/three-app/App'
+import Camera from '@/three-app/Camera'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -32,8 +33,9 @@ export default class Controls {
         controls.enableZoom = false
         controls.enablePan = false
         controls.enableDamping = true
-        controls.autoRotate = true
-        controls.target.set(0, 15, 0)
+        controls.autoRotate = Camera.isMobileScreen
+        // controls.target.set(0, 15, 0) remember for mobile
+        controls.target.set(0, 0, 0)
         return controls
     }
 }

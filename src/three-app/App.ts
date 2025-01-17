@@ -68,9 +68,9 @@ export default class App {
                 this.sceneBuilder
             ) {
                 if (
-                    this.sceneBuilder?.screenMaterial?.material?.uniforms?.time
+                    this.sceneBuilder?.screenMask?.material?.uniforms?.time
                 ) {
-                    this.sceneBuilder.screenMaterial.material.uniforms.time.value += 0.05
+                    this.sceneBuilder.screenMask.material.uniforms.time.value += 0.05
                 }
                 if (this.scene && this.cssScene) {
                     this.renderer.render(

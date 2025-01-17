@@ -17,7 +17,8 @@ export default {
             fontFamily: {
                 sans: ['var(--font-inter)'],
                 mono: ['var(--font-jetbrains-mono)'],
-                chicago: ['Chicago', 'sans']
+                chicago: ['Chicago', 'sans-serif'],
+                geneva: ['Geneva', 'Verdana', 'sans-serif'],
             },
             colors: {
                 'ultramarine': {

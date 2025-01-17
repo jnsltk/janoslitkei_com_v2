@@ -8,12 +8,16 @@ export default {
     ],
     theme: {
         extend: {
+            backgroundImage: {
+                'monitor-bg': "url('/pc/screen/ui/background.png')",
+            },
             screens: {
                 'full': '800px',
             },
             fontFamily: {
                 sans: ['var(--font-inter)'],
                 mono: ['var(--font-jetbrains-mono)'],
+                chicago: ['Chicago', 'sans']
             },
             colors: {
                 'ultramarine': {

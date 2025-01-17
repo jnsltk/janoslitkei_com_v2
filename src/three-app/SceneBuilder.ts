@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import ScreenMaterial from '@/three-app/ScreenMaterial'
+import ScreenMask from '@/three-app/ScreenMask'
 import { CSS3DObject } from 'three/examples/jsm/Addons.js'
 
 const MODEL_PATH = 'pc/macintosh.glb'
@@ -21,7 +21,7 @@ export default class SceneBuilder {
 
     private scene: THREE.Scene
     private cssScene: THREE.Scene
-    public screenMaterial: ScreenMaterial
+    public screenMaterial: ScreenMask
 
     /**
      * Creates an instance of the SceneBuilder class.
@@ -29,7 +29,7 @@ export default class SceneBuilder {
     public constructor() {
         this.scene = new THREE.Scene()
         this.cssScene = new THREE.Scene()
-        this.screenMaterial = new ScreenMaterial()
+        this.screenMaterial = new ScreenMask()
     }
 
     /**
@@ -58,8 +58,8 @@ export default class SceneBuilder {
             this.addCSS3DObject()
 
             this.addShadow()
-            this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.4)
-            this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.07)
+            this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.5)
+            this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.1)
             this.applySmudgeTexture()
         })
     }
@@ -77,7 +77,7 @@ export default class SceneBuilder {
                     'pc/screen/layers/img/smudges.jpg',
                 ),
                 blending: THREE.AdditiveBlending,
-                opacity: 0.07,
+                opacity: 0.1,
                 transparent: true,
             })
             screenMesh.material = smudgeMaterial
@@ -186,7 +186,7 @@ export default class SceneBuilder {
         container.style.background = '#1d2e2f'
 
         const iframe = document.createElement('iframe')
-        iframe.src = 'http://localhost:3000'
+        iframe.src = 'http://localhost:3000/screen'
         iframe.style.border = '0px'
         iframe.style.width = IFRAME_RES.w + 'px'
         iframe.style.height = IFRAME_RES.h + 'px'

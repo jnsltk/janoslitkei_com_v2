@@ -4,6 +4,13 @@ import ScreenMaterial from '@/three-app/ScreenMaterial'
 import { CSS3DObject } from 'three/examples/jsm/Addons.js'
 
 const MODEL_PATH = 'pc/macintosh.glb'
+const CONTAINER_RES = { w: 720, h: 542 }
+const IFRAME_PADDING = { top: 42, bottom: 32, right: 21, left: 21 }
+const IFRAME_RES = {
+    ...Object.assign({}, CONTAINER_RES),
+    // w: CONTAINER_RES.w - IFRAME_PADDING.right - IFRAME_PADDING.left,
+    // h: CONTAINER_RES.h - IFRAME_PADDING.top - IFRAME_PADDING.bottom,
+}
 
 /**
  * Represents the scene builder class.
@@ -45,15 +52,14 @@ export default class SceneBuilder {
         const loader = new GLTFLoader()
         loader.load(MODEL_PATH, gltf => {
             SceneBuilder.model = gltf.scene
-            // this.disableDoubleSideRendering()
             this.scene.add(SceneBuilder.model)
 
-            //this.addScreen()
+            this.addScreen()
             this.addCSS3DObject()
 
             this.addShadow()
-            this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.5)
-            this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.1)
+            this.addVideo('pc/screen/layers/video/static-1.mp4', 13.8, 0.4)
+            this.addVideo('pc/screen/layers/video/static-2.mp4', 13.5, 0.07)
             this.applySmudgeTexture()
         })
     }
@@ -71,7 +77,7 @@ export default class SceneBuilder {
                     'pc/screen/layers/img/smudges.jpg',
                 ),
                 blending: THREE.AdditiveBlending,
-                opacity: 0.1,
+                opacity: 0.07,
                 transparent: true,
             })
             screenMesh.material = smudgeMaterial
@@ -90,24 +96,6 @@ export default class SceneBuilder {
         this.cssScene.traverse(object => {
             if (object instanceof CSS3DObject) {
                 object.renderOrder = 2
-            }
-        })
-    }
-
-    /**
-     * Disables double-sided rendering for the model's children.
-     */
-    private disableDoubleSideRendering(): void {
-        SceneBuilder.model?.traverse(child => {
-            if ((<THREE.Mesh>child).isMesh) {
-                const mesh = <THREE.Mesh>child
-                if (Array.isArray(mesh.material)) {
-                    mesh.material.forEach(material => {
-                        material.side = THREE.FrontSide
-                    })
-                } else {
-                    mesh.material.side = THREE.FrontSide
-                }
             }
         })
     }
@@ -192,21 +180,20 @@ export default class SceneBuilder {
 
     private addCSS3DObject(): void {
         const container = document.createElement('div')
-        container.style.width = 512 + 'px'
-        container.style.height = 342 + 'px'
+        container.style.width = CONTAINER_RES.w + 'px'
+        container.style.height = CONTAINER_RES.h + 'px'
         container.style.opacity = '1'
         container.style.background = '#1d2e2f'
 
         const iframe = document.createElement('iframe')
         iframe.src = 'http://localhost:3000'
         iframe.style.border = '0px'
-        iframe.style.width = '512px'
-        iframe.style.height = '342px'
-        iframe.style.paddingTop = 32 + 'px'
-        iframe.style.paddingBottom = 32 + 'px'
-        iframe.style.paddingRight = 18 + 'px'
-        iframe.style.paddingLeft = 18 + 'px'
-        iframe.style.boxSizing = 'border-box'
+        iframe.style.width = IFRAME_RES.w + 'px'
+        iframe.style.height = IFRAME_RES.h + 'px'
+        iframe.style.paddingTop = IFRAME_PADDING.top + 'px'
+        iframe.style.paddingBottom = IFRAME_PADDING.bottom + 'px'
+        iframe.style.paddingRight = IFRAME_PADDING.right + 'px'
+        iframe.style.paddingLeft = IFRAME_PADDING.left + 'px'
         iframe.style.opacity = '1'
         iframe.id = 'computer-screen'
         iframe.frameBorder = '0'
@@ -215,9 +202,9 @@ export default class SceneBuilder {
         container.appendChild(iframe)
 
         const cssObject = new CSS3DObject(container)
-        cssObject.position.set(0, 23.42, 12.85) // Adjust the position as needed
+        cssObject.position.set(0, 23.42, 12.74) // Adjust the position as needed
         cssObject.rotation.x = -0.099 // Adjust the rotation as needed
-        cssObject.scale.set(0.035, 0.035, 0.035) // Adjust the scale as needed
+        cssObject.scale.set(0.026, 0.026, 0.026) // Adjust the scale as needed
 
         // SceneBuilder.model?.add(cssObject)
         this.cssScene.add(cssObject)
@@ -232,7 +219,10 @@ export default class SceneBuilder {
         material.blending = THREE.NoBlending
 
         // Create plane geometry
-        const geometry = new THREE.PlaneGeometry(512, 342)
+        const geometry = new THREE.PlaneGeometry(
+            CONTAINER_RES.w,
+            CONTAINER_RES.h,
+        )
 
         // Create the GL plane mesh
         const mesh = new THREE.Mesh(geometry, material)

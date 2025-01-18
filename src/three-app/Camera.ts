@@ -8,9 +8,9 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const BASE_CAMERA_FOV: number = 25
-const BASE_CAMERA_ZOOM_FOV: number = 9.5
+const BASE_CAMERA_ZOOM_FOV: number = 7.5
 const MD_CAMERA_FOV: number = 29
-const MD_CAMERA_ZOOM_FOV: number = 11
+const MD_CAMERA_ZOOM_FOV: number = 9
 const SM_CAMERA_FOV: number = 20
 const CAMERA_NEAR: number = 0.1
 const CAMERA_FAR: number = 1000

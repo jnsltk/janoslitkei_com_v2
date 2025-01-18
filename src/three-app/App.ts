@@ -22,6 +22,7 @@ export default class App {
     public sizes: Sizes | undefined
     public camera: Camera | undefined
     public renderer: Renderer | undefined
+    public iframeElement: HTMLIFrameElement | undefined
     public controls: Controls | undefined
 
     /**
@@ -31,7 +32,11 @@ export default class App {
      * @remarks
      * If an instance of the App class already exists, returns the existing instance.
      */
-    public constructor(divElement: HTMLDivElement | undefined, webgl: HTMLDivElement | undefined, css3d: HTMLDivElement | undefined) {
+    public constructor(
+        divElement: HTMLDivElement | undefined,
+        webgl: HTMLDivElement | undefined,
+        css3d: HTMLDivElement | undefined,
+    ) {
         if (App.instance !== null) {
             return App.instance
         }
@@ -40,16 +45,17 @@ export default class App {
         this.divElement = divElement
         this.sceneBuilder = new SceneBuilder()
 
-        const { scene, cssScene } = this.sceneBuilder.build()
-        this.scene = scene
-        this.cssScene = cssScene
+        this.sceneBuilder.build().then(({ scene, cssScene }) => {
+            this.scene = scene
+            this.cssScene = cssScene
+            this.iframeElement = this.sceneBuilder?.iframeElement
+            this.sizes = new Sizes(this.divElement)
+            this.camera = new Camera()
+            this.renderer = new Renderer(webgl, css3d)
+            this.controls = new Controls()
 
-        this.sizes = new Sizes(this.divElement)
-        this.camera = new Camera()
-        this.renderer = new Renderer(webgl, css3d)
-        this.controls = new Controls()
-
-        this.init()
+            this.init()
+        })
     }
 
     /**
@@ -67,9 +73,7 @@ export default class App {
                 this.camera.instance &&
                 this.sceneBuilder
             ) {
-                if (
-                    this.sceneBuilder?.screenMask?.material?.uniforms?.time
-                ) {
+                if (this.sceneBuilder?.screenMask?.material?.uniforms?.time) {
                     this.sceneBuilder.screenMask.material.uniforms.time.value += 0.05
                 }
                 if (this.scene && this.cssScene) {
@@ -91,6 +95,10 @@ export default class App {
     private init(): void {
         // Set the camera controls instance since the camera is created before the controls
         if (this.controls) this.camera?.setControls(this.controls)
+
+        setTimeout(() => {
+            this.iframeElement?.contentWindow?.postMessage({page: 'desktop'}, 'http://localhost:3000/screen')
+        }, 6000)
         this.animate()
     }
 }

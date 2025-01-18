@@ -20,6 +20,7 @@ export default class SceneBuilder {
     private scene: THREE.Scene
     private cssScene: THREE.Scene
     public screenMask: ScreenMask
+    public iframeElement: HTMLIFrameElement | undefined
 
     /**
      * Creates an instance of the SceneBuilder class.
@@ -34,10 +35,14 @@ export default class SceneBuilder {
      * Builds the scene.
      * @returns The scene.
      */
-    public build(): { scene: THREE.Scene; cssScene: THREE.Scene } {
-        this.loadModel()
-        this.setupLights()
-        return { scene: this.scene, cssScene: this.cssScene }
+    public build(): Promise<{ scene: THREE.Scene; cssScene: THREE.Scene }> {
+        return new Promise((resolve, reject) => {
+            this.loadModel().then(() => {
+                this.setupLights()
+                resolve({ scene: this.scene, cssScene: this.cssScene })
+            })
+            .catch(reject)
+        })
     }
 
     /**
@@ -45,25 +50,33 @@ export default class SceneBuilder {
      *
      * @remarks Since the model is not centered, the position is adjusted when traversing the model's children.
      */
-    private loadModel(): void {
-        const loader = new GLTFLoader()
-        loader.load(MODEL_PATH, gltf => {
-            SceneBuilder.model = gltf.scene
-            this.scene.add(SceneBuilder.model)
-            this.addIframe()
-            this.addScreenMask()
-            this.addScreenShadow()
-            this.addVideoTexture(
-                'pc/screen/layers/video/static-2.mp4',
-                13.5,
-                0.1,
+    private loadModel(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const loader = new GLTFLoader()
+            loader.load(
+                MODEL_PATH,
+                gltf => {
+                    SceneBuilder.model = gltf.scene
+                    this.scene.add(SceneBuilder.model)
+                    this.addIframe()
+                    this.addScreenMask()
+                    this.addScreenShadow()
+                    this.addVideoTexture(
+                        'pc/screen/layers/video/static-2.mp4',
+                        13.5,
+                        0.1,
+                    )
+                    this.addVideoTexture(
+                        'pc/screen/layers/video/static-1.mp4',
+                        13.8,
+                        0.5,
+                    )
+                    this.applySmudgeTexture()
+                    resolve()
+                },
+                undefined,
+                error => reject(error),
             )
-            this.addVideoTexture(
-                'pc/screen/layers/video/static-1.mp4',
-                13.8,
-                0.5,
-            )
-            this.applySmudgeTexture()
         })
     }
 
@@ -90,6 +103,7 @@ export default class SceneBuilder {
         iframe.id = 'computer-screen'
         iframe.title = 'Macintosh System'
 
+        this.iframeElement = iframe
         container.appendChild(iframe)
 
         this.addCssPlane(container)

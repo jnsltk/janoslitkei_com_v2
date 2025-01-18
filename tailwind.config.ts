@@ -18,7 +18,7 @@ export default {
                 sans: ['var(--font-inter)'],
                 mono: ['var(--font-jetbrains-mono)'],
                 chicago: ['Chicago', 'sans-serif'],
-                geneva: ['Geneva', 'Verdana', 'sans-serif'],
+                geneva: ['Geneva Nine', 'sans-serif'],
             },
             colors: {
                 'ultramarine': {

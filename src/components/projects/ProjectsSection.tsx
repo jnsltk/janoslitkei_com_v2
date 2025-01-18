@@ -20,17 +20,17 @@ export default function ProjectsSection() {
             className="h-screen snap-start snap-always bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 text-slate-900/85 lg:scroll-mt-16"
         >
             <FadeInSection>
-                <div className="flex flex-col items-center justify-center pt-24 lg:pt-14">
-                    <h1
-                        id="projects-title"
-                        className="font-mono text-3xl font-bold"
-                    >
-                        Projects
-                    </h1>
-                </div>
-                <div className='h-4/5'>
-                    <div className="mx-6 mt-10 gap-10 lg:mx-32 lg:mt-16 2xl:mt-40 lg:flex">
+                <div className="h-4/5">
+                    <div className="mx-6 mt-10 gap-10 lg:mx-24 lg:mt-16 lg:flex 2xl:mt-40">
                         <div className="lg:w-1/2">
+                            <div className="flex flex-col items-center justify-center pt-24 lg:pt-18 lg:pb-10">
+                                <h1
+                                    id="projects-title"
+                                    className="font-mono text-3xl font-bold"
+                                >
+                                    Projects
+                                </h1>
+                            </div>
                             <div>
                                 <ProjectsMenu
                                     activeProject={activeProject}

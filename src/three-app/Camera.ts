@@ -35,6 +35,8 @@ export default class Camera {
     private cameraFov: number = BASE_CAMERA_FOV
     private cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
     public instance: THREE.PerspectiveCamera | undefined
+    private scrollProgress: number = 0
+    private contentDiv: HTMLElement | undefined
 
     /**
      * Creates an instance of the Camera class.
@@ -44,6 +46,7 @@ export default class Camera {
         this.app = new App(undefined, undefined, undefined)
         this.sizes = this.app.sizes
         this.instance = this.createCamera()
+        this.contentDiv = document.getElementById('content') as HTMLElement
 
         this.handleScroll()
         this.handleCameraZoomAnimation()
@@ -85,22 +88,29 @@ export default class Camera {
      */
     private handleScroll(): void {
         const content = document.getElementById('content') as HTMLElement
-        let scrollProgress = 0
 
-        content.addEventListener('scroll', () => {
-            const maxScroll = content.scrollHeight - content.clientHeight
-            scrollProgress = content.scrollTop / maxScroll
-            let angle = scrollProgress * Math.PI * -0.25 + INITIAL_ANGLE
+        content.addEventListener('scroll', this.onScroll.bind(this))
+    }
 
-            if (angle < 0) angle = 0
+    /**
+     * Callback function for the scroll event, orbiting the camera around the model based on the scroll progress.
+     */
+    private onScroll(): void {
+        if (this.contentDiv) {
+            const maxScroll =
+                this.contentDiv.scrollHeight - this.contentDiv.clientHeight
+            this.scrollProgress = this.contentDiv.scrollTop / maxScroll
+        }
+        let angle = this.scrollProgress * Math.PI * -0.25 + INITIAL_ANGLE
 
-            // Adjust the camera's spherical position based on scroll
-            if (this.instance) {
-                this.instance.position.x = Math.sin(angle) * 250
-                this.instance.position.z = Math.cos(angle) * 250
-            }
-            this.controls?.instance.update()
-        })
+        if (angle < 0) angle = 0
+
+        // Adjust the camera's spherical position based on scroll
+        if (this.instance) {
+            this.instance.position.x = Math.sin(angle) * 250
+            this.instance.position.z = Math.cos(angle) * 250
+        }
+        this.controls?.instance.update()
     }
 
     /**
@@ -258,5 +268,10 @@ export default class Camera {
         }
         this.instance!.fov = this.cameraFov
         this.instance!.updateProjectionMatrix()
+    }
+
+    public removeEventListeners(): void {
+        window.removeEventListener('resize', this.onResize.bind(this))
+        window.removeEventListener('scroll', this.onScroll.bind(this))
     }
 }

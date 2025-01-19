@@ -9,8 +9,13 @@ export default function ThreeAppWrapper() {
     const css3d = React.useRef<HTMLDivElement>(null)
 
     useEffect(() => {
+        let app: App | undefined = undefined
         if (containerRef.current && webgl.current && css3d.current) {
-            new App(containerRef.current, webgl.current, css3d.current)
+            app = new App(containerRef.current, webgl.current, css3d.current)
+        }
+
+        return () => {
+            app?.destroy()
         }
     }, [])
 

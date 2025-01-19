@@ -101,4 +101,13 @@ export default class App {
         }, 6000)
         this.animate()
     }
+
+    private removeEventListeners(): void {
+        this.camera?.removeEventListeners()
+    }
+
+    public destroy(): void {    
+        this.removeEventListeners()
+        App.instance = null
+    }
 }

@@ -5,6 +5,7 @@ export default class Sizes {
     public width: number | undefined
     public height: number | undefined
     public pixelRatio: number | undefined
+    private resizeCallback: (() => void) | undefined
 
     /**
      * Creates an instance of the Sizes class.
@@ -15,11 +16,21 @@ export default class Sizes {
         this.width = divElement.clientWidth
         this.height = divElement.clientHeight
         this.pixelRatio = Math.min(window.devicePixelRatio, 2)
-
-        window.addEventListener('resize', () => {
+        this.resizeCallback = () => {
             this.width = divElement.clientWidth
             this.height = divElement.clientHeight
             this.pixelRatio = Math.min(window.devicePixelRatio, 2)
-        })
+        }
+
+        window.addEventListener('resize', this.resizeCallback)
+    }
+
+    /**
+     * Removes the event listener for the resize event.
+     */
+    public removeEventListener() {
+        if (this.resizeCallback) {
+            window.removeEventListener('resize', this.resizeCallback)
+        }
     }
 }

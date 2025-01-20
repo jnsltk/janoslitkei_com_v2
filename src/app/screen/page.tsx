@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 export default function Screen() {
     const [content, setContent] = useState('welcome')
-    
+
     function onMessage(event: MessageEvent) {
         if (event.data.page === 'desktop') {
             setContent('desktop')

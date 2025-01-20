@@ -43,7 +43,7 @@ export default class Camera {
      */
     public constructor() {
         // Get the singleton instance of the App class
-        this.app = new App(undefined, undefined, undefined)
+        this.app = new App(undefined)
         this.sizes = this.app.sizes
         this.instance = this.createCamera()
         this.contentDiv = document.getElementById('content') as HTMLElement

@@ -4,6 +4,7 @@ import projects from '../../../content/projects/projects.json'
 import ProjectCard from '@/components/projects/ProjectCard'
 import { Project } from '../../../types/types'
 import { useEffect, useState } from 'react'
+import { useIframe } from '@/components/IframeContext'
 
 interface ProjectListProps {
     projectsCategory: number,
@@ -14,6 +15,7 @@ export default function ProjectList({ projectsCategory, resetState }: ProjectLis
     projectsCategory: 0,
     resetState: false,
 }) {
+    const { sendMessageToIframe } = useIframe()
     useEffect(() => {
         setOpenIndex(0)
     }, [resetState])
@@ -26,7 +28,10 @@ export default function ProjectList({ projectsCategory, resetState }: ProjectLis
                     key={index}
                     project={project}
                     isOpen={openIndex === index}
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    onClick={() => {
+                        setOpenIndex(openIndex === index ? null : index)
+                        sendMessageToIframe({ page: 'desktop' })
+                    }}
                 ></ProjectCard>
             })}
         </div>

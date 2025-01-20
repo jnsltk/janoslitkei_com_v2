@@ -8,6 +8,7 @@ import Hero from '@/components/Hero'
 import AboutSection from '@/components/AboutSection'
 import ProjectsSection from '@/components/projects/ProjectsSection'
 import Footer from '@/components/Footer'
+import { IframeProvider } from '@/components/IframeContext'
 
 const inter = Inter({
     subsets: ['latin'],
@@ -31,12 +32,14 @@ export default function Home() {
                 className={`${inter.variable} ${jetBrainsMono.variable} h-full overflow-hidden bg-slate-200 font-sans`}
             >
                 <Navbar />
-                <Content>
-                    <Hero></Hero>
-                    <AboutSection></AboutSection>
-                    <ProjectsSection></ProjectsSection>
-                    <Footer></Footer>
-                </Content>
+                <IframeProvider>
+                    <Content>
+                        <Hero></Hero>
+                        <AboutSection></AboutSection>
+                        <ProjectsSection></ProjectsSection>
+                        <Footer></Footer>
+                    </Content>
+                </IframeProvider>
             </body>
         </html>
     )

@@ -238,7 +238,7 @@ export default class SceneBuilder {
                     'pc/screen/layers/img/smudges.jpg',
                 ),
                 blending: THREE.AdditiveBlending,
-                opacity: 0.1,
+                opacity: 0.08,
                 transparent: true,
             })
             screenMesh.material = smudgeMaterial

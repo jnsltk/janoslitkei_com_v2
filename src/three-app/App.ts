@@ -32,11 +32,7 @@ export default class App {
      * @remarks
      * If an instance of the App class already exists, returns the existing instance.
      */
-    public constructor(
-        divElement: HTMLDivElement | undefined,
-        webgl: HTMLDivElement | undefined,
-        css3d: HTMLDivElement | undefined,
-    ) {
+    public constructor(divElement: HTMLDivElement | undefined) {
         if (App.instance !== null) {
             return App.instance
         }
@@ -44,18 +40,6 @@ export default class App {
 
         this.divElement = divElement
         this.sceneBuilder = new SceneBuilder()
-
-        this.sceneBuilder.build().then(({ scene, cssScene }) => {
-            this.scene = scene
-            this.cssScene = cssScene
-            this.iframeElement = this.sceneBuilder?.iframeElement
-            this.sizes = new Sizes(this.divElement)
-            this.camera = new Camera()
-            this.renderer = new Renderer(webgl, css3d)
-            this.controls = new Controls()
-
-            this.init()
-        })
     }
 
     /**
@@ -92,21 +76,34 @@ export default class App {
     /**
      * Initializes the application.
      */
-    private init(): void {
-        // Set the camera controls instance since the camera is created before the controls
-        if (this.controls) this.camera?.setControls(this.controls)
+    public async init(
+        webgl: HTMLDivElement | undefined,
+        css3d: HTMLDivElement | undefined,
+    ): Promise<void> {
+        return new Promise(async (resolve) => {
+            // Set the camera controls instance since the camera is created before the controls
+            if (this.sceneBuilder) {
+                const { scene, cssScene } = await this.sceneBuilder.build()
+                this.scene = scene
+                this.cssScene = cssScene
+            }
+            this.iframeElement = this.sceneBuilder?.iframeElement
+            this.sizes = new Sizes(this.divElement)
+            this.camera = new Camera()
+            this.renderer = new Renderer(webgl, css3d)
+            this.controls = new Controls()
+            this.camera.setControls(this.controls)
 
-        setTimeout(() => {
-            this.iframeElement?.contentWindow?.postMessage({page: 'desktop'}, 'http://localhost:3000/screen')
-        }, 6000)
-        this.animate()
+            this.animate()
+            resolve()
+        })
     }
 
     private removeEventListeners(): void {
         this.camera?.removeEventListeners()
     }
 
-    public destroy(): void {    
+    public destroy(): void {
         this.removeEventListeners()
         App.instance = null
     }

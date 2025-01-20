@@ -74,7 +74,7 @@ export default class App {
     }
 
     /**
-     * Initializes the application.
+     * Initializes parts of the application, that depend on asynchronous operations.
      */
     public async init(
         webgl: HTMLDivElement | undefined,

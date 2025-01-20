@@ -15,7 +15,8 @@ export default function ProjectList({ projectsCategory, resetState }: ProjectLis
     projectsCategory: 0,
     resetState: false,
 }) {
-    const { sendMessageToIframe } = useIframe()
+    const iframeContext = useIframe()
+    const sendMessageToIframe = iframeContext ? iframeContext.sendMessageToIframe : () => {}
     useEffect(() => {
         setOpenIndex(0)
     }, [resetState])

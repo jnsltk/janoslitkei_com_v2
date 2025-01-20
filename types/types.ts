@@ -4,3 +4,7 @@ export interface Project {
     tech: string[],
     links: { name: string, url: string }[]
 }
+
+export interface IframeMessage {
+    page: string
+}

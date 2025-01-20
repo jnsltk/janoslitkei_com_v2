@@ -92,7 +92,7 @@ export default class SceneBuilder {
         container.style.background = '#000000'
 
         const iframe = document.createElement('iframe')
-        iframe.src = 'http://localhost:3000/screen'
+        iframe.src = process.env.NEXT_PUBLIC_IFRAME_URL as string
         iframe.style.width = IFRAME_RES.w + 'px'
         iframe.style.height = IFRAME_RES.h + 'px'
         iframe.style.paddingTop = IFRAME_PADDING.top + 'px'

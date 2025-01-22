@@ -5,7 +5,7 @@ import logo from '../../public/images/logo.svg'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { HiMenuAlt3 } from "react-icons/hi"
 
 gsap.registerPlugin(ScrollToPlugin)
@@ -36,24 +36,25 @@ const menuItems: MenuItem[] = [
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
-    const handleClick = (
-        e: React.MouseEvent<HTMLAnchorElement>,
-        href: string,
-    ) => {
-        if (href === '/blog') {
-            return
-        }
-        e.preventDefault()
-        setMenuOpen(false)
-        const target = document.querySelector(href)
-        if (target) {
-            gsap.to('#content', {
-                duration: 0.8,
-                scrollTo: { y: target, offsetY: 64 },
-                ease: 'power2.inOut',
-            })
-        }
-    }
+
+    const handleClick = useCallback(
+        (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+            if (href === '/blog') {
+                return
+            }
+            e.preventDefault()
+            setMenuOpen(false)
+            const target = document.querySelector(href)
+            if (target) {
+                gsap.to('#content', {
+                    duration: 0.8,
+                    scrollTo: { y: target, offsetY: 64 },
+                    ease: 'power2.inOut',
+                })
+            }
+        },
+        []
+    )
     return (
         <div className="flex items-center justify-between w-screen bg-slate-900 fixed z-50 h-16 top-0 px-6">
             <Link href="/" className="flex items-center gap-4">

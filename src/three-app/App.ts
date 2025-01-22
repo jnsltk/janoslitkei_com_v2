@@ -15,15 +15,15 @@ import Controls from '@/three-app/Controls'
  */
 export default class App {
     private static instance: App | null = null
-    private sceneBuilder: SceneBuilder | undefined
-    private scene: THREE.Scene | undefined
-    private cssScene: THREE.Scene | undefined
-    public divElement: HTMLDivElement | undefined
-    public sizes: Sizes | undefined
-    public camera: Camera | undefined
-    public renderer: Renderer | undefined
-    public iframeElement: HTMLIFrameElement | undefined
-    public controls: Controls | undefined
+    private sceneBuilder?: SceneBuilder
+    private scene?: THREE.Scene
+    private cssScene?: THREE.Scene
+    public divElement?: HTMLDivElement
+    public sizes?: Sizes
+    public camera?: Camera
+    public renderer?: Renderer
+    public iframeElement?: HTMLIFrameElement
+    public controls?: Controls
 
     /**
      * Creates an instance of the App class.

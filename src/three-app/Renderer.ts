@@ -10,11 +10,11 @@ import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
  */
 export default class Renderer {
     private app: App
-    public instance: WebGLRenderer | undefined
-    public cssInstance: CSS3DRenderer | undefined
-    private sizes: Sizes | undefined
-    private webgl: HTMLDivElement | undefined
-    private css3d: HTMLDivElement | undefined
+    public instance?: WebGLRenderer
+    public cssInstance?: CSS3DRenderer
+    private sizes?: Sizes
+    private webgl?: HTMLDivElement
+    private css3d?: HTMLDivElement
 
     /**
      * Creates an instance of the Renderer class.
@@ -23,7 +23,7 @@ export default class Renderer {
         webgl: HTMLDivElement | undefined,
         css3d: HTMLDivElement | undefined,
     ) {
-        this.app = new App(undefined, undefined, undefined)
+        this.app = new App(undefined)
         this.sizes = this.app.sizes
         this.webgl = webgl
         this.css3d = css3d

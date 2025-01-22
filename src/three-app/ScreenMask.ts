@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 export default class ScreenMask {
-    public material: THREE.ShaderMaterial | undefined
+    public material?: THREE.ShaderMaterial
 
     public constructor() {
         this.initialize();

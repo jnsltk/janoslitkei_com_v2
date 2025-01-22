@@ -1,7 +1,7 @@
 'use client'
 import '../globals.css'
-import Welcome from '@/app/screen/components/welcome'
-import Desktop from './components/desktop'
+import Welcome from './components/Welcome'
+import Desktop from './components/Desktop'
 import { useEffect, useState } from 'react'
 
 export default function Screen() {
@@ -15,11 +15,14 @@ export default function Screen() {
 
     useEffect(() => {
         window.addEventListener('message', onMessage)
+        if (process.env.NODE_ENV === 'development') {
+            setContent('desktop')
+        }
     }, [])
 
     return (
         <html lang="en" className="h-full overflow-hidden">
-            <body className="bg-monitor-bg">
+            <body>
                 {content === 'welcome' ? <Welcome /> : <Desktop />}
             </body>
         </html>

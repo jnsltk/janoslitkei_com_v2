@@ -16,7 +16,6 @@ export default function ThreeAppWrapper() {
         if (containerRef.current && webgl.current && css3d.current) {
             app = new App(containerRef.current)
             app.init(webgl.current, css3d.current).then(() => {
-                console.log(app?.iframeElement)
                 if (setIframeRef) {
                     setIframeRef(app?.iframeElement as HTMLIFrameElement)
                 }

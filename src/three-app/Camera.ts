@@ -30,13 +30,13 @@ export default class Camera {
     public static isMobileScreen: boolean = false
 
     private app: App
-    private sizes: Sizes | undefined
-    private controls: Controls | undefined
+    private sizes?: Sizes
+    private controls?: Controls
     private cameraFov: number = BASE_CAMERA_FOV
     private cameraZoomFov: number = BASE_CAMERA_ZOOM_FOV
-    public instance: THREE.PerspectiveCamera | undefined
+    public instance?: THREE.PerspectiveCamera
     private scrollProgress: number = 0
-    private contentDiv: HTMLElement | undefined
+    private contentDiv?: HTMLElement
 
     /**
      * Creates an instance of the Camera class.

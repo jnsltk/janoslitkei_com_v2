@@ -15,12 +15,12 @@ const IFRAME_RES = {
  * Manages the creation of the scene, loading of the model, and setting up the lights.
  */
 export default class SceneBuilder {
-    public static model: THREE.Object3D | undefined
+    public static model?: THREE.Object3D
 
     private scene: THREE.Scene
     private cssScene: THREE.Scene
     public screenMask: ScreenMask
-    public iframeElement: HTMLIFrameElement | undefined
+    public iframeElement?: HTMLIFrameElement
 
     /**
      * Creates an instance of the SceneBuilder class.

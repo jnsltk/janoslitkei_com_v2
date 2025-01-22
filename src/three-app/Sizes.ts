@@ -2,10 +2,10 @@
  * Represents the Sizes class, which keeps track of the width, height, and pixel ratio of the div element.
  */
 export default class Sizes {
-    public width: number | undefined
-    public height: number | undefined
-    public pixelRatio: number | undefined
-    private resizeCallback: (() => void) | undefined
+    public width?: number
+    public height?: number
+    public pixelRatio?: number
+    private resizeCallback?: (() => void)
 
     /**
      * Creates an instance of the Sizes class.

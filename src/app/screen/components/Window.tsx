@@ -9,6 +9,8 @@ import arrowDown from '../../../../public/pc/screen/ui/arrow_down.png'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
+const ANIMATION_DURATION = 0.25
+
 export interface WindowProps {
     title: string
     children: React.ReactNode
@@ -17,6 +19,7 @@ export interface WindowProps {
     windowX: number
     windowY: number
     isFinderWindow?: boolean
+    onClose?: () => void
 }
 export default function Window({
     title,
@@ -26,26 +29,40 @@ export default function Window({
     windowX,
     windowY,
     isFinderWindow,
+    onClose,
 }: WindowProps) {
-    const [isExpanded, setIsExpanded] = useState(true)
+    const [isTransitioning, setIsTransitioning] = useState(true)
     const [isClosing, setIsClosing] = useState(false)
+    
 
     const handleClose = () => {
+        setIsTransitioning(true)
         setIsClosing(true)
-        console.log('close')
+        setTimeout(() => {
+            if (onClose) onClose()
+        }, ANIMATION_DURATION * 1000)
     }
 
     return (
         <>
-            {isExpanded ? (
+            {isTransitioning ? (
                 <div>
                     <motion.div
-                        initial={{
-                            width: windowWidth / 100,
-                            height: windowWidth / 100,
-                            top: windowHeight / 2 + windowY,
-                            left: windowWidth / 2 + windowX,
-                        }}
+                        initial={
+                            isClosing
+                                ? {
+                                      width: windowWidth,
+                                      height: windowHeight,
+                                      top: 50,
+                                      left: 25,
+                                  }
+                                : {
+                                      width: windowWidth / 100,
+                                      height: windowWidth / 100,
+                                      top: windowHeight / 2 + windowY,
+                                      left: windowWidth / 2 + windowX,
+                                  }
+                        }
                         animate={
                             isClosing
                                 ? {
@@ -61,18 +78,17 @@ export default function Window({
                                       left: 25,
                                   }
                         }
-                        transition={{ duration: 0.25, ease: 'linear' }}
+                        transition={{ duration: ANIMATION_DURATION, ease: 'linear' }}
                         className="absolute border-4 border-neutral-600"
                         onAnimationComplete={() => {
-                            setIsExpanded(false)
-                            setIsClosing(false)
+                            setIsTransitioning(false)
                         }}
                     />
                 </div>
             ) : (
                 <div
                     className={`absolute flex h-[375px] flex-col rounded-sm border-2 border-b-4 border-r-4 border-black bg-white`}
-                    // Inline styles since I can't use tailwind classes for dynamic values
+                    // Inline styles since you can't use tailwind classes for dynamic values
                     style={{
                         left: `${windowX}px`,
                         top: `${windowY}px`,
@@ -91,9 +107,11 @@ export default function Window({
                                 ))}
                             </div>
                             <div className="absolute left-[10px] h-[17px] w-[19px] bg-white">
-                                <div 
-                                onClick={handleClose}
-                                className="absolute left-[1px] h-[17px] w-[17px] border-[2px] border-black bg-white"></div>
+                                <div
+                                    id='close'
+                                    onClick={handleClose}
+                                    className="absolute left-[1px] h-[17px] w-[17px] border-[2px] border-black bg-white"
+                                ></div>
                             </div>
                         </div>
                         <h1 className="mx-[10px] font-chicago text-[25px]">

@@ -64,7 +64,7 @@ export default function FinderIcon({
         <div
             id={iconID}
             onMouseDown={handleClick}
-            className="flex flex-col items-center"
+            className="flex max-h-[65px] flex-col items-center"
         >
             <Image
                 src={isSelected ? selectedIcon : icon}

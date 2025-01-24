@@ -21,9 +21,9 @@ export default function ProjectsSection() {
         >
             <FadeInSection>
                 <div className="h-4/5">
-                    <div className="mx-6 mt-10 gap-10 lg:mx-24 lg:mt-16 lg:flex 2xl:mt-40">
+                    <div className="mx-6 gap-10 pt-10 lg:mx-24 lg:flex 2xl:mt-40">
                         <div className="lg:w-1/2">
-                            <div className="lg:pt-18 flex flex-col items-center justify-center pt-24 lg:pb-10">
+                            <div className="flex flex-col items-center justify-center pt-24 lg:pb-10 lg:pt-16">
                                 <h1
                                     id="projects-title"
                                     className="font-mono text-3xl font-bold"

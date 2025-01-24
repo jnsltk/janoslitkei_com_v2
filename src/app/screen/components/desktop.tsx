@@ -18,10 +18,12 @@ const WINDOWS = {
 
 export default function Desktop() {
     const [openWindows, setOpenWindows] = useState<string[]>([])
+    const [isWindowClosing, setIsWindowClosing] = useState(false)
 
     const handleOpenWindow = (title: string) => {
         setOpenWindows(prev => [...prev, title])
     }
+
     return (
         <div className="h-screen w-screen bg-monitor-bg">
             <MenuBar />
@@ -32,6 +34,7 @@ export default function Desktop() {
                     windowOpenIcon={floppyWindowOpen}
                     title="Portfolio"
                     isWindowOpen={openWindows.includes('Portfolio')}
+                    isWindowClosing={isWindowClosing}
                     windowSpawnPosition={{
                         x: WINDOWS.portfolio.width / 2 + WINDOWS.portfolio.x,
                         y: WINDOWS.portfolio.height / 2 + WINDOWS.portfolio.y,
@@ -45,6 +48,7 @@ export default function Desktop() {
                     selectedIcon={trashBlack}
                     windowOpenIcon={floppyWindowOpen}
                     isWindowOpen={openWindows.includes('Trash')}
+                    windowSpawnPosition={{ x: 0, y: 0 }}
                     title="Trash"
                 />
             </div>
@@ -62,6 +66,11 @@ export default function Desktop() {
                                 window => window !== 'Portfolio',
                             ),
                         )
+                        // What a hack
+                        setIsWindowClosing(true)
+                        setTimeout(() => {
+                            setIsWindowClosing(false)
+                        }, 150)
                     }}
                 >
                     <FinderIcon
@@ -69,6 +78,7 @@ export default function Desktop() {
                         selectedIcon={fileBlack}
                         windowOpenIcon={floppyWindowOpen}
                         isWindowOpen={openWindows.includes('Test')}
+                        windowSpawnPosition={{ x: 0, y: 0 }}
                         title="Test"
                     />
                 </Window>

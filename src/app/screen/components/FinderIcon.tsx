@@ -4,7 +4,7 @@ import Image, { StaticImageData } from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const ANIMATION_DURATION = 0.25
+const ANIMATION_DURATION = 0.15
 
 export interface FinderIconProps {
     icon: StaticImageData
@@ -12,7 +12,8 @@ export interface FinderIconProps {
     windowOpenIcon: StaticImageData
     title: string
     isWindowOpen: boolean
-    windowSpawnPosition?: { x: number; y: number }
+    isWindowClosing?: boolean
+    windowSpawnPosition: { x: number; y: number }
     onOpen?: () => void
 }
 
@@ -22,24 +23,31 @@ export default function FinderIcon({
     windowOpenIcon,
     title,
     isWindowOpen,
+    isWindowClosing,
     windowSpawnPosition,
     onOpen,
 }: FinderIconProps) {
-    const iconBorderRef = useRef<HTMLDivElement>(null)
+    const iconRef = useRef<HTMLDivElement>(null)
     const [isSelected, setIsSelected] = useState(false)
     const [iconID, setIconID] = useState('')
     const [doubleClickTimerActive, setDoubleClickTimerActive] = useState(false)
     const [isTransitioning, setIsTransitioning] = useState(false)
-    // const [isClosing, setIsClosing] = useState(false)
 
-    const iconBorderXY: { x: number, y: number} = { 
-        x: iconBorderRef.current ? iconBorderRef.current.getBoundingClientRect().left : 0, 
-        y: iconBorderRef.current ? iconBorderRef.current.getBoundingClientRect().top : 0 
-    }
+    let translatePosition: { x: number; y: number } = { x: 0, y: 0 }
+    if (iconRef.current) {
+        const iconPosition: { x: number; y: number } = {
+            x: iconRef.current
+                ? iconRef.current.getBoundingClientRect().left
+                : 0,
+            y: iconRef.current
+                ? iconRef.current.getBoundingClientRect().top
+                : 0,
+        }
 
-    const translatePosition = {
-        x: windowSpawnPosition?.x ? windowSpawnPosition.x - iconBorderXY.x : 0,
-        y: windowSpawnPosition?.y ? windowSpawnPosition.y - iconBorderXY.y : 0,
+        translatePosition = {
+            x: windowSpawnPosition.x - iconPosition.x,
+            y: windowSpawnPosition.y - iconPosition.y,
+        }
     }
 
     const getIconID = useCallback(() => {
@@ -95,24 +103,41 @@ export default function FinderIcon({
 
     return (
         <>
-            {isTransitioning ? (
+            {isTransitioning || isWindowClosing ? (
                 <div
                     id={iconID}
+                    ref={iconRef}
                     onMouseDown={handleClick}
                     className="relative flex max-h-[65px] flex-col items-center"
                 >
                     <motion.div
-                        initial={{
-                            translateX: 0,
-                            translateY: 0,
-                        }}
-                        animate={{
-                            translateX: translatePosition.x,
-                            translateY: translatePosition.y,
+                        initial={
+                            isWindowClosing
+                                ? {
+                                      translateX: translatePosition.x,
+                                      translateY: translatePosition.y,
+                                  }
+                                : {
+                                      translateX: 0,
+                                      translateY: 0,
+                                  }
+                        }
+                        animate={
+                            isWindowClosing
+                                ? {
+                                      translateX: 0,
+                                      translateY: 0,
+                                  }
+                                : {
+                                      translateX: translatePosition.x,
+                                      translateY: translatePosition.y,
+                                  }
+                        }
+                        transition={{
+                            duration: ANIMATION_DURATION,
+                            ease: 'linear',
                         }}
                         className="absolute right-0 top-0 h-[45px] w-[45px] border-4 border-neutral-600"
-                        ref={iconBorderRef}
-                        transition={{ duration: ANIMATION_DURATION, ease: 'linear' }}
                     />
                     <Image
                         src={windowOpenIcon}
@@ -132,6 +157,7 @@ export default function FinderIcon({
             ) : (
                 <div
                     id={iconID}
+                    ref={iconRef}
                     onMouseDown={handleClick}
                     className="flex max-h-[65px] flex-col items-center"
                 >

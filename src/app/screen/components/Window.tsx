@@ -53,8 +53,8 @@ export default function Window({
                                 ? {
                                       width: windowWidth,
                                       height: windowHeight,
-                                      top: 50,
-                                      left: 25,
+                                      top: windowY,
+                                      left: windowX,
                                   }
                                 : {
                                       width: windowWidth / 100,
@@ -74,8 +74,8 @@ export default function Window({
                                 : {
                                       width: windowWidth,
                                       height: windowHeight,
-                                      top: 50,
-                                      left: 25,
+                                      top: windowY,
+                                      left: windowX,
                                   }
                         }
                         transition={{ duration: ANIMATION_DURATION, ease: 'linear' }}
@@ -129,15 +129,16 @@ export default function Window({
                         </div>
                     </div>
                     {isFinderWindow && (
+                        // HACK HACK HACK
                         <div className="flex h-[28px] items-center justify-between border-b-4 border-double border-black">
                             <p className="mx-[10px] font-geneva text-[25px] font-bold">
-                                {React.Children.count(children)} items
+                                {title !== 'Trash' ? `${React.Children.count(children)} items` : '0 items'}
                             </p>
-                            <p className="ml-[48px] font-geneva text-[25px] font-bold">
-                                360K in Disk
+                            <p className={`${title !== 'Trash' ? 'ml-[48px]' : '-ml-[50px]'} font-geneva text-[25px] font-bold`}>
+                                {title !== 'Trash' ? '360K in Disk' : '0K in Trash'}
                             </p>
                             <p className="mx-[10px] font-geneva text-[25px] font-bold">
-                                40K available
+                                {title !== 'Trash' ? '40K available' : ''}
                             </p>
                         </div>
                     )}
@@ -151,7 +152,7 @@ export default function Window({
                                     rowSpan={3}
                                     colSpan={3}
                                 >
-                                    <div className="flex h-full w-full p-[30px]">
+                                    <div className="flex h-full w-full p-0">
                                         {children}
                                     </div>
                                 </td>

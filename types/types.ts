@@ -6,5 +6,6 @@ export interface Project {
 }
 
 export interface IframeMessage {
-    page: string
+    page?: string
+    close?: string
 }

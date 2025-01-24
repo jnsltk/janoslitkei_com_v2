@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import arrowLeft from '../../../../public/pc/screen/ui/arrow_left.png'
 import arrowRight from '../../../../public/pc/screen/ui/arrow_right.png'
 import arrowUp from '../../../../public/pc/screen/ui/arrow_up.png'
@@ -33,7 +33,7 @@ export default function Window({
 }: WindowProps) {
     const [isTransitioning, setIsTransitioning] = useState(true)
     const [isClosing, setIsClosing] = useState(false)
-    
+    const closeRef = React.useRef<HTMLDivElement>(null)
 
     const handleClose = () => {
         setIsTransitioning(true)
@@ -42,6 +42,31 @@ export default function Window({
             if (onClose) onClose()
         }, ANIMATION_DURATION * 1000)
     }
+
+    useEffect(() => {
+        const onMessage = (event: MessageEvent) => {
+            // A bit of a hacky way to open the right window on scroll
+            if (event.data.close === 'about' && title === 'Me.jpg') {
+                if (closeRef.current) {
+                        closeRef.current.dispatchEvent(
+                            new MouseEvent('mousedown', { bubbles: true }),
+                        )
+                }
+            } else if (event.data.close === 'projects' && title === 'Portfolio') {
+                if (closeRef.current) {
+                    closeRef.current.dispatchEvent(
+                        new MouseEvent('mousedown', { bubbles: true }),
+                    )
+                }
+            }
+        }
+
+        window.addEventListener('message', onMessage)
+
+        return () => {
+            window.removeEventListener('message', onMessage)
+        }
+    }, [title])
 
     return (
         <>
@@ -78,7 +103,10 @@ export default function Window({
                                       left: windowX,
                                   }
                         }
-                        transition={{ duration: ANIMATION_DURATION, ease: 'linear' }}
+                        transition={{
+                            duration: ANIMATION_DURATION,
+                            ease: 'linear',
+                        }}
                         className="absolute border-4 border-neutral-600"
                         onAnimationComplete={() => {
                             setIsTransitioning(false)
@@ -108,8 +136,9 @@ export default function Window({
                             </div>
                             <div className="absolute left-[10px] h-[17px] w-[19px] bg-white">
                                 <div
-                                    id='close'
-                                    onClick={handleClose}
+                                    ref={closeRef}
+                                    id="close"
+                                    onMouseDown={handleClose}
                                     className="absolute left-[1px] h-[17px] w-[17px] border-[2px] border-black bg-white"
                                 ></div>
                             </div>
@@ -132,10 +161,16 @@ export default function Window({
                         // HACK HACK HACK
                         <div className="flex h-[28px] items-center justify-between border-b-4 border-double border-black">
                             <p className="mx-[10px] font-geneva text-[25px] font-bold">
-                                {title !== 'Trash' ? `${React.Children.count(children)} items` : '0 items'}
+                                {title !== 'Trash'
+                                    ? `${React.Children.count(children)} items`
+                                    : '0 items'}
                             </p>
-                            <p className={`${title !== 'Trash' ? 'ml-[48px]' : '-ml-[50px]'} font-geneva text-[25px] font-bold`}>
-                                {title !== 'Trash' ? '360K in Disk' : '0K in Trash'}
+                            <p
+                                className={`${title !== 'Trash' ? 'ml-[48px]' : '-ml-[50px]'} font-geneva text-[25px] font-bold`}
+                            >
+                                {title !== 'Trash'
+                                    ? '360K in Disk'
+                                    : '0K in Trash'}
                             </p>
                             <p className="mx-[10px] font-geneva text-[25px] font-bold">
                                 {title !== 'Trash' ? '40K available' : ''}

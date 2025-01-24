@@ -91,7 +91,7 @@ export default function FinderIcon({
         setDoubleClickTimerActive(true)
         setTimeout(() => {
             setDoubleClickTimerActive(false)
-        }, 300)
+        }, 500)
     }, [setIsSelected, onOpen, doubleClickTimerActive])
 
     useEffect(() => {
@@ -100,6 +100,46 @@ export default function FinderIcon({
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [handleClickOutside])
+
+    useEffect(() => {
+        const onMessage = (event: MessageEvent) => {
+            // A bit of a hacky way to open the right window on scroll
+            if (event.data.page === 'about' && title === 'Me.jpg') {
+                if (iconRef.current) {
+                    iconRef.current.dispatchEvent(
+                        new MouseEvent('mousedown', { bubbles: true }),
+                    )
+                    setTimeout(() => {
+                        iconRef.current?.dispatchEvent(
+                            new MouseEvent('mousedown', { bubbles: true }),
+                        )
+                    }, 100)
+                }
+            } else if (
+                event.data.page === 'projects' &&
+                title === 'Portfolio'
+            ) {
+                setTimeout(() => {
+                    if (iconRef.current) {
+                        iconRef.current.dispatchEvent(
+                            new MouseEvent('mousedown', { bubbles: true }),
+                        )
+                        setTimeout(() => {
+                            iconRef.current?.dispatchEvent(
+                                new MouseEvent('mousedown', { bubbles: true }),
+                            )
+                        }, 100)
+                    }
+                }, 250)
+            }
+        }
+
+        window.addEventListener('message', onMessage)
+
+        return () => {
+            window.removeEventListener('message', onMessage)
+        }
+    }, [handleClick, title])
 
     return (
         <>

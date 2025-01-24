@@ -15,8 +15,9 @@ export default function Screen() {
 
     useEffect(() => {
         window.addEventListener('message', onMessage)
-        if (process.env.NODE_ENV === 'development') {
-            setContent('desktop')
+
+        return () => {
+            window.removeEventListener('message', onMessage)
         }
     }, [])
 

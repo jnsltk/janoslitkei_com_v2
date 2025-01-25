@@ -18,6 +18,7 @@ export interface WindowProps {
     windowHeight: number
     windowX: number
     windowY: number
+    windowZ?: number
     isFinderWindow?: boolean
     onClose?: () => void
 }
@@ -28,6 +29,7 @@ export default function Window({
     windowHeight,
     windowX,
     windowY,
+    windowZ,
     isFinderWindow,
     onClose,
 }: WindowProps) {
@@ -108,6 +110,7 @@ export default function Window({
                             ease: 'linear',
                         }}
                         className="absolute border-4 border-neutral-600"
+                        style={{zIndex: windowZ}}
                         onAnimationComplete={() => {
                             setIsTransitioning(false)
                         }}
@@ -122,6 +125,7 @@ export default function Window({
                         top: `${windowY}px`,
                         height: `${windowHeight}px`,
                         width: `${windowWidth}px`,
+                        zIndex: windowZ,
                     }}
                 >
                     <div className="flex h-[28px] items-center justify-around border-b-2 border-black">

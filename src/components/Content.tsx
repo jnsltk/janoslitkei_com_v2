@@ -29,6 +29,9 @@ export default function Content({ children }: ContentProps) {
                     sendMessageToIframe({ page: 'about' })
                 }, 250)
             },
+            onLeaveBack: () => {
+                sendMessageToIframe({ close: 'about' })
+            }
         })
         ScrollTrigger.create({
             trigger: '#projects',
@@ -37,10 +40,8 @@ export default function Content({ children }: ContentProps) {
             scroller: '#content',
             onEnter: () => {
                 sendMessageToIframe({ page: 'projects' })
-                sendMessageToIframe({ close: 'about' })
             },
             onLeaveBack: () => {
-                sendMessageToIframe({ page: 'about' })
                 sendMessageToIframe({ close: 'projects' })
             },
         })

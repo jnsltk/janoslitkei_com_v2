@@ -20,6 +20,7 @@ const DESKTOP_APPLICATIONS = {
         title: 'Portfolio',
         x: 25,
         y: 50,
+        z: 2,
         width: 500,
         height: 350,
         icon: floppyWhite,
@@ -31,17 +32,19 @@ const DESKTOP_APPLICATIONS = {
         title: 'Me.jpg',
         x: 125,
         y: 50,
+        z: 1,
         width: 350,
         height: 400,
         icon: fileWhite,
         selectedIcon: fileBlack,
-        windowOpenIcon: floppyWindowOpen,
+        windowOpenIcon: fileBlack,
         isFinderWindow: false,
     },
     Trash: {
         title: 'Trash',
         x: 50,
         y: 200,
+        z: 3,
         width: 400,
         height: 200,
         icon: trashWhite,
@@ -112,6 +115,7 @@ export default function Desktop() {
                             title={app.title}
                             windowX={app.x}
                             windowY={app.y}
+                            windowZ={app.z}
                             windowWidth={app.width}
                             windowHeight={app.height}
                             isFinderWindow={app.isFinderWindow}

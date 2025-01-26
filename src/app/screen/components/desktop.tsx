@@ -14,6 +14,8 @@ import MenuBar from './MenuBar'
 import Window from './Window'
 import { useState } from 'react'
 import Image from 'next/image'
+import projects from '../../../../content/projects/projects.json'
+import { Project } from '../../../../types/types'
 
 const DESKTOP_APPLICATIONS = {
     Portfolio: {
@@ -54,26 +56,24 @@ const DESKTOP_APPLICATIONS = {
     },
 }
 
-const PORTFOLIO_APPLICATIONS = {
-    fraud_detection: {
-        title: 'fraud_detection',
-        x: 50,
-        y: 40,
-        z: 4,
-        width: 550,
-        height: 400,
-        icon: fileWhite,
-        selectedIcon: fileBlack,
-        windowOpenIcon: fileBlack,
-        isFinderWindow: false,
-        content: (
-            <div className="flex h-full w-full items-center justify-center">
-                <h1 className="font-chicago text-[50px] font-bold">
-                    fraud_detection
-                </h1>
-            </div>
-        ),
-    },
+const PORTFOLIO_APPLICATION = {
+    title: 'fraud_detection',
+    x: 50,
+    y: 40,
+    z: 4,
+    width: 550,
+    height: 400,
+    icon: fileWhite,
+    selectedIcon: fileBlack,
+    windowOpenIcon: fileBlack,
+    isFinderWindow: false,
+    content: (
+        <div className="flex h-full w-full items-center justify-center">
+            <h1 className="font-chicago text-[50px] font-bold">
+                fraud_detection
+            </h1>
+        </div>
+    ),
 }
 
 export default function Desktop() {
@@ -150,53 +150,67 @@ export default function Desktop() {
                             {app.title === 'Portfolio' && (
                                 <div className="flex h-full w-full flex-wrap gap-[30px] bg-white p-[20px]">
                                     {/* Icons for portfolio items */}
-                                    {Object.keys(PORTFOLIO_APPLICATIONS).map(
-                                        appKey => {
-                                            const app =
-                                                // @ts-expect-error: appKey is a valid key for PORTFOLIO_APPLICATIONS
-                                                PORTFOLIO_APPLICATIONS[appKey]
-                                            return (
-                                                <FinderIcon
-                                                    key={appKey}
-                                                    icon={app.icon}
-                                                    selectedIcon={
-                                                        app.selectedIcon
-                                                    }
-                                                    windowOpenIcon={
-                                                        app.windowOpenIcon
-                                                    }
-                                                    title={app.title}
-                                                    isWindowOpen={openWindows.includes(
-                                                        app.title,
-                                                    )}
-                                                    isWindowClosing={closingWindows.includes(
-                                                        app.title,
-                                                    )}
-                                                    windowSpawnPosition={{
-                                                        x:
-                                                            app.width / 2 +
-                                                            app.x,
-                                                        y:
-                                                            app.height / 2 +
-                                                            app.y,
-                                                    }}
-                                                    onOpen={() =>
-                                                        handleOpenWindow(
-                                                            app.title,
-                                                        )
-                                                    }
-                                                />
-                                            )
-                                        },
-                                    )}
+                                    {projects.map((_, index) => {
+                                        const projectCategory = projects[index]
+                                        return projectCategory.map(
+                                            (project: Project) => {
+                                                return (
+                                                    <FinderIcon
+                                                        key={
+                                                            project.screenData
+                                                                .title
+                                                        }
+                                                        icon={
+                                                            PORTFOLIO_APPLICATION.icon
+                                                        }
+                                                        selectedIcon={
+                                                            PORTFOLIO_APPLICATION.selectedIcon
+                                                        }
+                                                        windowOpenIcon={
+                                                            PORTFOLIO_APPLICATION.windowOpenIcon
+                                                        }
+                                                        title={
+                                                            project.screenData
+                                                                .title
+                                                        }
+                                                        isWindowOpen={openWindows.includes(
+                                                            project.screenData
+                                                                .title,
+                                                        )}
+                                                        isWindowClosing={closingWindows.includes(
+                                                            project.screenData
+                                                                .title,
+                                                        )}
+                                                        windowSpawnPosition={{
+                                                            x:
+                                                                PORTFOLIO_APPLICATION.width /
+                                                                    2 +
+                                                                PORTFOLIO_APPLICATION.x,
+                                                            y:
+                                                                PORTFOLIO_APPLICATION.height /
+                                                                    2 +
+                                                                PORTFOLIO_APPLICATION.y,
+                                                        }}
+                                                        onOpen={() =>
+                                                            handleOpenWindow(
+                                                                project
+                                                                    .screenData
+                                                                    .title,
+                                                            )
+                                                        }
+                                                    />
+                                                )
+                                            },
+                                        )
+                                    })}
                                 </div>
                             )}
                             {app.title === 'Trash' && <></>}
                             {app.title === 'Me.jpg' && (
-                                <div className="h-full w-full relative">
+                                <div className="relative h-full w-full">
                                     <Image
                                         src={'/pc/screen/me_4.png'}
-                                        layout='fill'
+                                        layout="fill"
                                         alt="Me, János Litkei"
                                         className="h-full w-full object-cover"
                                     />
@@ -208,41 +222,48 @@ export default function Desktop() {
             })}
 
             {/* Portfolio item windows */}
-            {Object.keys(PORTFOLIO_APPLICATIONS).map(appKey => {
-                const app =
-                    // @ts-expect-error: appKey is a valid key for PORTFOLIO_APPLICATIONS
-                    PORTFOLIO_APPLICATIONS[appKey]
-                return (
-                    openWindows.includes(app.title) && (
-                        <Window
-                            key={appKey}
-                            title={app.title}
-                            windowX={app.x}
-                            windowY={app.y}
-                            windowZ={app.z}
-                            windowWidth={app.width}
-                            windowHeight={app.height}
-                            isFinderWindow={app.isFinderWindow}
-                            onClose={() => {
-                                setOpenWindows(
-                                    openWindows.filter(
-                                        window => window !== app.title,
-                                    ),
-                                )
-                                handleCloseWindow(app.title)
-                                setTimeout(() => {
-                                    setClosingWindows(
-                                        closingWindows.filter(
-                                            window => window !== app.title,
+            {projects.map((_, index) => {
+                const projectCategory = projects[index]
+                return projectCategory.map((project: Project) => {
+                    return (
+                        openWindows.includes(project.screenData.title) && (
+                            <Window
+                                key={project.screenData.title}
+                                title={project.screenData.title}
+                                windowX={PORTFOLIO_APPLICATION.x}
+                                windowY={PORTFOLIO_APPLICATION.y}
+                                windowZ={PORTFOLIO_APPLICATION.z}
+                                windowWidth={PORTFOLIO_APPLICATION.width}
+                                windowHeight={PORTFOLIO_APPLICATION.height}
+                                isFinderWindow={PORTFOLIO_APPLICATION.isFinderWindow}
+                                onClose={() => {
+                                    setOpenWindows(
+                                        openWindows.filter(
+                                            window => window !== project.screenData.title,
                                         ),
                                     )
-                                }, 150)
-                            }}
-                        >
-                            {app.content}
-                        </Window>
+                                    handleCloseWindow(project.screenData.title)
+                                    setTimeout(() => {
+                                        setClosingWindows(
+                                            closingWindows.filter(
+                                                window => window !== project.screenData.title,
+                                            ),
+                                        )
+                                    }, 150)
+                                }}
+                            >
+                                <div className="relative h-full w-full">
+                                    <Image
+                                        src={project.screenData.contentSrc}
+                                        layout="fill"
+                                        alt={project.screenData.title}
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
+                            </Window>
+                        )
                     )
-                )
+                })
             })}
         </div>
     )

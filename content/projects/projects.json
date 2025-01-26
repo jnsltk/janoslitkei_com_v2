@@ -26,7 +26,8 @@
       ],
       "screenData": {
         "title": "fraud_detection",
-        "contentSrc": "/images/projects/fraud_detection.gif"
+        "contentSrc": "/images/projects/fraud_detection.gif",
+        "alt": "Fraud Detection"
       }
     },
     {
@@ -43,7 +44,12 @@
           "name": "GitHub",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "self_drive",
+        "contentSrc": "/images/projects/self_driving_car.gif",
+        "alt": "Self Driving Car"
+      }
     },
     {
       "name": "Dentigo",
@@ -64,7 +70,12 @@
           "name": "Website",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "dentigo",
+        "contentSrc": "/images/projects/dentigo.gif",
+        "alt": "Dentigo"
+      }
     }
   ],
   [
@@ -87,7 +98,12 @@
           "name": "Website",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "my_website",
+        "contentSrc": "/images/projects/personal_website.gif",
+        "alt": "Personal Website"
+      }
     },
     {
       "name": "Naše Konyha",
@@ -107,7 +123,12 @@
             "name": "Website",
             "url": ""
             }
-        ]
+        ],
+        "screenData": {
+          "title": "nase_konyha",
+          "contentSrc": "/images/projects/nase_konyha.gif",
+          "alt": "Naše Konyha"
+        }
     }
   ],
   [
@@ -128,7 +149,12 @@
           "name": "Website",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "project_1",
+        "contentSrc": "/images/projects/fraud_detection.gif",
+        "alt": "Project 1"
+      }
     },
     {
       "name": "Project 2",
@@ -147,7 +173,12 @@
           "name": "Website",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "project_2",
+        "contentSrc": "/images/projects/fraud_detection.gif",
+        "alt": "Project 2"
+      }
     }
   ]
 ]

@@ -118,6 +118,17 @@ export default function FinderIcon({
                         )
                     }, 100)
                 }
+            } else if (event.data.page === 'Projects' && event.data.projectTitle === title) {
+                if (iconRef.current) {
+                    iconRef.current.dispatchEvent(
+                        new MouseEvent('mousedown', { bubbles: true }),
+                    )
+                    setTimeout(() => {
+                        iconRef.current?.dispatchEvent(
+                            new MouseEvent('mousedown', { bubbles: true }),
+                        )
+                    }, 100)
+                }
             }
         }
 

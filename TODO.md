@@ -3,9 +3,9 @@
 ## High Priority
 
 - [ ] Add content to the monitor screen
-  - [ ] Figure out and add initial content
-  - [ ] Add images for the projects and make them switch per project
-  - [ ] Maybe add videos or iframes for the projects so they're interactive
+  - [-] Figure out and add initial content
+  - [ ] Add ~~images~~ GIFs for the projects and make them switch per project
+  - [ ] Load screen content from the same json file that's used for the project menu
   - [x] Add custom shader effects to the monitor screen
   - ~~[ ] Add bloom effect to screen~~
 - [ ] Fix layout and model for tablet screens
@@ -13,14 +13,12 @@
 
 ## New features
 
-
 ## Low Priority
 
 - [ ] Add loading animation when the 3d model is loading
 - [ ] Add project contents
 - [-] Add option for manual rotation mode, that resets when the user exits it
 - [ ] Fix animations for the project accordion menu
-- [ ] Use GSAP for scroll snapping ??
 
 ## Dismissed features
 

@@ -26,11 +26,11 @@ export default function Content({ children }: ContentProps) {
                 sendMessageToIframe({ page: 'desktop' })
                 // Absolute hack
                 setTimeout(() => {
-                    sendMessageToIframe({ page: 'about' })
+                    sendMessageToIframe({ page: 'Me.jpg' })
                 }, 250)
             },
             onLeaveBack: () => {
-                sendMessageToIframe({ close: 'about' })
+                sendMessageToIframe({ close: 'Me.jpg' })
             }
         })
         ScrollTrigger.create({
@@ -39,10 +39,10 @@ export default function Content({ children }: ContentProps) {
             end: 'bottom center',
             scroller: '#content',
             onEnter: () => {
-                sendMessageToIframe({ page: 'projects' })
+                sendMessageToIframe({ page: 'Portfolio' })
             },
             onLeaveBack: () => {
-                sendMessageToIframe({ close: 'projects' })
+                sendMessageToIframe({ close: 'Portfolio' })
             },
         })
     }, [iframeContext])

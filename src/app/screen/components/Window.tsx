@@ -37,28 +37,19 @@ export default function Window({
     const [isClosing, setIsClosing] = useState(false)
     const closeRef = React.useRef<HTMLDivElement>(null)
 
-    const handleClose = () => {
+    const handleClose = React.useCallback(() => {
         setIsTransitioning(true)
         setIsClosing(true)
         setTimeout(() => {
             if (onClose) onClose()
         }, ANIMATION_DURATION * 1000)
-    }
+    }, [onClose])
 
     useEffect(() => {
         const onMessage = (event: MessageEvent) => {
-            // A bit of a hacky way to open the right window on scroll
-            if (event.data.close === 'about' && title === 'Me.jpg') {
+            if (event.data.close && (event.data.close === title)) {
                 if (closeRef.current) {
-                        closeRef.current.dispatchEvent(
-                            new MouseEvent('mousedown', { bubbles: true }),
-                        )
-                }
-            } else if (event.data.close === 'projects' && title === 'Portfolio') {
-                if (closeRef.current) {
-                    closeRef.current.dispatchEvent(
-                        new MouseEvent('mousedown', { bubbles: true }),
-                    )
+                    closeRef.current.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
                 }
             }
         }
@@ -68,7 +59,7 @@ export default function Window({
         return () => {
             window.removeEventListener('message', onMessage)
         }
-    }, [title])
+    }, [title, handleClose])
 
     return (
         <>
@@ -166,7 +157,7 @@ export default function Window({
                         <div className="flex h-[28px] items-center justify-between border-b-4 border-double border-black">
                             <p className="mx-[10px] font-geneva text-[25px] font-bold">
                                 {title !== 'Trash'
-                                    ? `${React.Children.count(children)} items`
+                                    ? `${React.Children.count(children) - 2} items`
                                     : '0 items'}
                             </p>
                             <p
@@ -191,7 +182,7 @@ export default function Window({
                                     rowSpan={3}
                                     colSpan={3}
                                 >
-                                    <div className="flex h-full w-full p-0">
+                                    <div className="h-full w-full">
                                         {children}
                                     </div>
                                 </td>

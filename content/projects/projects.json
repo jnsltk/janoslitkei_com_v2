@@ -17,13 +17,17 @@
       "links": [
         {
           "name": "GitHub",
-          "url": "https://github.com/jnsltk"
+          "url": "https://github.com/jnsltk/fraud_detection"
         },
         {
           "name": "Website",
           "url": ""
         }
-      ]
+      ],
+      "screenData": {
+        "title": "fraud_detection",
+        "contentSrc": "/images/projects/fraud_detection.gif"
+      }
     },
     {
       "name": "Self Driving Car",

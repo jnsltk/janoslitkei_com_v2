@@ -4,7 +4,7 @@ import Image, { StaticImageData } from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const ANIMATION_DURATION = 0.15
+const ANIMATION_DURATION = 0.2
 
 export interface FinderIconProps {
     icon: StaticImageData
@@ -104,7 +104,10 @@ export default function FinderIcon({
     useEffect(() => {
         const onMessage = (event: MessageEvent) => {
             // A bit of a hacky way to open the right window on scroll
-            if (event.data.page === 'about' && title === 'Me.jpg') {
+            if (
+                (event.data.page === title) ||
+                (event.data.page === title)
+            ) {
                 if (iconRef.current) {
                     iconRef.current.dispatchEvent(
                         new MouseEvent('mousedown', { bubbles: true }),
@@ -115,22 +118,6 @@ export default function FinderIcon({
                         )
                     }, 100)
                 }
-            } else if (
-                event.data.page === 'projects' &&
-                title === 'Portfolio'
-            ) {
-                setTimeout(() => {
-                    if (iconRef.current) {
-                        iconRef.current.dispatchEvent(
-                            new MouseEvent('mousedown', { bubbles: true }),
-                        )
-                        setTimeout(() => {
-                            iconRef.current?.dispatchEvent(
-                                new MouseEvent('mousedown', { bubbles: true }),
-                            )
-                        }, 100)
-                    }
-                }, 250)
             }
         }
 
@@ -148,7 +135,7 @@ export default function FinderIcon({
                     id={iconID}
                     ref={iconRef}
                     onMouseDown={handleClick}
-                    className="relative flex max-h-[65px] flex-col items-center"
+                    className="relative flex max-h-[65px] max-w-[65px] flex-col items-center"
                 >
                     <motion.div
                         initial={
@@ -199,7 +186,7 @@ export default function FinderIcon({
                     id={iconID}
                     ref={iconRef}
                     onMouseDown={handleClick}
-                    className="flex max-h-[65px] flex-col items-center"
+                    className="flex max-h-[65px] max-w-[65px] flex-col items-center"
                 >
                     <Image
                         src={

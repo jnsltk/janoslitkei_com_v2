@@ -6,11 +6,12 @@ import { useState, useCallback } from 'react'
 import FadeInSection from '../FadeInSection'
 
 export default function ProjectsSection() {
-    const [activeProject, setActiveProject] = useState<number>(0)
+    const [activeProjectCategory, setActiveProjectCategory] =
+        useState<number>(0)
     const [resetState, setResetState] = useState<boolean>(false)
 
     const handleActiveProjectChange = useCallback((index: number) => {
-        setActiveProject(index)
+        setActiveProjectCategory(index)
         setResetState(prevState => !prevState)
     }, [])
 
@@ -33,13 +34,13 @@ export default function ProjectsSection() {
                             </div>
                             <div>
                                 <ProjectsMenu
-                                    activeProject={activeProject}
+                                    activeProject={activeProjectCategory}
                                     handleActiveProjectChange={
                                         handleActiveProjectChange
                                     }
                                 ></ProjectsMenu>
                                 <ProjectList
-                                    projectsCategory={activeProject}
+                                    projectsCategory={activeProjectCategory}
                                     resetState={resetState}
                                 ></ProjectList>
                             </div>

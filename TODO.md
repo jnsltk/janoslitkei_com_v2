@@ -4,8 +4,14 @@
 
 - [ ] Add content to the monitor screen
   - [-] Figure out and add initial content
-  - [ ] Add ~~images~~ GIFs for the projects and make them switch per project
-  - [ ] Load screen content from the same json file that's used for the project menu
+  - [-] Add ~~images~~ GIFs for the projects and make them switch per project
+  - [x] Figure out how to load first project on page scroll
+  - [x] Load first project of next category, and close the previous one
+  - [x] Close currently open project when scrolling back up from the projects
+  - [ ] Sync accordion menu to screen, i.e. selecting a project on the screen should change the accordion menu too
+  - [ ] Icon animation Z-index should match the corresponding window's
+  - [ ] Add screen saying "hello"
+  - [x] Load screen content from the same json file that's used for the project menu
   - [x] Add custom shader effects to the monitor screen
   - ~~[ ] Add bloom effect to screen~~
 - [ ] Fix layout and model for tablet screens

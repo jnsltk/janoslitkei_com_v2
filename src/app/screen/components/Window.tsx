@@ -8,6 +8,7 @@ import arrowUp from '../../../../public/pc/screen/ui/arrow_up.png'
 import arrowDown from '../../../../public/pc/screen/ui/arrow_down.png'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import projects from '../../../../content/projects/projects.json'
 
 const ANIMATION_DURATION = 0.25
 
@@ -46,8 +47,19 @@ export default function Window({
     }, [onClose])
 
     useEffect(() => {
+        const projectTitles: string[] = []
+        projects.forEach((projectCategory) => {
+            projectCategory.forEach((project) => {
+                projectTitles.push(project.screenData.title)
+            })
+        })
         const onMessage = (event: MessageEvent) => {
             if (event.data.close && (event.data.close === title)) {
+                if (closeRef.current) {
+                    closeRef.current.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+                }
+            // Close all projects
+            } else if (event.data.close && event.data.close === 'projects' && projectTitles.includes(title)) {
                 if (closeRef.current) {
                     closeRef.current.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
                 }

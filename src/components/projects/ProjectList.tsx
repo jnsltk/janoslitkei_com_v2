@@ -17,6 +17,7 @@ export default function ProjectList(
         resetState: false,
     },
 ) {
+    const [openIndex, setOpenIndex] = useState<number | null>(0)
     const iframeContext = useIframe()
     const sendMessageToIframe = useMemo(
         () => (iframeContext ? iframeContext.sendMessageToIframe : () => {}),
@@ -24,9 +25,13 @@ export default function ProjectList(
     )
     useEffect(() => {
         setOpenIndex(0)
+        sendMessageToIframe({
+            page: 'Projects',
+            close: 'projects',
+            projectTitle: projects[projectsCategory][0].screenData.title,
+        })
     }, [resetState, projectsCategory, sendMessageToIframe])
 
-    const [openIndex, setOpenIndex] = useState<number | null>(0)
     return (
         <div id="project-list" className="flex flex-col gap-2">
             {projects[projectsCategory].map((project: Project, index) => {
@@ -36,9 +41,8 @@ export default function ProjectList(
                         project={project}
                         isOpen={openIndex === index}
                         onClick={() => {
-                            const prevProject = projects[projectsCategory][
-                                openIndex || 0
-                            ]
+                            const prevProject =
+                                projects[projectsCategory][openIndex || 0]
                             setOpenIndex(openIndex === index ? null : index)
                             sendMessageToIframe({
                                 page: 'Projects',

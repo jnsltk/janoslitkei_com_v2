@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect } from 'react'
 import { useIframe } from '@/components/IframeContext'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import projects from '../../content/projects/projects.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,7 +32,7 @@ export default function Content({ children }: ContentProps) {
             },
             onLeaveBack: () => {
                 sendMessageToIframe({ close: 'Me.jpg' })
-            }
+            },
         })
         ScrollTrigger.create({
             trigger: '#projects',
@@ -40,9 +41,17 @@ export default function Content({ children }: ContentProps) {
             scroller: '#content',
             onEnter: () => {
                 sendMessageToIframe({ page: 'Portfolio' })
+                setTimeout(() => {
+                    sendMessageToIframe({
+                        page: projects[0][0].screenData.title,
+                    })
+                }, 1000)
             },
             onLeaveBack: () => {
-                sendMessageToIframe({ close: 'Portfolio' })
+                setTimeout(() => {
+                    sendMessageToIframe({ close: 'Portfolio' })
+                }, 500)
+                sendMessageToIframe({ close: 'projects' })
             },
         })
     }, [iframeContext])

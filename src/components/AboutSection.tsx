@@ -24,7 +24,7 @@ export default function AboutSection() {
                                 <li className="mb-2">
                                     🔧 I&apos;ve worked on lots of{' '}
                                     <a className="link">projects</a> as part of
-                                    my course
+                                    my programme
                                 </li>
                                 <li className="mb-2">
                                     🌟 My favourite programming language is{' '}

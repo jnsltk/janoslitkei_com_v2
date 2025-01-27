@@ -85,6 +85,7 @@ export default function FinderIcon({
                 if (onOpen) onOpen()
             }, ANIMATION_DURATION * 1000)
             setDoubleClickTimerActive(false)
+            window.parent.postMessage({iconOpened: title}, '*')
             return
         }
         setIsSelected(true)
@@ -92,7 +93,7 @@ export default function FinderIcon({
         setTimeout(() => {
             setDoubleClickTimerActive(false)
         }, 500)
-    }, [setIsSelected, onOpen, doubleClickTimerActive])
+    }, [setIsSelected, onOpen, doubleClickTimerActive, title])
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside)

@@ -9,10 +9,10 @@
   - [x] Load first project of next category, and close the previous one
   - [x] Close currently open project when scrolling back up from the projects
   - [x] Sync accordion menu to screen, i.e. selecting a project on the screen should change the accordion menu too
-  - [ ] Fix menu navigation opening random windows
+  - [x] Fix menu navigation opening random windows
   - [ ] Add scrollspy
   - [ ] Icon animation Z-index should match the corresponding window's
-  - [ ] Add screen saying "hello"
+  - [x] Add screen saying "hello"
   - [x] Load screen content from the same json file that's used for the project menu
   - [x] Add custom shader effects to the monitor screen
   - ~~[ ] Add bloom effect to screen~~

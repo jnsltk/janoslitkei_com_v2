@@ -32,6 +32,7 @@ export default function Content({ children }: ContentProps) {
             },
             onLeaveBack: () => {
                 sendMessageToIframe({ close: 'Me.jpg' })
+                sendMessageToIframe({ page: 'welcome' })
             },
         })
         ScrollTrigger.create({

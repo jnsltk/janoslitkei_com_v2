@@ -22,7 +22,6 @@
 
 ## New features
 
-- [ ] Add replay button to intro animation
 - [ ] Add scrollspy
 - [ ] Add tech labels to projects
 
@@ -43,6 +42,7 @@
 
 ## DONE
 
+- [x] Add replay button to intro animation
 - [x] Add video textures to the monitor screen
 - [x] Fix layout and model for large screens
 - [x] Fix resize screen for the model

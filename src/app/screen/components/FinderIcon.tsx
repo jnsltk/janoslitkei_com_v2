@@ -14,6 +14,7 @@ export interface FinderIconProps {
     isWindowOpen: boolean
     isWindowClosing?: boolean
     windowSpawnPosition: { x: number; y: number }
+    animationZIndex?: number
     onOpen?: () => void
 }
 
@@ -25,6 +26,7 @@ export default function FinderIcon({
     isWindowOpen,
     isWindowClosing,
     windowSpawnPosition,
+    animationZIndex,
     onOpen,
 }: FinderIconProps) {
     const iconRef = useRef<HTMLDivElement>(null)
@@ -177,6 +179,7 @@ export default function FinderIcon({
                             ease: 'linear',
                         }}
                         className="absolute right-0 top-0 h-[45px] w-[45px] border-4 border-neutral-600"
+                        style={{zIndex: animationZIndex}}
                     />
                     <Image
                         src={windowOpenIcon}

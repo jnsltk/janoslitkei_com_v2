@@ -32,7 +32,6 @@ export default function ProjectsSection() {
     useEffect(() => {
         const handleIframeMessage = (event: MessageEvent) => {
             if (event.data.iconOpened) {
-                console.log('Icon opened: ', event.data.iconOpened)
                 for (let i = 0; i < projects.length; i++) {
                     for (let j = 0; j < projects[i].length; j++) {
                         if (

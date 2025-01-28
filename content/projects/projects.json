@@ -1,184 +1,165 @@
 [
-  [
-    {
-      "name": "fraud_detection",
-      "description": "Advanced AI solution to detect financial fraud in monetary transactions.",
-      "tech": [
-        "Python",
-        "Machine Learning",
-        "Keras",
-        "SKLearn",
-        "Django",
-        "Tailwind CSS",
-        "HTMX",
-        "Docker",
-        "Kubernetes"
-      ],
-      "links": [
+    [
         {
-          "name": "GitHub",
-          "url": "https://github.com/jnsltk/fraud_detection"
-        },
-        {
-          "name": "Website",
-          "url": ""
-        }
-      ],
-      "screenData": {
-        "title": "fraud_detection",
-        "contentSrc": "/images/projects/fraud_detection.gif",
-        "alt": "Fraud Detection"
-      }
-    },
-    {
-      "name": "Self Driving Car",
-      "description": "Software for a self driving car model using computer vision.",
-      "tech": [
-        "C++",
-        "OpenCV",
-        "Docker",
-        "Multipass development environment"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": ""
-        }
-      ],
-      "screenData": {
-        "title": "self_drive",
-        "contentSrc": "/images/projects/self_driving_car.gif",
-        "alt": "Self Driving Car"
-      }
-    },
-    {
-      "name": "Dentigo",
-      "description": "A distributed system for managing appointments for dental clinics in Gothenburg.",
-      "tech": [
-        "TypeScript",
-        "VueJS",
-        "BankID integration",
-        "Docker",
-        "Custom asymmetric encryption"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": ""
-        },
-        {
-          "name": "Website",
-          "url": ""
-        }
-      ],
-      "screenData": {
-        "title": "dentigo",
-        "contentSrc": "/images/projects/dentigo.gif",
-        "alt": "Dentigo"
-      }
-    }
-  ],
-  [
-    {
-      "name": "Personal Website",
-      "description": "This website, where I experiment with different technologies and designs, version 2. This time with a focus on learning ThreeJS and GSAP.",
-      "tech": [
-        "HTMX",
-        "Tailwind CSS",
-        "ThreeJS",
-        "GSAP",
-        "Flask"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": ""
-        },
-        {
-          "name": "Website",
-          "url": ""
-        }
-      ],
-      "screenData": {
-        "title": "my_website",
-        "contentSrc": "/images/projects/personal_website.gif",
-        "alt": "Personal Website"
-      }
-    },
-    {
-      "name": "Naše Konyha",
-      "description": "A personal recipe aggregator website for my girlfriend and I. Used as a learning project for PHP.",
-      "tech": [
-        "PHP",
-        "Tailwind CSS",
-        "MySQL",
-        "Docker"
-      ],
-        "links": [
-            {
-            "name": "GitHub",
-            "url": ""
-            },
-            {
-            "name": "Website",
-            "url": ""
+            "name": "fraud_detection",
+            "description": "An advanced, data-intensive AI solution designed for fraud detection in financial transactions. It leverages the power of deep neural networks (DNNs) to classify transactions as fraudulent or legitimate based on their features. The trained DNN model is integrated into a user-friendly web application built with the Django framework, enabling seamless access and deployment.",
+            "tech": [
+                "Python",
+                "Machine Learning",
+                "Keras",
+                "SKLearn",
+                "Django",
+                "Tailwind CSS",
+                "HTMX",
+                "Docker",
+                "Kubernetes"
+            ],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com/jnsltk/fraud_detection"
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "fraud_detection",
+                "contentSrc": "/images/projects/fraud_detection.gif",
+                "alt": "Fraud Detection"
             }
-        ],
-        "screenData": {
-          "title": "nase_konyha",
-          "contentSrc": "/images/projects/nase_konyha.gif",
-          "alt": "Naše Konyha"
-        }
-    }
-  ],
-  [
-    {
-      "name": "Project 1",
-      "description": "Description of project 1.",
-      "tech": [
-        "Tech 1",
-        "Tech 2",
-        "Tech 3"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": ""
         },
         {
-          "name": "Website",
-          "url": ""
-        }
-      ],
-      "screenData": {
-        "title": "project_1",
-        "contentSrc": "/images/projects/fraud_detection.gif",
-        "alt": "Project 1"
-      }
-    },
-    {
-      "name": "Project 2",
-      "description": "Description of project 2.",
-      "tech": [
-        "Tech 1",
-        "Tech 2",
-        "Tech 3"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": ""
+            "name": "Self Driving Car",
+            "description": "Software for a self driving car model using computer vision.",
+            "tech": [
+                "C++",
+                "OpenCV",
+                "Docker",
+                "Multipass development environment"
+            ],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "self_driving",
+                "contentSrc": "/images/projects/self_driving.gif",
+                "alt": "Self Driving Car"
+            }
         },
         {
-          "name": "Website",
-          "url": ""
+            "name": "Dentigo",
+            "description": "A distributed system for managing appointments for dental clinics in Gothenburg.",
+            "tech": [
+                "TypeScript",
+                "VueJS",
+                "BankID integration",
+                "Docker",
+                "Custom asymmetric encryption"
+            ],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "dentigo",
+                "contentSrc": "/images/projects/dentigo.gif",
+                "alt": "Dentigo"
+            }
         }
-      ],
-      "screenData": {
-        "title": "project_2",
-        "contentSrc": "/images/projects/fraud_detection.gif",
-        "alt": "Project 2"
-      }
-    }
-  ]
+    ],
+    [
+        {
+            "name": "Personal Website",
+            "description": "This website is my second iteration, where I explored new technologies and designs. To build it, I stepped out of my comfort zone and learned Next.js, Three.js, and GSAP from scratch, including working with 3D graphics. It’s been a rewarding challenge that allowed me to improve my problem-solving skills and experiment with modern web development techniques.",
+            "tech": ["Next.js", "React", "Tailwind CSS", "ThreeJS", "GSAP"],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "my_website",
+                "contentSrc": "/images/projects/personal_website.gif",
+                "alt": "Personal Website"
+            }
+        },
+        {
+            "name": "Naše Konyha -- Upcoming",
+            "description": "A personal recipe aggregator website for my girlfriend and I. Used as a learning project for PHP.",
+            "tech": ["PHP", "Tailwind CSS", "MySQL", "Docker"],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "nase_konyha",
+                "contentSrc": "/images/projects/nase_konyha.gif",
+                "alt": "Naše Konyha"
+            }
+        }
+    ],
+    [
+        {
+            "name": "Project 1",
+            "description": "Description of project 1.",
+            "tech": ["Tech 1", "Tech 2", "Tech 3"],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "project_1",
+                "contentSrc": "/images/projects/fraud_detection.gif",
+                "alt": "Project 1"
+            }
+        },
+        {
+            "name": "Project 2",
+            "description": "Description of project 2.",
+            "tech": ["Tech 1", "Tech 2", "Tech 3"],
+            "links": [
+                {
+                    "name": "GitHub",
+                    "url": ""
+                },
+                {
+                    "name": "Website",
+                    "url": ""
+                }
+            ],
+            "screenData": {
+                "title": "project_2",
+                "contentSrc": "/images/projects/fraud_detection.gif",
+                "alt": "Project 2"
+            }
+        }
+    ]
 ]

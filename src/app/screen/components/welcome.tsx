@@ -9,16 +9,20 @@ interface WelcomeProps {
 export default function Welcome({ showMsg }: WelcomeProps) {
     return (
         <div className="flex h-screen w-screen items-center justify-center bg-monitor-bg">
-            {!showMsg ? (
+            {showMsg ? (
+                <div className="h-auto w-4/5">
+                    <Image
+                        src={hello}
+                        alt="A handwritten note that says 'Hello'"
+                        className="h-auto w-full"
+                        priority
+                    ></Image>
+                </div>
+            ) : (
                 <Image
                     src={macIcon}
                     alt="An icon of a Macintosh computer"
-                ></Image>
-            ) : (
-                <Image
-                    src={hello}
-                    alt="A handwritten note that says 'Hello'"
-                    className="h-auto w-4/5"
+                    priority
                 ></Image>
             )}
         </div>

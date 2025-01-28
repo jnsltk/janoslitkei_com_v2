@@ -10,8 +10,7 @@
   - [x] Close currently open project when scrolling back up from the projects
   - [x] Sync accordion menu to screen, i.e. selecting a project on the screen should change the accordion menu too
   - [x] Fix menu navigation opening random windows
-  - [ ] Add scrollspy
-  - [ ] Icon animation Z-index should match the corresponding window's
+  - [x] Icon animation Z-index should match the corresponding window's
   - [x] Add screen saying "hello"
   - [x] Load screen content from the same json file that's used for the project menu
   - [x] Add custom shader effects to the monitor screen
@@ -19,8 +18,13 @@
 - [ ] Fix layout and model for tablet screens
 - [ ] Make page responsive
 - [ ] Replace document.getElementById call in Camera with useRef
+- [ ] Add credits and inspirations
 
 ## New features
+
+- [ ] Add replay button to intro animation
+- [ ] Add scrollspy
+- [ ] Add tech labels to projects
 
 ## Low Priority
 

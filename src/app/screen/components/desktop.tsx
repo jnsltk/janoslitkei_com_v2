@@ -9,6 +9,7 @@ import trashWindowOpen from '../../../../public/pc/screen/ui/trash_window_open.p
 import fileWhite from '../../../../public/pc/screen/ui/file_white.png'
 import fileBlack from '../../../../public/pc/screen/ui/file_black.png'
 import fileWindowOpen from '../../../../public/pc/screen/ui/file_window_open.png'
+import me from '../../../../public/pc/screen/me_4.png'
 import FinderIcon from './FinderIcon'
 import MenuBar from './MenuBar'
 import Window from './Window'
@@ -110,6 +111,7 @@ export default function Desktop() {
                                 x: app.width / 2 + app.x,
                                 y: app.height / 2 + app.y,
                             }}
+                            animationZIndex={app.z}
                             onOpen={() => handleOpenWindow(app.title)}
                         />
                     )
@@ -191,6 +193,9 @@ export default function Desktop() {
                                                                     2 +
                                                                 PORTFOLIO_APPLICATION.y,
                                                         }}
+                                                        animationZIndex={
+                                                            PORTFOLIO_APPLICATION.z
+                                                        }
                                                         onOpen={() =>
                                                             handleOpenWindow(
                                                                 project
@@ -209,10 +214,10 @@ export default function Desktop() {
                             {app.title === 'Me.jpg' && (
                                 <div className="relative h-full w-full">
                                     <Image
-                                        src={'/pc/screen/me_4.png'}
-                                        layout="fill"
+                                        src={me}
                                         alt="Me, János Litkei"
                                         className="h-full w-full object-cover"
+                                        priority
                                     />
                                 </div>
                             )}
@@ -235,18 +240,24 @@ export default function Desktop() {
                                 windowZ={PORTFOLIO_APPLICATION.z}
                                 windowWidth={PORTFOLIO_APPLICATION.width}
                                 windowHeight={PORTFOLIO_APPLICATION.height}
-                                isFinderWindow={PORTFOLIO_APPLICATION.isFinderWindow}
+                                isFinderWindow={
+                                    PORTFOLIO_APPLICATION.isFinderWindow
+                                }
                                 onClose={() => {
                                     setOpenWindows(
                                         openWindows.filter(
-                                            window => window !== project.screenData.title,
+                                            window =>
+                                                window !==
+                                                project.screenData.title,
                                         ),
                                     )
                                     handleCloseWindow(project.screenData.title)
                                     setTimeout(() => {
                                         setClosingWindows(
                                             closingWindows.filter(
-                                                window => window !== project.screenData.title,
+                                                window =>
+                                                    window !==
+                                                    project.screenData.title,
                                             ),
                                         )
                                     }, 150)
@@ -257,6 +268,7 @@ export default function Desktop() {
                                         src={project.screenData.contentSrc}
                                         layout="fill"
                                         alt={project.screenData.title}
+                                        priority
                                         className="h-full w-full object-cover"
                                     />
                                 </div>

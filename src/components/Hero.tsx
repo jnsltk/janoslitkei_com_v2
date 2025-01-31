@@ -12,9 +12,13 @@ export default function Hero() {
     const [typed, setTyped] = useState<Typed | null>(null)
 
     const onReset = () => {
-        typed?.reset()
-        setShowDescription(false)
-        setShowReset(false)
+        setTimeout(() => {
+            setShowDescription(false)
+            setShowReset(false)
+        }, 150)
+        setTimeout(() => {
+            typed?.reset()
+        }, 700)
     }
 
     return (
@@ -58,10 +62,11 @@ export default function Hero() {
                             </p>
                         )}
                         <a
-                            className={`flex items-center cursor-pointer mt-4 text-xs font-light text-neutral-50/50 hover:text-neutral-50/95 transition-all duration-700 ease-out ${showReset ? 'opactity-100 translate-y-0' : 'translate-y-12 opacity-0'}`}
-                            onClick={onReset}
+                            className={`group mt-4 flex cursor-pointer items-center text-xs font-light text-neutral-50/50 transition-all duration-700 ease-out hover:text-neutral-50/95 active:text-cinnabar-500/95 active:duration-150 ${showReset ? 'opactity-100' : 'opacity-0'}`}
+                            onMouseDown={onReset}
                         >
-                            <GrPowerReset /> &nbsp;Replay
+                            <GrPowerReset className="transition-all duration-700 ease-out group-hover:rotate-180 group-hover:text-neutral-50/95 group-active:text-cinnabar-500/95 group-active:duration-150" />{' '}
+                            &nbsp;Replay
                         </a>
                     </div>
                 </div>

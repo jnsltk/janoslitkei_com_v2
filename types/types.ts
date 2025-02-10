@@ -1,12 +1,12 @@
 export interface Project {
-    name: string,
-    description: string,
-    tech: string[],
-    links: { name: string, url: string }[]
+    name: string
+    description: string
+    tech: string[]
+    links: { name: string; url: string }[]
     screenData: {
-        title: string, 
-        contentSrc: string,
-        alt: string,
+        title: string
+        contentSrc: string
+        alt: string
     }
 }
 

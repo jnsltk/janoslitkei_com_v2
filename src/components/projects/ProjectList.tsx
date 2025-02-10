@@ -13,8 +13,12 @@ interface ProjectListProps {
     setOpenIndex: (index: number | null) => void
 }
 
-export default function ProjectList(
-    { projectsCategory, resetState, openIndex, setOpenIndex }: ProjectListProps) {
+export default function ProjectList({
+    projectsCategory,
+    resetState,
+    openIndex,
+    setOpenIndex,
+}: ProjectListProps) {
     const iframeContext = useIframe()
     const sendMessageToIframe = useMemo(
         () => (iframeContext ? iframeContext.sendMessageToIframe : () => {}),

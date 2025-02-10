@@ -5,10 +5,10 @@
 @layer base {
     @font-face {
         font-family: Chicago;
-        src: url(/pc/screen/ui/chicago-12-1.ttf)
+        src: url(/pc/screen/ui/chicago-12-1.ttf);
     }
     @font-face {
         font-family: 'Geneva Nine';
-        src: url(/pc/screen/ui/geneva-9-1.ttf)
+        src: url(/pc/screen/ui/geneva-9-1.ttf);
     }
 }

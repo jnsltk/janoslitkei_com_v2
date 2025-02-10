@@ -34,7 +34,11 @@ export default function Screen() {
     return (
         <html lang="en" className="h-full overflow-hidden">
             <body>
-                {content === 'welcome' ? <Welcome showMsg={showMsg} /> : <Desktop />}
+                {content === 'welcome' ? (
+                    <Welcome showMsg={showMsg} />
+                ) : (
+                    <Desktop />
+                )}
             </body>
         </html>
     )

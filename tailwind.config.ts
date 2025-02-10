@@ -1,10 +1,10 @@
-import type {Config} from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 export default {
     content: [
-        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
@@ -12,7 +12,7 @@ export default {
                 'monitor-bg': "url('/pc/screen/ui/background.png')",
             },
             screens: {
-                'full': '800px',
+                full: '800px',
             },
             fontFamily: {
                 sans: ['var(--font-inter)'],
@@ -21,7 +21,7 @@ export default {
                 geneva: ['Geneva Nine', 'sans-serif'],
             },
             colors: {
-                'ultramarine': {
+                ultramarine: {
                     '50': '#f1f3ff',
                     '100': '#e6e9ff',
                     '200': '#d0d7ff',
@@ -47,7 +47,7 @@ export default {
                     '900': '#35392e',
                     '950': '#1a1d16',
                 },
-                'cinnabar': {
+                cinnabar: {
                     '50': '#fef4f2',
                     '100': '#fde7e3',
                     '200': '#fdd2cb',
@@ -73,9 +73,14 @@ export default {
                     '900': '#495166',
                     '950': '#2b2f3b',
                 },
-
-            }
+            },
+            gridTemplateColumns: {
+                window: '22px minmax(0, 1fr) 22px 22px',
+            },
+            gridTemplateRows: {
+                window: '24px minmax(0, 1fr) 25px 22px',
+            },
         },
     },
     plugins: [],
-} satisfies Config;
+} satisfies Config

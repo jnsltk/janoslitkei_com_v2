@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 
 const fadeInVariant = {
-    hidden: { opacity: 0, y: 50 }, 
+    hidden: { opacity: 0, y: 50 },
     visible: {
         opacity: 1,
         y: 0,
@@ -15,9 +15,9 @@ import { ReactNode } from 'react'
 const FadeInSection = ({ children }: { children: ReactNode }) => {
     return (
         <motion.div
-            variants={fadeInVariant} 
-            initial="hidden" 
-            whileInView="visible" 
+            variants={fadeInVariant}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: false, amount: 0.2 }}
         >
             {children}

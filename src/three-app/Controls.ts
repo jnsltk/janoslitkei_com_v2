@@ -19,7 +19,9 @@ export default class Controls {
     public constructor() {
         this.app = new App(undefined)
         if (this.app.camera) this.camera = this.app.camera.instance
-        if (this.app.renderer) this.domElement = this.app.renderer.instance?.domElement as HTMLElement
+        if (this.app.renderer)
+            this.domElement = this.app.renderer.instance
+                ?.domElement as HTMLElement
         this.instance = this.createControls()
     }
 
@@ -28,7 +30,8 @@ export default class Controls {
      * @returns The OrbitControls instance.
      */
     private createControls(): OrbitControls {
-        if (!this.camera || !this.domElement) throw new Error('Camera or domElement not found')
+        if (!this.camera || !this.domElement)
+            throw new Error('Camera or domElement not found')
         const controls = new OrbitControls(this.camera, this.domElement)
         controls.enableZoom = false
         controls.enablePan = false
@@ -39,4 +42,3 @@ export default class Controls {
         return controls
     }
 }
-

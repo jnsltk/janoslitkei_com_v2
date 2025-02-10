@@ -4,13 +4,15 @@ export default class ScreenMask {
     public material?: THREE.ShaderMaterial
 
     public constructor() {
-        this.initialize();
+        this.initialize()
     }
 
     private async initialize() {
         // Shaders inspired by ChatGPT
         const vertexShader = await this.loadShader('/shaders/screenVertex.glsl')
-        const fragmentShader = await this.loadShader('/shaders/screenFragment.glsl')
+        const fragmentShader = await this.loadShader(
+            '/shaders/screenFragment.glsl',
+        )
         this.material = new THREE.ShaderMaterial({
             vertexShader,
             fragmentShader,

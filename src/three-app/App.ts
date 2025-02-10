@@ -80,7 +80,7 @@ export default class App {
         webgl: HTMLDivElement | undefined,
         css3d: HTMLDivElement | undefined,
     ): Promise<void> {
-        return new Promise(async (resolve) => {
+        return new Promise(async resolve => {
             // Set the camera controls instance since the camera is created before the controls
             if (this.sceneBuilder) {
                 const { scene, cssScene } = await this.sceneBuilder.build()

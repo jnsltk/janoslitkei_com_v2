@@ -23,6 +23,7 @@ export interface WindowProps {
     isFinderWindow?: boolean
     onClose?: () => void
 }
+
 export default function Window({
     title,
     children,
@@ -48,20 +49,28 @@ export default function Window({
 
     useEffect(() => {
         const projectTitles: string[] = []
-        projects.forEach((projectCategory) => {
-            projectCategory.forEach((project) => {
+        projects.forEach(projectCategory => {
+            projectCategory.forEach(project => {
                 projectTitles.push(project.screenData.title)
             })
         })
         const onMessage = (event: MessageEvent) => {
-            if (event.data.close && (event.data.close === title)) {
+            if (event.data.close && event.data.close === title) {
                 if (closeRef.current) {
-                    closeRef.current.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+                    closeRef.current.dispatchEvent(
+                        new MouseEvent('mousedown', { bubbles: true }),
+                    )
                 }
-            // Close all projects
-            } else if (event.data.close && event.data.close === 'projects' && projectTitles.includes(title)) {
+                // Close all projects
+            } else if (
+                event.data.close &&
+                event.data.close === 'projects' &&
+                projectTitles.includes(title)
+            ) {
                 if (closeRef.current) {
-                    closeRef.current.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+                    closeRef.current.dispatchEvent(
+                        new MouseEvent('mousedown', { bubbles: true }),
+                    )
                 }
             }
         }
@@ -113,7 +122,7 @@ export default function Window({
                             ease: 'linear',
                         }}
                         className="absolute border-4 border-neutral-600"
-                        style={{zIndex: windowZ}}
+                        style={{ zIndex: windowZ }}
                         onAnimationComplete={() => {
                             setIsTransitioning(false)
                         }}
@@ -184,65 +193,51 @@ export default function Window({
                             </p>
                         </div>
                     )}
-                    <table className="h-full w-full">
-                        <tbody>
-                            <tr>
-                                <td
-                                    className={
-                                        'border-b-2 border-r-2 border-black'
-                                    }
-                                    rowSpan={3}
-                                    colSpan={3}
-                                >
-                                    <div className="h-full w-full">
-                                        {children}
-                                    </div>
-                                </td>
-                                <td className="relative h-[22px] w-[22px] border-b-2 border-black p-0">
-                                    <Image
-                                        className="absolute left-0 top-0 h-auto w-[20px]"
-                                        src={arrowUp}
-                                        alt="An arrow pointing up"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="border-b-2 border-black"></td>
-                            </tr>
-                            <tr>
-                                <td className="relative h-[22px] w-[22px] border-b-2 border-t-2 border-black p-0">
-                                    <Image
-                                        className="absolute bottom-0 left-0 h-auto w-[20px]"
-                                        src={arrowDown}
-                                        alt="An arrow pointing down"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="relative h-[22px] w-[22px] border-r-2 border-black p-0">
-                                    <Image
-                                        className="absolute left-0 top-0 h-[20px] w-auto"
-                                        src={arrowLeft}
-                                        alt="An arrow pointing left"
-                                    />
-                                </td>
-                                <td className="h-[22px] border-r-2 border-black"></td>
-                                <td className="relative h-[22px] w-[22px] border-r-2 border-black p-0">
-                                    <Image
-                                        className="absolute right-0 top-0 h-[20px] w-auto"
-                                        src={arrowRight}
-                                        alt="An arrow pointing right"
-                                    />
-                                </td>
-                                <td className="h-[22px] w-[22px]">
-                                    <div className="relative h-full w-full">
-                                        <div className="absolute bottom-[1px] right-[1px] h-[14px] w-[14px] border-2 border-black bg-white"></div>
-                                        <div className="absolute left-[2px] top-[2px] h-[10px] w-[10px] border-2 border-black bg-white"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="grid h-full w-full grid-cols-window grid-rows-window">
+                        <div
+                            className={
+                                'col-span-3 row-span-3 h-full w-full border-b-2 border-r-2 border-black'
+                            }
+                        >
+                            {children}
+                        </div>
+                        <div className="relative border-b-2 border-black p-0">
+                            <Image
+                                className="absolute left-0 top-0 h-auto w-[20px]"
+                                src={arrowUp}
+                                alt="An arrow pointing up"
+                            />
+                        </div>
+                        <div className="border-black"></div>
+                        <div className="relative border-b-2 border-t-2 border-black p-0">
+                            <Image
+                                className="absolute bottom-0 left-0 h-auto w-[20px]"
+                                src={arrowDown}
+                                alt="An arrow pointing down"
+                            />
+                        </div>
+                        <div className="relative border-r-2 border-black p-0">
+                            <Image
+                                className="absolute left-0 top-0 h-[20px] w-auto"
+                                src={arrowLeft}
+                                alt="An arrow pointing left"
+                            />
+                        </div>
+                        <div className="border-r-2 border-black"></div>
+                        <div className="relative border-r-2 border-black p-0">
+                            <Image
+                                className="absolute right-0 top-0 h-[20px] w-auto"
+                                src={arrowRight}
+                                alt="An arrow pointing right"
+                            />
+                        </div>
+                        <div className=" ">
+                            <div className="relative h-full w-full">
+                                <div className="absolute bottom-[1px] right-[1px] h-[14px] w-[14px] border-2 border-black bg-white"></div>
+                                <div className="absolute left-[2px] top-[2px] h-[10px] w-[10px] border-2 border-black bg-white"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </>

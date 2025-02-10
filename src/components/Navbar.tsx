@@ -6,7 +6,7 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useState, useCallback } from 'react'
-import { HiMenuAlt3 } from "react-icons/hi"
+import { HiMenuAlt3 } from 'react-icons/hi'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -53,29 +53,28 @@ export default function Navbar() {
                 })
             }
         },
-        []
+        [],
     )
     return (
-        <div className="flex items-center justify-between w-screen bg-slate-900 fixed z-50 h-16 top-0 px-6">
+        <div className="fixed top-0 z-50 flex h-16 w-screen items-center justify-between bg-slate-900 px-6">
             <Link href="/" className="flex items-center gap-4">
-                <Image src={logo} alt="logo" className="w-5 h-5" />
-                <span className="text-xl text-slate-50/75 font-mono">
+                <Image src={logo} alt="logo" className="h-5 w-5" />
+                <span className="font-mono text-xl text-slate-50/75">
                     Janos_Litkei
                 </span>
             </Link>
             <div
                 id="menu"
-                className={`bg-slate-900 fixed top-16 left-0 right-0 pb-12 pt-8 lg:py-0 lg:block lg:static ${menuOpen ? 'block' : 'hidden'}`}
+                className={`fixed left-0 right-0 top-16 bg-slate-900 pb-12 pt-8 lg:static lg:block lg:py-0 ${menuOpen ? 'block' : 'hidden'}`}
             >
-                <ul className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-2 px-1 text-slate-50/75">
+                <ul className="flex flex-col justify-between gap-8 px-1 text-slate-50/75 lg:flex-row lg:items-center lg:gap-2">
                     {menuItems.map(item => {
                         return (
                             <li key={item.name} className="w-full lg:w-fit">
                                 <Link
                                     href={item.href}
                                     onClick={e => handleClick(e, item.href)}
-                                    className={`block w-full lg:w-fit hover:bg-slate-700/50 px-4 py-2 rounded-sm transition duration-150 
-                                        ${item.href === '/blog' ? 'pointer-events-none' : 'cursor-pointer'}`}
+                                    className={`block w-full rounded-sm px-4 py-2 transition duration-150 hover:bg-slate-700/50 lg:w-fit ${item.href === '/blog' ? 'pointer-events-none' : 'cursor-pointer'}`}
                                 >
                                     {item.name}
                                 </Link>
@@ -89,7 +88,7 @@ export default function Navbar() {
                 className="text-white focus:outline-none lg:hidden"
                 onClick={() => setMenuOpen(prevState => !prevState)}
             >
-                <HiMenuAlt3 className="w-6 h-6" />
+                <HiMenuAlt3 className="h-6 w-6" />
             </button>
         </div>
     )

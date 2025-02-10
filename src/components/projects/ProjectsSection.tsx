@@ -19,15 +19,18 @@ export default function ProjectsSection() {
         [iframeContext],
     )
 
-    const handleActiveProjectChange = useCallback((index: number) => {
-        setActiveProjectCategory(index)
-        setOpenIndex(0)
-        setResetState(prevState => !prevState)
-        sendMessageToIframe({
-            page: 'Projects',
-            projectTitle: projects[index][0].screenData.title,
-        })
-    }, [sendMessageToIframe])
+    const handleActiveProjectChange = useCallback(
+        (index: number) => {
+            setActiveProjectCategory(index)
+            setOpenIndex(0)
+            setResetState(prevState => !prevState)
+            sendMessageToIframe({
+                page: 'Projects',
+                projectTitle: projects[index][0].screenData.title,
+            })
+        },
+        [sendMessageToIframe],
+    )
 
     useEffect(() => {
         const handleIframeMessage = (event: MessageEvent) => {

@@ -87,7 +87,7 @@ export default function FinderIcon({
                 if (onOpen) onOpen()
             }, ANIMATION_DURATION * 1000)
             setDoubleClickTimerActive(false)
-            window.parent.postMessage({iconOpened: title}, '*')
+            window.parent.postMessage({ iconOpened: title }, '*')
             return
         }
         setIsSelected(true)
@@ -107,10 +107,7 @@ export default function FinderIcon({
     useEffect(() => {
         const onMessage = (event: MessageEvent) => {
             // A bit of a hacky way to open the right window on scroll
-            if (
-                (event.data.page === title) ||
-                (event.data.page === title)
-            ) {
+            if (event.data.page === title || event.data.page === title) {
                 if (iconRef.current) {
                     iconRef.current.dispatchEvent(
                         new MouseEvent('mousedown', { bubbles: true }),
@@ -121,7 +118,10 @@ export default function FinderIcon({
                         )
                     }, 100)
                 }
-            } else if (event.data.page === 'Projects' && event.data.projectTitle === title) {
+            } else if (
+                event.data.page === 'Projects' &&
+                event.data.projectTitle === title
+            ) {
                 if (iconRef.current) {
                     iconRef.current.dispatchEvent(
                         new MouseEvent('mousedown', { bubbles: true }),
@@ -179,7 +179,7 @@ export default function FinderIcon({
                             ease: 'linear',
                         }}
                         className="absolute right-0 top-0 h-[45px] w-[45px] border-4 border-neutral-600"
-                        style={{zIndex: animationZIndex}}
+                        style={{ zIndex: animationZIndex }}
                     />
                     <Image
                         src={windowOpenIcon}

@@ -5,7 +5,7 @@ export default class Sizes {
     public width?: number
     public height?: number
     public pixelRatio?: number
-    private resizeCallback?: (() => void)
+    private resizeCallback?: () => void
 
     /**
      * Creates an instance of the Sizes class.

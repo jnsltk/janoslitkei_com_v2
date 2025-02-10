@@ -20,7 +20,7 @@ export default function Screen() {
     useEffect(() => {
         setTimeout(() => {
             setShowMsg(true)
-        }, 4000)
+        }, 2000)
     })
 
     useEffect(() => {

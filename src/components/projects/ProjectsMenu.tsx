@@ -8,7 +8,7 @@ interface ProjectsMenuProps {
     handleActiveProjectChange: (project: number) => void
 }
 
-const projectsMenuItems = ['University Projects', 'Personal projects', 'Others']
+const projectsMenuItems = ['University Projects', 'Personal projects', 'Tools']
 
 export default function ProjectsMenu({
     activeProject,

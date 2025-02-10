@@ -2,7 +2,7 @@
     [
         {
             "name": "fraud_detection",
-            "description": "An advanced, data-intensive AI solution designed for fraud detection in financial transactions. It leverages the power of deep neural networks (DNNs) to classify transactions as fraudulent or legitimate based on their features. The trained DNN model is integrated into a user-friendly web application built with the Django framework, enabling seamless access and deployment.",
+            "description": "A smart AI-powered fraud detection system for financial transactions. It uses deep neural networks (DNNs) to spot suspicious activity and flag fraudulent transactions. The trained model runs inside a sleek web app built with Django, making it easy to use and deploy.",
             "tech": [
                 "Python",
                 "Machine Learning",
@@ -59,7 +59,8 @@
                 "VueJS",
                 "BankID integration",
                 "Docker",
-                "Custom asymmetric encryption"
+                "Custom asymmetric encryption",
+                "MQTT"
             ],
             "links": [
                 {
@@ -81,7 +82,7 @@
     [
         {
             "name": "Personal Website",
-            "description": "This website is my second iteration, where I explored new technologies and designs. To build it, I stepped out of my comfort zone and learned Next.js, Three.js, and GSAP from scratch, including working with 3D graphics. It’s been a rewarding challenge that allowed me to improve my problem-solving skills and experiment with modern web development techniques.",
+            "description": "This website is my second iteration, where I tried some new technologies and designs. I was inspired by other people's 3D portfolios, and wanted to try it for myself. To build it, I learned Next.js, Three.js, and GSAP from scratch, as well as working with 3D graphics. It’s been a nice and rewarding challenge, and I feel like I've learned a lot from it.",
             "tech": ["Next.js", "React", "Tailwind CSS", "ThreeJS", "GSAP"],
             "links": [
                 {
@@ -101,7 +102,7 @@
         },
         {
             "name": "Naše Konyha -- Upcoming",
-            "description": "A personal recipe aggregator website for my girlfriend and I. Used as a learning project for Java Spring Boot.",
+            "description": "A personal recipe aggregator website for my girlfriend and I. I used it as a learning project for Java Spring Boot.",
             "tech": ["PHP", "Tailwind CSS", "MySQL", "Docker"],
             "links": [
                 {
@@ -122,43 +123,35 @@
     ],
     [
         {
-            "name": "Project 1",
-            "description": "Description of project 1. Let's make it a bit longer, so it doesn't mess up the layout. I reckon this long should be enough",
-            "tech": ["Tech 1", "Tech 2", "Tech 3"],
+            "name": "look_away",
+            "description": "A simple 20-20-20 timer written in Go that reminds you to look away from your screen every 20 minutes. Runs in the terminal, and sends a notification to your desktop.",
+            "tech": ["Golang", "Terminal"],
             "links": [
                 {
                     "name": "GitHub",
-                    "url": ""
-                },
-                {
-                    "name": "Website",
-                    "url": ""
+                    "url": "https://github.com/jnsltk/look_away"
                 }
             ],
             "screenData": {
-                "title": "project_1",
-                "contentSrc": "/images/projects/fraud_detection.gif",
-                "alt": "Project 1"
+                "title": "look_away",
+                "contentSrc": "/images/projects/look_away.png",
+                "alt": "Look Away"
             }
         },
         {
-            "name": "Project 2",
-            "description": "Description of project 2. Let's make it a bit longer, so it doesn't mess up the layout. I reckon this long should be enough",
-            "tech": ["Tech 1", "Tech 2", "Tech 3"],
+            "name": "go_wraplines",
+            "description": "A simple Go program that wraps lines in a text file to a specified width. It's a command line tool that takes a file as input and wraps the lines to the specified width.",
+            "tech": ["Golang", "Terminal"],
             "links": [
                 {
                     "name": "GitHub",
-                    "url": ""
-                },
-                {
-                    "name": "Website",
-                    "url": ""
+                    "url": "https://github.com/jnsltk/go_wraplines"
                 }
             ],
             "screenData": {
-                "title": "project_2",
-                "contentSrc": "/images/projects/fraud_detection.gif",
-                "alt": "Project 2"
+                "title": "go_wraplines",
+                "contentSrc": "/images/projects/go_wraplines.gif",
+                "alt": "Go Wraplines"
             }
         }
     ]

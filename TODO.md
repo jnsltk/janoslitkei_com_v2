@@ -15,9 +15,9 @@
     - [x] Load screen content from the same json file that's used for the project menu
     - [x] Add custom shader effects to the monitor screen
     - ~~[ ] Add bloom effect to screen~~
-- [ ] Fix window in Safari
-- [ ] Fix layout and model for tablet screens
-- [ ] Make page responsive
+- [x] Fix window in Safari
+- [-] Fix layout and model for tablet screens
+- [x] Make page responsive
 - [ ] Replace document.getElementById call in Camera with useRef
 - [ ] Add credits and inspirations
 

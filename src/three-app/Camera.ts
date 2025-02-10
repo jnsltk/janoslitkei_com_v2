@@ -105,8 +105,8 @@ export default class Camera {
 
         if (angle < 0) angle = 0
 
-        // Adjust the camera's spherical position based on scroll
-        if (this.instance) {
+        // Adjust the camera's spherical position based on scroll but only on desktop
+        if (this.instance && !Camera.isMobileScreen) {
             this.instance.position.x = Math.sin(angle) * 250
             this.instance.position.z = Math.cos(angle) * 250
         }

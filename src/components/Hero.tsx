@@ -28,7 +28,7 @@ export default function Hero() {
         >
             <div className="flex h-full flex-col lg:justify-center">
                 <ThreeAppWrapper />
-                <div className="mx-6 -mt-8 text-slate-50/75 lg:mx-32 lg:mt-0">
+                <div className="mx-6 -mt-16 text-slate-50/75 lg:mx-32 lg:mt-0">
                     <div className="font-mono text-3xl font-semibold lg:text-5xl">
                         <ReactTyped
                             typedRef={setTyped}
@@ -56,7 +56,7 @@ export default function Hero() {
                             personal website!
                         </p>
                         {Camera.isMobileScreen && (
-                            <p className="pt-3 italic">
+                            <p className="pt-1 text-xs italic lg:pt-3">
                                 Make sure to check back on desktop, this website
                                 looks a lot better on larger screens.
                             </p>

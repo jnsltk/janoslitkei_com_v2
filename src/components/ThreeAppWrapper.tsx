@@ -31,7 +31,7 @@ export default function ThreeAppWrapper() {
         <div
             ref={containerRef}
             className={
-                'h-1/2 w-full lg:pointer-events-none lg:absolute lg:bottom-0 lg:right-0 lg:top-16 lg:-mx-[10%] lg:min-h-full lg:w-[70%] lg:pt-0'
+                'relative top-5 h-1/2 w-full lg:pointer-events-none lg:absolute lg:bottom-0 lg:right-0 lg:top-16 lg:-mx-[10%] lg:min-h-full lg:w-[70%] lg:pt-0'
             }
         >
             <div ref={css3d}></div>

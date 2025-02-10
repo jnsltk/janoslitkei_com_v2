@@ -59,13 +59,13 @@ export default function ProjectsSection() {
     return (
         <section
             id="projects"
-            className="h-screen snap-start snap-always bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 text-slate-900/85 lg:scroll-mt-16"
+            className="min-h-screen snap-start snap-always bg-gradient-to-bl from-foggy-gray-50 to-foggy-gray-100 pb-72 text-slate-900/85 lg:h-screen lg:scroll-mt-16 lg:pb-0"
         >
             <FadeInSection>
                 <div className="h-4/5">
-                    <div className="mx-6 gap-10 pt-10 lg:mx-24 lg:flex 2xl:mt-40">
+                    <div className="mx-6 gap-10 lg:mx-24 lg:flex 2xl:mt-40">
                         <div className="lg:w-1/2">
-                            <div className="flex flex-col items-center justify-center pt-24 lg:pb-10 lg:pt-16">
+                            <div className="flex flex-col items-center justify-center pb-8 pt-24 lg:pb-10 lg:pt-16">
                                 <h1
                                     id="projects-title"
                                     className="font-mono text-3xl font-bold"

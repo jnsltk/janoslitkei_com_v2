@@ -38,6 +38,8 @@ export default class Controls {
         controls.enableDamping = true
         controls.autoRotate = Camera.isMobileScreen
         // controls.target.set(0, 15, 0) remember for mobile
+        controls.maxPolarAngle = Math.PI / 2
+        controls.minPolarAngle = Math.PI / 2.8
         controls.target.set(0, 0, 0)
         return controls
     }

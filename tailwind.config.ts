@@ -78,7 +78,7 @@ export default {
                 window: '22px minmax(0, 1fr) 22px 22px',
             },
             gridTemplateRows: {
-                window: '24px minmax(0, 1fr) 25px 22px',
+                window: '23px minmax(0, 1fr) 24px 22px',
             },
         },
     },

@@ -17,18 +17,15 @@
     - ~~[ ] Add bloom effect to screen~~
 - [-] Fix layout and model for tablet screens
 - [ ] Replace document.getElementById call in Camera with useRef
-- [ ] Initial deploy to vercel
+- [ ] Make model loading more stable, debug why screen sometimes stays black
+- [-] Add project contents
 
 ## New features
 
 - [ ] Add scrollspy
-- [ ] Add tech labels to projects
+- [ ] Add tech labels to projects?
 
 ## Low Priority
-
-- [ ] Add loading animation when the 3d model is loading
-- [-] Add project contents
-- [-] Add option for manual rotation mode, that resets when the user exits it
 
 ## Dismissed features
 
@@ -41,6 +38,8 @@
 
 ## DONE
 
+- [x] Initial deploy to vercel
+- [-] Add option for manual rotation mode, that resets when the user exits it (DONE, but only for mobile)
 - [x] Add credits and inspirations
 - [x] Make page responsive
 - [x] Fix window in Safari

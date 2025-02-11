@@ -32,14 +32,12 @@ export default function Screen() {
     }, [])
 
     return (
-        <html lang="en" className="h-full overflow-hidden">
-            <body>
+        <div lang="en" className="h-full overflow-hidden">
                 {content === 'welcome' ? (
                     <Welcome showMsg={showMsg} />
                 ) : (
                     <Desktop />
                 )}
-            </body>
-        </html>
+        </div>
     )
 }

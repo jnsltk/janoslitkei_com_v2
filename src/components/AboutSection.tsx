@@ -1,4 +1,5 @@
 import FadeInSection from './FadeInSection'
+import Link from 'next/link'
 
 export default function AboutSection() {
     return (
@@ -26,11 +27,11 @@ export default function AboutSection() {
                                     <a className="link">projects</a> as part of
                                     my programme
                                 </li>
-                                <li className="mb-2">
-                                    🌟 My favourite programming language is{' '}
-                                    <span className="line-through">Python</span>
-                                    &nbsp;PHP ;)
-                                </li>
+                                {/*<li className="mb-2">*/}
+                                {/*    🌟 My favourite programming language is{' '}*/}
+                                {/*    <span className="line-through">Python</span>*/}
+                                {/*    &nbsp;PHP ;)*/}
+                                {/*</li>*/}
                                 <li className="mb-2">
                                     🚀 I&apos;m always working on a few side
                                     projects to improve my skills
@@ -41,9 +42,13 @@ export default function AboutSection() {
                                 </li>
                                 <li>
                                     📄{' '}
-                                    <a className="cursor-pointer font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800">
+                                    <Link
+                                        href={`/CV.pdf`}
+                                        className="cursor-pointer font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800"
+                                        target="_blank"
+                                    >
                                         Take a look at my CV
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </FadeInSection>

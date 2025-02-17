@@ -35,6 +35,7 @@ export default function ProjectCard({
                                 key={link.name}
                                 className="mr-3 font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800"
                                 href={link.url}
+                                target="_blank"
                             >
                                 {link.name}
                             </Link>

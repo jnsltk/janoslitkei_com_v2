@@ -22,10 +22,11 @@ export default function Footer() {
                     Credits and Inspirations
                 </h2>
                 <p className={`mb-2 text-sm`}>
-                    3D model of the Macintosh 128k by{' '}
+                    3D model of the Macintosh 128k by Daz on{' '}
                     <Link
                         href={`https://sketchfab.com/3d-models/macintosh-128k-computer-1984-70e8f2c87fec4cde8ba6d6cea00edd35`}
                         className={`cursor-pointer font-semibold text-cinnabar-500 underline underline-offset-1 hover:text-cinnabar-700`}
+                        target="_blank"
                     >
                         Sketchfab
                     </Link>
@@ -33,6 +34,7 @@ export default function Footer() {
                     <Link
                         href={`https://henryheffernan.com/`}
                         className={`cursor-pointer font-semibold text-cinnabar-500 underline underline-offset-1 hover:text-cinnabar-700`}
+                        target="_blank"
                     >henryheffernan.com</Link>
                     , and the video texture used for the Macintosh screen was also created by him.
                 </p>

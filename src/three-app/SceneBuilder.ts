@@ -65,12 +65,12 @@ export default class SceneBuilder {
                     this.addVideoTexture(
                         'pc/screen/layers/video/static-2.mp4',
                         13.5,
-                        0.1,
+                        0.08,
                     )
                     this.addVideoTexture(
                         'pc/screen/layers/video/static-1.mp4',
                         13.8,
-                        0.5,
+                        0.3,
                     )
                     this.applySmudgeTexture()
                     resolve()
@@ -234,7 +234,7 @@ export default class SceneBuilder {
             'Computer_Screen_0',
         ) as THREE.Mesh
         if (this.screenMask.material) {
-            const smudgeMaterial = new THREE.MeshBasicMaterial({
+            screenMesh.material = new THREE.MeshBasicMaterial({
                 map: new THREE.TextureLoader().load(
                     'pc/screen/layers/img/smudges.jpg',
                 ),
@@ -242,7 +242,6 @@ export default class SceneBuilder {
                 opacity: 0.08,
                 transparent: true,
             })
-            screenMesh.material = smudgeMaterial
         } else {
             console.error('Screen material is undefined')
         }

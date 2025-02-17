@@ -42,7 +42,7 @@
             "links": [
                 {
                     "name": "GitHub",
-                    "url": ""
+                    "url": "https://github.com/jnsltk/self_driving"
                 }
             ],
             "screenData": {
@@ -65,11 +65,7 @@
             "links": [
                 {
                     "name": "GitHub",
-                    "url": ""
-                },
-                {
-                    "name": "Website",
-                    "url": ""
+                    "url": "https://github.com/jnsltk/dentigo"
                 }
             ],
             "screenData": {
@@ -87,11 +83,11 @@
             "links": [
                 {
                     "name": "GitHub",
-                    "url": ""
+                    "url": "https://github.com/jnsltk/janoslitkei_com_v2"
                 },
                 {
                     "name": "Website",
-                    "url": ""
+                    "url": "https://janoslitkei.com"
                 }
             ],
             "screenData": {
@@ -101,18 +97,10 @@
             }
         },
         {
-            "name": "Naše Konyha -- Upcoming",
-            "description": "A personal recipe aggregator website for my girlfriend and I. I used it as a learning project for Java Spring Boot.",
+            "name": "Naše Konyha — Unreleased",
+            "description": "NOT FINISHED YET. A personal recipe aggregator website for my girlfriend and I. I used it as a learning project for Java Spring Boot.",
             "tech": ["PHP", "Tailwind CSS", "MySQL", "Docker"],
             "links": [
-                {
-                    "name": "GitHub",
-                    "url": ""
-                },
-                {
-                    "name": "Website",
-                    "url": ""
-                }
             ],
             "screenData": {
                 "title": "nase_konyha",

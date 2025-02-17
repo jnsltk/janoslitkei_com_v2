@@ -5,7 +5,7 @@ import logo from '../../public/images/logo.svg'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { HiMenuAlt3 } from 'react-icons/hi'
 
 gsap.registerPlugin(ScrollToPlugin)
@@ -28,10 +28,10 @@ const menuItems: MenuItem[] = [
         name: 'Projects',
         href: '#projects',
     },
-    {
-        name: 'Blog',
-        href: '/blog',
-    },
+    // {
+    //     name: 'Blog',
+    //     href: '/blog',
+    // },
 ]
 
 export default function Navbar() {
@@ -39,9 +39,6 @@ export default function Navbar() {
 
     const handleClick = useCallback(
         (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-            if (href === '/blog') {
-                return
-            }
             e.preventDefault()
             setMenuOpen(false)
             const target = document.querySelector(href)
@@ -74,7 +71,7 @@ export default function Navbar() {
                                 <Link
                                     href={item.href}
                                     onClick={e => handleClick(e, item.href)}
-                                    className={`block w-full rounded-sm px-4 py-2 transition duration-150 hover:bg-slate-700/50 lg:w-fit ${item.href === '/blog' ? 'pointer-events-none' : 'cursor-pointer'}`}
+                                    className={`block w-full rounded-sm px-4 py-2 transition duration-150 hover:bg-slate-700/50 lg:w-fit 'cursor-pointer'`}
                                 >
                                     {item.name}
                                 </Link>

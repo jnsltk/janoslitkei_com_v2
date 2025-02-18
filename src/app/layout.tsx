@@ -14,7 +14,24 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
     title: 'János_Litkei',
-    description: "János Litkei's personal website",
+    description: "János Litkei is a software engineering student who's passionate about coding and building software systems.",
+    creator: 'János Litkei',
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://janoslitkei.com',
+        title: 'János_Litkei',
+        description: "János Litkei is a software engineering student who's passionate about coding and building software systems.",
+        siteName: 'János_Litkei',
+        images: [
+            {
+                url: 'https://janoslitkei.com/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'János Litkei',
+            },
+        ],
+    }
 }
 
 export default function DashboardLayout({

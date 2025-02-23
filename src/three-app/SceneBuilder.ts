@@ -37,12 +37,14 @@ export default class SceneBuilder {
      */
     public build(): Promise<{ scene: THREE.Scene; cssScene: THREE.Scene }> {
         return new Promise((resolve, reject) => {
-            this.loadModel()
-                .then(() => {
-                    this.setupLights()
-                    resolve({ scene: this.scene, cssScene: this.cssScene })
-                })
-                .catch(reject)
+            this.screenMask.initialize().then(() => {
+                this.loadModel()
+                    .then(() => {
+                        this.setupLights()
+                        resolve({ scene: this.scene, cssScene: this.cssScene })
+                    })
+                    .catch(reject)
+            })
         })
     }
 

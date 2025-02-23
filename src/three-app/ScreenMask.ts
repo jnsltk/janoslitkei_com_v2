@@ -3,11 +3,7 @@ import * as THREE from 'three'
 export default class ScreenMask {
     public material?: THREE.ShaderMaterial
 
-    public constructor() {
-        this.initialize()
-    }
-
-    private async initialize() {
+    public async initialize() {
         // Shaders inspired by ChatGPT
         const vertexShader = await this.loadShader('/shaders/screenVertex.glsl')
         const fragmentShader = await this.loadShader(

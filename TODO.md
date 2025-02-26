@@ -2,13 +2,9 @@
 
 ## High Priority
 
-- [ ] Add meta tags
-- [ ] Add images
 - [ ] Fix canonical for the cv and the page (SEO)
 - [-] Fix layout and model for tablet screens
 - [ ] Replace document.getElementById call in Camera with useRef
-- [ ] Make model loading more stable, debug why screen sometimes stays black
-- [-] Add project contents
 
 ## New features
 
@@ -28,6 +24,10 @@
 
 ## DONE
 
+- [x] Add meta tags
+- [x] Add images
+- [x] Make model loading more stable, debug why screen sometimes stays black
+- [x] Add project contents
 - [x] Add content to the monitor screen
   - [x] Figure out and add initial content
   - [x] Add ~~images~~ GIFs for the projects and make them switch per project

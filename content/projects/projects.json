@@ -98,8 +98,8 @@
         },
         {
             "name": "Naše Konyha — Unreleased",
-            "description": "NOT FINISHED YET. A personal recipe aggregator website for my girlfriend and I. I used it as a learning project for Java Spring Boot.",
-            "tech": ["PHP", "Tailwind CSS", "MySQL", "Docker"],
+            "description": "NOT FINISHED YET. A personal recipe aggregator website for my girlfriend and I. Used as another learning project for React, with a non-NextJS backend.",
+            "tech": ["React", "Tailwind CSS", "Postgres", "Docker"],
             "links": [
             ],
             "screenData": {

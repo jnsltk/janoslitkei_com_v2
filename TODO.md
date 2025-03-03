@@ -18,9 +18,9 @@
 - [ ] ~~Fix animations for the project accordion menu~~
 - [ ] ~~Change model rotation on scroll to GSAP~~
 - [ ] ~~Finish skills page~~
-    - [ ] ~~Add skills to the page~~
-    - [ ] ~~Create the accordion for the skills~~
-    - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
+  - [ ] ~~Add skills to the page~~
+  - [ ] ~~Create the accordion for the skills~~
+  - [ ] ~~Add skills programmatically with templating (store skills in a json file)~~
 
 ## DONE
 
@@ -56,12 +56,12 @@
 - [x] Figure out model behaviour when user scrolls to footer
 - [x] Change the model
 - [x] Add GSAP to the project
-    - [x] Add special animation for the projects section (Zoom in on the screen and change position)
+  - [x] Add special animation for the projects section (Zoom in on the screen and change position)
 - [x] Finish projects page
-    - [x] Add projects to the page
-    - [x] Create the accordion for the projects
-    - [x] Add projects programmatically with templating (store projects in a json file)
+  - [x] Add projects to the page
+  - [x] Create the accordion for the projects
+  - [x] Add projects programmatically with templating (store projects in a json file)
 - [x] Add a new page for the projects
-    - [ ] ~~Come up with a design for the page (figma)~~
-    - [x] Add a description for each project
-    - [x] Add a link to the project repository
+  - [ ] ~~Come up with a design for the page (figma)~~
+  - [x] Add a description for each project
+  - [x] Add a link to the project repository

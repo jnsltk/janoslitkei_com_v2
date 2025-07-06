@@ -1,6 +1,30 @@
 [
     [
         {
+            "name": "T-Reqs VS Code Extension",
+            "description": "A Visual Studio Code extension for T-Reqs, an open-source requirements management tool. This extension provides syntax highlighting, code snippets, and other features to enhance the development experience with T-Reqs. Built as part of my Bachelor's thesis.",
+            "tech": [
+                "TypeScript",
+                "Visual Studio Code API",
+                "Node.js"
+            ],
+            "links": [
+                {
+                    "name": "GitLab",
+                    "url": "https://gitlab.com/treqs-on-git/treqs-vscode"
+                },
+                {
+                    "name": "Marketplace",
+                    "url": "https://marketplace.visualstudio.com/items?itemName=treqs-vscode.treqs-vscode"
+                }
+            ],
+            "screenData": {
+                "title": "treqs_vscode",
+                "contentSrc": "/images/projects/treqs_vscode_bw.gif",
+                "alt": "T-Reqs VS Code Extension"
+            }
+        },
+        {
             "name": "fraud_detection",
             "description": "A smart AI-powered fraud detection system for financial transactions. It uses deep neural networks (DNNs) to spot suspicious activity and flag fraudulent transactions. The trained model runs inside a sleek web app built with Django, making it easy to use and deploy.",
             "tech": [
@@ -79,7 +103,13 @@
         {
             "name": "Personal Website",
             "description": "This website is my second iteration, where I tried some new technologies and designs. I was inspired by other people's 3D portfolios, and wanted to try it for myself. To build it, I learned Next.js, Three.js, and GSAP from scratch, as well as working with 3D graphics. It’s been a nice and rewarding challenge, and I feel like I've learned a lot from it.",
-            "tech": ["Next.js", "React", "Tailwind CSS", "ThreeJS", "GSAP"],
+            "tech": [
+                "Next.js",
+                "React",
+                "Tailwind CSS",
+                "ThreeJS",
+                "GSAP"
+            ],
             "links": [
                 {
                     "name": "GitHub",
@@ -97,15 +127,24 @@
             }
         },
         {
-            "name": "Naše Konyha — Unreleased",
-            "description": "NOT FINISHED YET. A personal recipe aggregator website for my girlfriend and I. Used as another learning project for React, with a non-NextJS backend.",
-            "tech": ["React", "Tailwind CSS", "Postgres", "Docker"],
+            "name": "php_blog",
+            "description": "A simple MVC pattern website and blog to try out vanilla PHP and Pest for unit tests.",
+            "tech": [
+                "PHP",
+                "Pest",
+                "MySQL",
+                "Tailwind CSS"
+            ],
             "links": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com/jnsltk/php_blog"
+                }
             ],
             "screenData": {
-                "title": "nase_konyha",
-                "contentSrc": "/images/projects/nase_konyha.gif",
-                "alt": "Naše Konyha"
+                "title": "php_blog",
+                "contentSrc": "/images/projects/php_blog.gif",
+                "alt": "PHP Blog"
             }
         }
     ],
@@ -113,7 +152,10 @@
         {
             "name": "look_away",
             "description": "A simple 20-20-20 timer written in Go that reminds you to look away from your screen every 20 minutes. Runs in the terminal, and sends a notification to your desktop.",
-            "tech": ["Golang", "Terminal"],
+            "tech": [
+                "Golang",
+                "Terminal"
+            ],
             "links": [
                 {
                     "name": "GitHub",
@@ -129,7 +171,10 @@
         {
             "name": "go_wraplines",
             "description": "A simple Go program that wraps lines in a text file to a specified width. It's a command line tool that takes a file as input and wraps the lines to the specified width.",
-            "tech": ["Golang", "Terminal"],
+            "tech": [
+                "Golang",
+                "Terminal"
+            ],
             "links": [
                 {
                     "name": "GitHub",

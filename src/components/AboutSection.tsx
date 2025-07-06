@@ -16,7 +16,7 @@ export default function AboutSection() {
                             </h1>
                             <ul className="py-6">
                                 <li className="mb-2">
-                                    👨🏻‍💻 I&apos;m a Software Engineering student
+                                    👨🏻‍💻 I&apos;m a recent Software Engineering graduate
                                     from Hungary
                                 </li>
                                 <li className="mb-2">

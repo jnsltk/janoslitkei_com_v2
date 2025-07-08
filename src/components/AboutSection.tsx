@@ -43,7 +43,7 @@ export default function AboutSection() {
                                 <li>
                                     📄{' '}
                                     <Link
-                                        href={`/CV.pdf`}
+                                        href={`https://flowcv.com/resume/44ewwthfbb6n`}
                                         className="cursor-pointer font-semibold text-cinnabar-600 underline underline-offset-1 hover:text-cinnabar-800"
                                         target="_blank"
                                     >

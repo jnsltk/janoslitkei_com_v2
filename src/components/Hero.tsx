@@ -51,8 +51,8 @@ export default function Hero() {
                         className={`pt-3 font-light transition-all duration-700 ease-out lg:max-w-[40vw] ${showDescription ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
                     >
                         <p>
-                            My name is János, and I&apos;m a third-year Software
-                            Engineering student in Sweden. Welcome to my
+                            My name is János, and I&apos;m a recent Software
+                            Engineering graduate in Sweden. Welcome to my
                             personal website!
                         </p>
                         {Camera.isMobileScreen && (

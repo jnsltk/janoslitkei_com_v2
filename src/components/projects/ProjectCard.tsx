@@ -14,7 +14,7 @@ export default function ProjectCard({
     onClick,
 }: ProjectCardProps) {
     return (
-        <div className="mx-auto rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:w-[27rem]">
+        <div className="mx-auto w-full rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:w-[27rem]">
             <div
                 className="flex cursor-pointer items-center justify-between px-5 py-4"
                 onClick={onClick}

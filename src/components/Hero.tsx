@@ -32,7 +32,7 @@ export default function Hero() {
                     <div className="font-mono text-3xl font-semibold lg:text-5xl">
                         <ReactTyped
                             typedRef={setTyped}
-                            strings={["Hej!<br> Glad you're here :)"]}
+                            strings={["Hey!<br> Glad you're here :)"]}
                             typeSpeed={80}
                             showCursor={true}
                             startDelay={500}

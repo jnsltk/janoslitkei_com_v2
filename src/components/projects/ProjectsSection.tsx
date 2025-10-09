@@ -65,7 +65,7 @@ export default function ProjectsSection() {
                 <div className="h-4/5">
                     <div className="mx-6 gap-10 lg:mx-24 lg:flex 2xl:mt-40">
                         <div className="lg:w-1/2">
-                            <div className="flex flex-col items-center justify-center pb-8 pt-24 lg:pb-10 lg:pt-16">
+                            <div className="flex flex-col items-center justify-center pb-8 pt-24 lg:pb-8 lg:pt-10">
                                 <h1
                                     id="projects-title"
                                     className="font-mono text-3xl font-bold"

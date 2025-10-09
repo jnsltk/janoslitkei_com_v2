@@ -18,7 +18,7 @@ export default function ProjectsMenu({
 
     return (
         <div>
-            <div className="mx-auto mb-8 hidden rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:block lg:w-[27rem]">
+            <div className="mx-auto mb-4 hidden rounded-sm border border-slate-700/75 bg-slate-50 shadow-xl lg:block lg:w-[27rem]">
                 <ul id="projects-menu" className="flex justify-between p-[1px]">
                     {projectsMenuItems.map((item, index) => {
                         return (

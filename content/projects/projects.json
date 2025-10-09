@@ -1,191 +1,203 @@
 [
-    [
+  [
+    {
+      "name": "T-Reqs VS Code Extension",
+      "description": "A Visual Studio Code extension for T-Reqs, an open-source requirements management tool. This extension provides syntax highlighting, code snippets, and other features to enhance the development experience with T-Reqs. Built as part of my Bachelor's thesis.",
+      "tech": [
+        "TypeScript",
+        "Visual Studio Code API",
+        "Node.js",
+        "Tree Sitter"
+      ],
+      "links": [
         {
-            "name": "T-Reqs VS Code Extension",
-            "description": "A Visual Studio Code extension for T-Reqs, an open-source requirements management tool. This extension provides syntax highlighting, code snippets, and other features to enhance the development experience with T-Reqs. Built as part of my Bachelor's thesis.",
-            "tech": [
-                "TypeScript",
-                "Visual Studio Code API",
-                "Node.js"
-            ],
-            "links": [
-                {
-                    "name": "GitLab",
-                    "url": "https://gitlab.com/treqs-on-git/treqs-vscode"
-                },
-                {
-                    "name": "Marketplace",
-                    "url": "https://marketplace.visualstudio.com/items?itemName=treqs-vscode.treqs-vscode"
-                }
-            ],
-            "screenData": {
-                "title": "treqs_vscode",
-                "contentSrc": "/images/projects/treqs_vscode_bw.gif",
-                "alt": "T-Reqs VS Code Extension"
-            }
+          "name": "GitLab",
+          "url": "https://gitlab.com/treqs-on-git/treqs-vscode"
         },
         {
-            "name": "fraud_detection",
-            "description": "A smart AI-powered fraud detection system for financial transactions. It uses deep neural networks (DNNs) to spot suspicious activity and flag fraudulent transactions. The trained model runs inside a sleek web app built with Django, making it easy to use and deploy.",
-            "tech": [
-                "Python",
-                "Machine Learning",
-                "Keras",
-                "SKLearn",
-                "Django",
-                "Tailwind CSS",
-                "HTMX",
-                "Docker",
-                "Kubernetes"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/fraud_detection"
-                },
-                {
-                    "name": "Website",
-                    "url": ""
-                }
-            ],
-            "screenData": {
-                "title": "fraud_detection",
-                "contentSrc": "/images/projects/fraud_detection.gif",
-                "alt": "Fraud Detection"
-            }
-        },
-        {
-            "name": "Self Driving Car",
-            "description": "Software for a self driving car model using computer vision.",
-            "tech": [
-                "C++",
-                "OpenCV",
-                "Docker",
-                "Multipass development environment"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/self_driving"
-                }
-            ],
-            "screenData": {
-                "title": "self_driving",
-                "contentSrc": "/images/projects/self_driving.gif",
-                "alt": "Self Driving Car"
-            }
-        },
-        {
-            "name": "Dentigo",
-            "description": "A distributed system for managing appointments for dental clinics in Gothenburg.",
-            "tech": [
-                "TypeScript",
-                "VueJS",
-                "BankID integration",
-                "Docker",
-                "Custom asymmetric encryption",
-                "MQTT"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/dentigo"
-                }
-            ],
-            "screenData": {
-                "title": "dentigo",
-                "contentSrc": "/images/projects/dentigo.gif",
-                "alt": "Dentigo"
-            }
+          "name": "Marketplace",
+          "url": "https://marketplace.visualstudio.com/items?itemName=treqs-vscode.treqs-vscode"
         }
-    ],
-    [
+      ],
+      "screenData": {
+        "title": "treqs_vscode",
+        "contentSrc": "/images/projects/treqs_vscode_bw.gif",
+        "alt": "T-Reqs VS Code Extension"
+      }
+    },
+    {
+      "name": "Fraud Detection AI",
+      "description": "A smart AI-powered fraud detection system for financial transactions. It uses deep neural networks (DNNs) to spot suspicious activity and flag fraudulent transactions. The trained model runs inside a sleek web app built with Django, making it easy to use and deploy.",
+      "tech": [
+        "Python",
+        "Machine Learning",
+        "SKLearn",
+        "Django",
+        "Tailwind CSS",
+        "HTMX",
+        "Docker"
+      ],
+      "links": [
         {
-            "name": "Personal Website",
-            "description": "This website is my second iteration, where I tried some new technologies and designs. I was inspired by other people's 3D portfolios, and wanted to try it for myself. To build it, I learned Next.js, Three.js, and GSAP from scratch, as well as working with 3D graphics. It’s been a nice and rewarding challenge, and I feel like I've learned a lot from it.",
-            "tech": [
-                "Next.js",
-                "React",
-                "Tailwind CSS",
-                "ThreeJS",
-                "GSAP"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/janoslitkei_com_v2"
-                },
-                {
-                    "name": "Website",
-                    "url": "https://janoslitkei.com"
-                }
-            ],
-            "screenData": {
-                "title": "my_website",
-                "contentSrc": "/images/projects/personal_website.gif",
-                "alt": "Personal Website"
-            }
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/fraud_detection"
+        }
+      ],
+      "screenData": {
+        "title": "fraud_detection",
+        "contentSrc": "/images/projects/fraud_detection.gif",
+        "alt": "Fraud Detection"
+      }
+    },
+    {
+      "name": "Self Driving Car",
+      "description": "Software for a self driving car model using computer vision.",
+      "tech": [
+        "C++",
+        "OpenCV",
+        "Docker",
+        "Multipass development environment"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/self_driving"
+        }
+      ],
+      "screenData": {
+        "title": "self_driving",
+        "contentSrc": "/images/projects/self_driving.gif",
+        "alt": "Self Driving Car"
+      }
+    },
+    {
+      "name": "Dentigo",
+      "description": "A distributed system for managing appointments for dental clinics in Gothenburg.",
+      "tech": [
+        "TypeScript",
+        "VueJS",
+        "BankID integration",
+        "Docker",
+        "Custom asymmetric encryption",
+        "MQTT"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/dentigo"
+        }
+      ],
+      "screenData": {
+        "title": "dentigo",
+        "contentSrc": "/images/projects/dentigo.gif",
+        "alt": "Dentigo"
+      }
+    }
+  ],
+  [
+    {
+      "name": "Personal Website",
+      "description": "This website is my second iteration, where I tried some new technologies and designs. I was inspired by other people's 3D portfolios, and wanted to try it for myself. To build it, I learned Next.js, Three.js, and GSAP from scratch, as well as working with 3D graphics. It’s been a nice and rewarding challenge, and I feel like I've learned a lot from it.",
+      "tech": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "ThreeJS",
+        "GSAP"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/janoslitkei_com_v2"
         },
         {
-            "name": "php_blog",
-            "description": "A simple MVC pattern website and blog to try out vanilla PHP and Pest for unit tests.",
-            "tech": [
-                "PHP",
-                "Pest",
-                "MySQL",
-                "Tailwind CSS"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/php_blog"
-                }
-            ],
-            "screenData": {
-                "title": "php_blog",
-                "contentSrc": "/images/projects/php_blog.gif",
-                "alt": "PHP Blog"
-            }
+          "name": "Website",
+          "url": "https://janoslitkei.com"
         }
-    ],
-    [
+      ],
+      "screenData": {
+        "title": "my_website",
+        "contentSrc": "/images/projects/personal_website.gif",
+        "alt": "Personal Website"
+      }
+    },
+    {
+      "name": "Naše Konyha — Recipe App",
+      "description": "Full-stack personal recipe collection app, built with React, Django REST framework, and PostgreSQL. Features user authentication, recipe CRUD operations, and a responsive design with Tailwind CSS.",
+      "tech": [
+        "Django REST Framework",
+        "React",
+        "Tailwind CSS",
+        "PostgreSQL"
+      ],
+      "links": [
+      ],
+      "screenData": {
+        "title": "nase_konyha",
+        "contentSrc": "/images/projects/nase_konyha.gif",
+        "alt": "Naše Konyha Recipe App"
+      }
+    },
+    {
+      "name": "php_blog",
+      "description": "A simple MVC pattern website and blog to try out vanilla PHP and Pest for unit tests.",
+      "tech": [
+        "PHP",
+        "Pest",
+        "MySQL",
+        "Tailwind CSS"
+      ],
+      "links": [
         {
-            "name": "look_away",
-            "description": "A simple 20-20-20 timer written in Go that reminds you to look away from your screen every 20 minutes. Runs in the terminal, and sends a notification to your desktop.",
-            "tech": [
-                "Golang",
-                "Terminal"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/look_away"
-                }
-            ],
-            "screenData": {
-                "title": "look_away",
-                "contentSrc": "/images/projects/look_away.png",
-                "alt": "Look Away"
-            }
-        },
-        {
-            "name": "go_wraplines",
-            "description": "A simple Go program that wraps lines in a text file to a specified width. It's a command line tool that takes a file as input and wraps the lines to the specified width.",
-            "tech": [
-                "Golang",
-                "Terminal"
-            ],
-            "links": [
-                {
-                    "name": "GitHub",
-                    "url": "https://github.com/jnsltk/go_wraplines"
-                }
-            ],
-            "screenData": {
-                "title": "go_wraplines",
-                "contentSrc": "/images/projects/go_wraplines.gif",
-                "alt": "Go Wraplines"
-            }
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/php_blog"
         }
-    ]
+      ],
+      "screenData": {
+        "title": "php_blog",
+        "contentSrc": "/images/projects/php_blog.gif",
+        "alt": "PHP Blog"
+      }
+    }
+  ],
+  [
+    {
+      "name": "look_away",
+      "description": "A simple 20-20-20 timer written in Go that reminds you to look away from your screen every 20 minutes. Runs in the terminal, and sends a notification to your desktop.",
+      "tech": [
+        "Golang",
+        "Terminal"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/look_away"
+        }
+      ],
+      "screenData": {
+        "title": "look_away",
+        "contentSrc": "/images/projects/look_away.png",
+        "alt": "Look Away"
+      }
+    },
+    {
+      "name": "go_wraplines",
+      "description": "A simple Go program that wraps lines in a text file to a specified width. It's a command line tool that takes a file as input and wraps the lines to the specified width.",
+      "tech": [
+        "Golang",
+        "Terminal"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/go_wraplines"
+        }
+      ],
+      "screenData": {
+        "title": "go_wraplines",
+        "contentSrc": "/images/projects/go_wraplines.gif",
+        "alt": "Go Wraplines"
+      }
+    }
+  ]
 ]

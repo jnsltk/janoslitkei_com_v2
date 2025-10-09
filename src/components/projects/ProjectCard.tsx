@@ -28,6 +28,18 @@ export default function ProjectCard({
                 }`}
             >
                 <p className="mb-4 pr-6">{project.description}</p>
+                <div className={"mb-4 flex items-center gap-2 flex-wrap"}>
+                    {project.tech.map((tech, index) => {
+                        return (
+                            <span
+                                key={index}
+                                className="rounded-sm text-slate-900/70 bg-wild-blue-yonder-200 px-2 py-1 text-sm font-medium"
+                            >
+                                {tech}
+                            </span>
+                        )
+                    })}
+                </div>
                 <div className="mb-4">
                     {project.links.map(link => {
                         return (

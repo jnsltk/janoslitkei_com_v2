@@ -122,6 +122,26 @@
       }
     },
     {
+      "name": "szotar_net (web scraping)",
+      "description": "A CLI dictionary client for the Chinese-Hungarian online dictionary szotar.net, written in Python. It fetches and displays word definitions directly in the terminal, using web scraping techniques.",
+      "tech": [
+        "Python",
+        "Beautiful Soup",
+        "Requests"
+      ],
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/jnsltk/szotar_net"
+        }
+      ],
+      "screenData": {
+        "title": "szotar_net",
+        "contentSrc": "/images/projects/szotar_net.gif",
+        "alt": "szotar_net"
+      }
+    },
+    {
       "name": "Naše Konyha — Recipe App",
       "description": "Full-stack personal recipe collection app, built with React, Django REST framework, and PostgreSQL. Features user authentication, recipe CRUD operations, and a responsive design with Tailwind CSS.",
       "tech": [

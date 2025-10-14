@@ -270,6 +270,7 @@ export default function Desktop() {
                                         alt={project.screenData.title}
                                         priority
                                         className="h-full w-full object-cover"
+                                        unoptimized
                                     />
                                 </div>
                             </Window>

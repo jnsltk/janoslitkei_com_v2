@@ -13,8 +13,7 @@ export default function Footer() {
                 <p className="text-sm">
                     Designed loosely in Figma, created with Nextjs and React
                     using Tailwind CSS for the styling, Three.js for the 3D
-                    graphics, GSAP for the animations. Deployed on a Rackforest
-                    VPS using docker.
+                    graphics, GSAP for the animations. Deployed on Vercel.
                 </p>
             </div>
             <div className={`max-w-lg`}>

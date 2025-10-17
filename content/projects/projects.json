@@ -214,7 +214,7 @@
         }
       ],
       "screenData": {
-        "title": "go_wraplines",
+        "title": "wraplines",
         "contentSrc": "/images/projects/go_wraplines.gif",
         "alt": "Go Wraplines"
       }

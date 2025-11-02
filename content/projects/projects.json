@@ -157,27 +157,6 @@
         "contentSrc": "/images/projects/nase_konyha.gif",
         "alt": "Naše Konyha Recipe App"
       }
-    },
-    {
-      "name": "php_blog",
-      "description": "A simple MVC pattern website and blog to try out vanilla PHP and Pest for unit tests.",
-      "tech": [
-        "PHP",
-        "Pest",
-        "MySQL",
-        "Tailwind CSS"
-      ],
-      "links": [
-        {
-          "name": "GitHub",
-          "url": "https://github.com/jnsltk/php_blog"
-        }
-      ],
-      "screenData": {
-        "title": "php_blog",
-        "contentSrc": "/images/projects/php_blog.gif",
-        "alt": "PHP Blog"
-      }
     }
   ],
   [
